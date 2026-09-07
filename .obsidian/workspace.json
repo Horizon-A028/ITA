@@ -11,12 +11,14 @@
             "id": "a5275ab17a4b2570",
             "type": "leaf",
             "state": {
-              "type": "code-editor",
+              "type": "markdown",
               "state": {
-                "file": "S2/S2L1E2.sql"
+                "file": "S2/S2L1E1.md",
+                "mode": "source",
+                "source": true
               },
-              "icon": "file-code",
-              "title": "S2L1E2.sql"
+              "icon": "lucide-file",
+              "title": "S2L1E1"
             }
           }
         ]
@@ -194,11 +196,11 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "454f9fbb41013faf",
+  "active": "a5275ab17a4b2570",
   "lastOpenFiles": [
+    "S2/S2L1E2.sql",
     "S2/exerci.sql",
     "S2/S2L1E1.md",
-    "S2/S2L1E2.sql",
     "S2/S2L1E2.sql.md",
     "Untitled",
     "S2/Init/estructura_dades.sql",
