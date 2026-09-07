@@ -11,14 +11,12 @@
             "id": "a5275ab17a4b2570",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "code-editor",
               "state": {
-                "file": "S2/S2L1E1.md",
-                "mode": "source",
-                "source": true
+                "file": "S2/S2L1E3.sql"
               },
-              "icon": "lucide-file",
-              "title": "S2L1E1"
+              "icon": "file-code",
+              "title": "S2L1E3.sql"
             }
           }
         ]
@@ -198,10 +196,12 @@
   },
   "active": "a5275ab17a4b2570",
   "lastOpenFiles": [
-    "Diagrams/DS2E1L1.md",
-    "S2/S2L1E1.md",
-    "S2/S2L1E2.sql",
     "S2/exerci.sql",
+    "S2/S2L1E3.sql",
+    "S2/S2L1E3.md",
+    "S2/S2L1E2.sql",
+    "S2/S2L1E1.md",
+    "Diagrams/DS2E1L1.md",
     "S2/S2L1E2.sql.md",
     "Untitled",
     "S2/Init/estructura_dades.sql",
@@ -212,7 +212,6 @@
     "S2/Diagrams",
     "S2/Diagrams/S2L1E1D.png",
     "Welcome.md",
-    "S2",
     "README.md"
   ]
 }
