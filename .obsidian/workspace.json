@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "8748e8e6b866f7ae",
+        "id": "c25c0e8d33fc27a1",
         "type": "tabs",
         "children": [
           {
-            "id": "05d781a3864e2e32",
+            "id": "5d6736e3445f7288",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "S2/S2E1L1.md",
+                "mode": "preview",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "S2E1L1"
             }
           }
         ]
@@ -192,16 +196,18 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "24e5b2d8bcf131c7",
+  "active": "5d6736e3445f7288",
   "lastOpenFiles": [
+    "S2/Init/estructura_dades.sql",
+    "S2/S2E1L1.md",
+    "Diagrams/DS2E1L1.md",
+    "Diagrams",
     "S2/Data/dades_introduir.sql",
     "S2/Init",
-    "S2/S2E1L1.md",
     "S2/Data",
     "S2/Diagrams",
     "S2/exerci.sql",
-    "S2/Init/estructura_dades.sql",
-    "S2/Diagrams/S2E1L1_diagram.png",
+    "S2/Diagrams/S2E1L1D.png",
     "Welcome.md",
     "S2",
     "README.md"
