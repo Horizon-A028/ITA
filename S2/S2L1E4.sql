@@ -9,17 +9,34 @@
 DROP TABLE IF EXISTS credit_card;
 CREATE TABLE IF NOT EXISTS credit_card (
   id VARCHAR(15) PRIMARY KEY,
-  user_id INT NOT NULL,
+  user_id INT,
   iban VARCHAR(50),
   pan VARCHAR(30),
   pin INT,
   cvv INT,
-  track1 VARCHAR(79),
+  track1 VARCHAR(80),
   track2 VARCHAR(40),
-  expiring_date DATE,
+  expiring_date VARCHAR(10),
   card_type VARCHAR(20),
   card_renewal_flag BOOL
 );
+
+ALTER TABLE transaction
+ADD CONSTRAINT fk_card
+FOREIGN KEY (credit_card_id) 
+REFERENCES credit_card(id);
+
+SELECT *
+FROM credit_card;
+
+ALTER TABLE transaction
+DROP CONSTRAINT fk_card;
+
+-- Mal entendido del enunciado lleva al siguiente codigo,
+-- No lo borro para dejar como referencia, ni lo comento.
+-- El ejercicio 4 acaba en esta linea. Para cargar los datos
+-- solo tengo que ejecutar el fichero desde Administration
+-- Data Import/Restore
 
 SET GLOBAL local_infile = ON;
 -- connection configuration
@@ -65,7 +82,7 @@ SHOW VARIABLES LIKE "secure_file_priv";
 --     column5 = CAST(REPLACE(@col5, '$', '') AS DECIMAL(10,2));  -- Remove currency symbols
 
 LOAD DATA LOCAL
-INFILE "C:\\Program Files\\MySQL\\MySQL Server 8.0\\Uploads\\credit_cards.csv"
+INFILE "C:\\Program Files\\MySQL\\MySQL Server 8.0\\Uploads\\N1-Ex.8__credit_cards.csv"
 INTO TABLE credit_card
 FIELDS TERMINATED BY ","
 LINES TERMINATED BY "\n"
