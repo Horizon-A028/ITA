@@ -205,8 +205,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "454f9fbb41013faf",
+  "active": "1325d65be898dd6c",
   "lastOpenFiles": [
+    "S2/S2L1E4.sql.HA2SU3",
+    "S2/S2L1E4.sql.0JJVU3",
     "S2/S2L1E4.sql",
     "S2/S2L1E1.md",
     "S2/S2L1E4.sql.EGLVU3",
@@ -217,8 +219,6 @@
     "S2/data/N1-Ex.8__companies.csv:Zone.Identifier:$DATA",
     "S2/data/N1-Ex.8__companies.csv",
     "S2/data/N1-Ex.8__american_users.csv:Zone.Identifier:$DATA",
-    "S2/data/N1-Ex.8__american_users.csv",
-    "S2/data/N1-Ex.8__transactions.csv:Zone.Identifier:$DATA",
     "S2/diagrams/S2L1E1D.png",
     "S2/S2L1E3.md",
     "Diagrams/DS2E1L1.md",
