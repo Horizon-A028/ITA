@@ -13,13 +13,24 @@
             "state": {
               "type": "code-editor",
               "state": {
-                "file": "S2/S2L1E3.sql"
+                "file": "S2/S2L1E4.sql"
               },
               "icon": "file-code",
-              "title": "S2L1E3.sql"
+              "title": "S2L1E4.sql"
+            }
+          },
+          {
+            "id": "1325d65be898dd6c",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -81,7 +92,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 418.5
   },
   "right": {
     "id": "83a722ac0fb4e40b",
@@ -194,22 +205,24 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "a5275ab17a4b2570",
+  "active": "454f9fbb41013faf",
   "lastOpenFiles": [
-    "S2/exerci.sql",
-    "S2/S2L1E3.sql",
-    "S2/S2L1E3.md",
-    "S2/S2L1E2.sql",
+    "S2/S2L1E4.sql",
     "S2/S2L1E1.md",
+    "S2/S2L1E4.sql.EGLVU3",
+    "S2/data/N1-Ex.8__european_users.csv:Zone.Identifier:$DATA",
+    "S2/data/N1-Ex.8__european_users.csv",
+    "S2/data/N1-Ex.8__credit_cards.csv:Zone.Identifier:$DATA",
+    "S2/data/N1-Ex.8__credit_cards.csv",
+    "S2/data/N1-Ex.8__companies.csv:Zone.Identifier:$DATA",
+    "S2/data/N1-Ex.8__companies.csv",
+    "S2/data/N1-Ex.8__american_users.csv:Zone.Identifier:$DATA",
+    "S2/data/N1-Ex.8__american_users.csv",
+    "S2/data/N1-Ex.8__transactions.csv:Zone.Identifier:$DATA",
+    "S2/diagrams/S2L1E1D.png",
+    "S2/S2L1E3.md",
     "Diagrams/DS2E1L1.md",
     "S2/S2L1E2.sql.md",
-    "Untitled",
-    "S2/Init/estructura_dades.sql",
-    "Diagrams",
-    "S2/Data/dades_introduir.sql",
-    "S2/Init",
-    "S2/Data",
-    "S2/Diagrams",
     "S2/Diagrams/S2L1E1D.png",
     "Welcome.md",
     "README.md"
