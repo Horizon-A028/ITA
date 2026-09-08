@@ -8,7 +8,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "a5275ab17a4b2570",
+            "id": "1325d65be898dd6c",
             "type": "leaf",
             "state": {
               "type": "code-editor",
@@ -20,13 +20,17 @@
             }
           },
           {
-            "id": "1325d65be898dd6c",
+            "id": "2b2930b28e90cc71",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "S2/S2L1E4.md",
+                "mode": "preview",
+                "source": true
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "S2L1E4"
             }
           }
         ],
@@ -205,21 +209,23 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "454f9fbb41013faf",
+  "active": "2b2930b28e90cc71",
   "lastOpenFiles": [
+    "S2/S2L1E6.sql",
+    "S2/S2L1E6.sql.HJWSU3",
+    "S2/S2L1E5.sql.OBWZU3",
+    "S2/S2L1E5.sql.T5BSU3",
+    "S2/S2L1E5.sql",
+    "S2/S2L1E5.sql.XX11U3",
+    "S2/S2L1E4.sql",
+    "S2/S2L1E4.md",
     "S2/diagrams/S2L1E4D.png",
     "S2/diagrams/Screenshot from 2026-09-08 12-51-52.png",
     "S2/S2L1E4.sql.UP91U3",
     "S2/S2L1E4.sql.IO23U3",
     "S2/S2L1E4.sql.YBFBV3",
     "S2/S2L1E4.sql.HA2SU3",
-    "S2/S2L1E4.sql.0JJVU3",
-    "S2/S2L1E4.sql",
     "S2/S2L1E1.md",
-    "S2/S2L1E4.sql.EGLVU3",
-    "S2/data/N1-Ex.8__european_users.csv:Zone.Identifier:$DATA",
-    "S2/data/N1-Ex.8__european_users.csv",
-    "S2/data/N1-Ex.8__credit_cards.csv:Zone.Identifier:$DATA",
     "S2/diagrams/S2L1E1D.png",
     "S2/S2L1E3.md",
     "Diagrams/DS2E1L1.md",
