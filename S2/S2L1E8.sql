@@ -9,6 +9,10 @@
 -- almenys 4 taules de les quals puguis realitzar les següents consultes:
 -- La taula de products.csv l'utilitzarem més endavant.
 
+-- Solo hace falta dejar los archivos en la carpeta adecuada, en mi caso estan en:
+-- C:\Program Files\MySQL\MySQL Server 8.0\Uploads
+-- Y se puede ejecutar todo este fichero en orden para cargar la base de datos.
+
 CREATE SCHEMA IF NOT EXISTS S2L1E8;
 USE S2L1E8;
 
