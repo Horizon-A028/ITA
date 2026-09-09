@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS users (
   city        VARCHAR(20),
   postal_code VARCHAR(10),
   address     VARCHAR(100),
-  singup_date DATE,
+  signup_date DATE,
   segment     VARCHAR(40),
   income_band VARCHAR(20)
 );
@@ -43,8 +43,8 @@ CREATE TABLE IF NOT EXISTS cards (
   user_id       INT,
   iban          VARCHAR(50),
   pan           VARCHAR(30),
-  pin           INT,
-  cvv           INT,
+  pin           VARCHAR(8),
+  cvv           VARCHAR(8),
   track1        VARCHAR(80),
   track2        VARCHAR(40),
   expiring_date VARCHAR(10),
@@ -100,6 +100,11 @@ CREATE TABLE IF NOT EXISTS transactions (
   FOREIGN KEY (company_id) REFERENCES companies(id),
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+CREATE INDEX idx_cards_user_id ON cards(user_id);
+CREATE INDEX idx_transactions_card_id ON transactions(card_id);
+CREATE INDEX idx_transactions_company_id ON transactions(company_id);
+CREATE INDEX idx_transactions_user_id ON transactions(user_id);
 
 SET GLOBAL local_infile = ON;
 -- connection configuration
@@ -164,7 +169,7 @@ SET
   city        = TRIM(@city),
   postal_code = TRIM(@postal),
   address     = TRIM(@address),
-  singup_date = STR_TO_DATE(@signup, '%Y-%m-%d'),
+  signup_date = STR_TO_DATE(@signup, '%Y-%m-%d'),
   segment     = TRIM(@segment),
   income_band = TRIM(@income)
 ;
@@ -188,7 +193,7 @@ SET
   city        = TRIM(@city),
   postal_code = TRIM(@postal),
   address     = TRIM(@address),
-  singup_date = STR_TO_DATE(@signup, '%Y-%m-%d'),
+  signup_date = STR_TO_DATE(@signup, '%Y-%m-%d'),
   segment     = TRIM(@segment),
   income_band = TRIM(@income)
 ;
@@ -208,8 +213,8 @@ SET
   user_id = CAST(@user_id AS UNSIGNED),
   iban = TRIM(@iban),
   pan = REPLACE(@pan, ' ', ''),
-  pin = CAST(@pin AS UNSIGNED),
-  cvv = CAST(@cvv AS UNSIGNED),
+  pin = TRIM(@pin),
+  cvv = TRIM(@cvv),
   track1 = @track1,
   track2 = @track2,
   expiring_date = STR_TO_DATE(@expiring, '%m/%d/%Y'),
