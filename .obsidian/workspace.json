@@ -212,8 +212,9 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "a98beaf7987ecad6",
+  "active": "efe0595d2cad2b1d",
   "lastOpenFiles": [
+    "S2/S2L1E10.sql.V1MEV3",
     "S2/S2L1E10.sql",
     "S2/S2L1E10.sql.HLJOV3",
     "S2/S2L1E8.sql.G64EV3",
@@ -226,7 +227,6 @@
     "S2/init/estructura_dades.sql",
     "S2/S2L1E8.md",
     "S2/S2L1E8.sql.OFOVV3",
-    "S2/S2L1E8.sql.KTZDV3",
-    "S2/S2L1E8.sql.CP5OV3"
+    "S2/S2L1E8.sql.KTZDV3"
   ]
 }
