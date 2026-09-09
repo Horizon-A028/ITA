@@ -1,54 +1,39 @@
 {
   "main": {
-    "id": "5926533ee364f7d8",
+    "id": "95918e8a45850301",
     "type": "split",
     "children": [
       {
-        "id": "c25c0e8d33fc27a1",
+        "id": "6cde6921788c0d8d",
         "type": "tabs",
         "children": [
           {
-            "id": "1325d65be898dd6c",
+            "id": "2a9fdf5e642ecc71",
             "type": "leaf",
             "state": {
               "type": "code-editor",
               "state": {
-                "file": "S2/S2L1E4.sql"
+                "file": "S2/init/estructura_dades.sql"
               },
               "icon": "file-code",
-              "title": "S2L1E4.sql"
-            }
-          },
-          {
-            "id": "2b2930b28e90cc71",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "S2/S2L1E4.md",
-                "mode": "preview",
-                "source": true
-              },
-              "icon": "lucide-file",
-              "title": "S2L1E4"
+              "title": "estructura_dades.sql"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "56f98c839902a7d1",
+    "id": "abd13f5626dfafb0",
     "type": "split",
     "children": [
       {
-        "id": "cc7d5a3afbec485f",
+        "id": "cd1d0899be6cea51",
         "type": "tabs",
         "children": [
           {
-            "id": "454f9fbb41013faf",
+            "id": "b93a4349367ff08d",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -63,7 +48,7 @@
             }
           },
           {
-            "id": "3c39f84bc3f7b771",
+            "id": "112be42aa4ecb83b",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -80,7 +65,7 @@
             }
           },
           {
-            "id": "d0860b70626da665",
+            "id": "fe12358bd078b0a0",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -96,22 +81,23 @@
       }
     ],
     "direction": "horizontal",
-    "width": 418.5
+    "width": 300
   },
   "right": {
-    "id": "83a722ac0fb4e40b",
+    "id": "2c383d966b4436dd",
     "type": "split",
     "children": [
       {
-        "id": "13f55af8448983a5",
+        "id": "7b2e736b83f995dc",
         "type": "tabs",
         "children": [
           {
-            "id": "4f0116c82216e9d4",
+            "id": "82f9d701a5fb1b52",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
+                "file": "S2/init/estructura_dades.sql",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -125,11 +111,12 @@
             }
           },
           {
-            "id": "458277a9c2e59ec6",
+            "id": "4ea6bfab0e4b0d73",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "S2/init/estructura_dades.sql",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -138,7 +125,7 @@
             }
           },
           {
-            "id": "ea77d2a380cc551e",
+            "id": "e084570c5898894d",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -153,7 +140,7 @@
             }
           },
           {
-            "id": "57540f7bba8ac51e",
+            "id": "99093bc893a229c6",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -167,11 +154,12 @@
             }
           },
           {
-            "id": "fad5407a8fef5bb5",
+            "id": "50369a9da60d932a",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
+                "file": "S2/init/estructura_dades.sql",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -181,7 +169,7 @@
             }
           },
           {
-            "id": "24e5b2d8bcf131c7",
+            "id": "efe0595d2cad2b1d",
             "type": "leaf",
             "state": {
               "type": "git-view",
@@ -209,29 +197,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "454f9fbb41013faf",
+  "active": "2a9fdf5e642ecc71",
   "lastOpenFiles": [
+    "S2/S2L1E8.sql.0QVJV3",
+    "S2/exerci.sql",
     "S2/S2L1E8.sql",
-    "S2/S2L1E4.sql.Q306U3",
-    "S2/S2L1E4.sql.KN5XU3",
-    "S2/S2L1E4.sql.SRUTU3",
-    "S2/data/N1-Ex.4__ datos_introducir_credit.sql",
-    "S2/S2L1E7.sql.ZU82U3",
-    "S2/S2L1E7.sql",
-    "S2/S2L1E7.sql.8WXUU3",
-    "S2/S2L1E6.sql",
-    "S2/S2L1E6.sql.HJWSU3",
-    "S2/S2L1E5.sql.OBWZU3",
-    "S2/S2L1E4.md",
-    "S2/diagrams/S2L1E4D.png",
-    "S2/diagrams/Screenshot from 2026-09-08 12-51-52.png",
-    "S2/S2L1E1.md",
-    "S2/diagrams/S2L1E1D.png",
-    "S2/S2L1E3.md",
-    "Diagrams/DS2E1L1.md",
-    "S2/S2L1E2.sql.md",
-    "S2/Diagrams/S2L1E1D.png",
-    "Welcome.md",
-    "README.md"
+    "S2/S2L1E8.sql.AMWJV3",
+    "S2/init/estructura_dades.sql"
   ]
 }
