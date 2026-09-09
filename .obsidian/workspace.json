@@ -23,14 +23,12 @@
             "id": "a98beaf7987ecad6",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "code-editor",
               "state": {
-                "file": "S2/S2L1E8.md",
-                "mode": "source",
-                "source": false
+                "file": "S2/exerci.sql"
               },
-              "icon": "lucide-file",
-              "title": "S2L1E8"
+              "icon": "file-code",
+              "title": "exerci.sql"
             }
           }
         ],
@@ -112,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "S2/S2L1E8.md",
+                "file": "S2/exerci.sql",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -131,7 +129,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "S2/S2L1E8.md",
+                "file": "S2/exerci.sql",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -174,7 +172,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "S2/S2L1E8.md",
+                "file": "S2/exerci.sql",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -212,21 +210,21 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "efe0595d2cad2b1d",
+  "active": "a98beaf7987ecad6",
   "lastOpenFiles": [
+    "S2/S2L2E1.sql.XA6QV3",
+    "S2/S2L2E1.sql.7KAUV3",
+    "S2/S2L1E8.md",
+    "S2/S2L2E1.sql.ON7PV3",
+    "S2/S2L2E1.sql.F8KTV3",
+    "S2/S2L2E1.sql.7S8EV3",
+    "S2/S2L2E1.sql",
+    "S2/S2L2E1.sql.S7ZDV3",
     "S2/S2L1E10.sql.V1MEV3",
     "S2/S2L1E10.sql",
     "S2/S2L1E10.sql.HLJOV3",
     "S2/S2L1E8.sql.G64EV3",
-    "S2/S2L1E9.sql.T2RDV3",
-    "S2/S2L1E9.sql.JSGDV3",
-    "S2/S2L1E9.sql",
-    "S2/S2L1E9.sql.4NSTV3",
     "S2/diagrams/S2L1E8D.png",
-    "S2/diagrams/Screenshot from 2026-09-09 12-58-05.png",
-    "S2/init/estructura_dades.sql",
-    "S2/S2L1E8.md",
-    "S2/S2L1E8.sql.OFOVV3",
-    "S2/S2L1E8.sql.KTZDV3"
+    "S2/diagrams/Screenshot from 2026-09-09 12-58-05.png"
   ]
 }
