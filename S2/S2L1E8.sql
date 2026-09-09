@@ -61,15 +61,16 @@ CREATE TABLE IF NOT EXISTS companies (
 );
 
 CREATE TABLE IF NOT EXISTS products (
-  id            INT PRIMARY KEY,
-  price         DECIMAL(6,2),
-  hex_color     CHAR(6),
-  weight        DECIMAL(6,2),
-  wharehouse_id INT,
-  category      VARCHAR(20),
-  brand         VARCHAR(20),
-  cost          DECIMAL(6,2),
-  launch_date   DATE
+  id           INT PRIMARY KEY,
+  name         VARCHAR(40),
+  price        DECIMAL(8,2),
+  hex_color    CHAR(6),
+  weight       DECIMAL(8,2),
+  warehouse_id INT,
+  category     VARCHAR(20),
+  brand        VARCHAR(20),
+  cost         DECIMAL(8,2),
+  launch_date  DATE
 );
 
 CREATE TABLE IF NOT EXISTS transactions (
@@ -77,21 +78,21 @@ CREATE TABLE IF NOT EXISTS transactions (
   card_id        VARCHAR(15),
   company_id     VARCHAR(15),
   instant        TIMESTAMP,
-  amount         DECIMAL(6,2),
+  amount         DECIMAL(8,2),
   declined       BOOL,
   product_ids    VARCHAR(255),
   user_id        INT,
   latitude       FLOAT,
   longitude      FLOAT,
-  discount       DECIMAL(6,2),
-  tax            DECIMAL(6,2),
-  shipping       DECIMAL(6,2),
+  discount       DECIMAL(8,2),
+  tax            DECIMAL(8,2),
+  shipping       DECIMAL(8,2),
   channel        VARCHAR(20),
   campaign_id    VARCHAR(30),
   device_type    VARCHAR(20),
   international  BOOL,
   decline_reason VARCHAR(255),
-  distance_km    DECIMAL(6,2),
+  distance_km    DECIMAL(8,2),
   FOREIGN KEY (company_id) REFERENCES companies(id),
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
@@ -213,3 +214,81 @@ SET
 ;
 
 SELECT * FROM cards;
+
+-- company_id,company_name,phone,email,country,website,merchant_category,merchant_price_position
+LOAD DATA LOCAL
+INFILE "C:\\Program Files\\MySQL\\MySQL Server 8.0\\Uploads\\N1-Ex.8__companies.csv"
+INTO TABLE companies
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(@id, @name, @phone, @email, @country, @website, @category, @price)
+SET
+  id       = TRIM(@id),
+  name     = TRIM(@name),
+  phone    = TRIM(@phone),
+  email    = TRIM(@email),
+  country  = TRIM(@country),
+  website  = TRIM(@website),
+  category = TRIM(@category),
+  price    = TRIM(@price)
+;
+
+SELECT * FROM companies;
+
+-- id,product_name,price,colour,weight,warehouse_id,category,brand,cost,launch_date
+LOAD DATA LOCAL
+INFILE "C:\\Program Files\\MySQL\\MySQL Server 8.0\\Uploads\\N1-Ex.8__products.csv"
+INTO TABLE products
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(@id, @name, @price, @color, @weight, @w_id, @category, @brand, @cost, @launch_date)
+SET
+  id           = CAST(@id AS UNSIGNED),
+  name         = TRIM(@name),
+  price        = CAST(REPLACE(@price, '$', '') AS DECIMAL(8,2)),
+  hex_color    = UPPER(REPLACE(TRIM(@color), '#', '')),
+  weight       = CAST(@weight AS DECIMAL(8,2)),
+  warehouse_id = REPLACE(TRIM(@w_id), 'WH-', ''),
+  category     = TRIM(@category),
+  brand        = TRIM(@brand),
+  cost         = CAST(REPLACE(@cost, '$', '') AS DECIMAL(8,2)),
+  launch_date  = STR_TO_DATE(@launch_date, '%Y-%m-%d')
+;
+
+SELECT * FROM products;
+
+-- id;card_id;business_id;timestamp;amount;declined;product_ids;user_id;lat;longitude;discount_amount;
+-- tax_amount;shipping_amount;channel;campaign_id;device_type;is_international;decline_reason;distance_km
+LOAD DATA LOCAL
+INFILE "C:\\Program Files\\MySQL\\MySQL Server 8.0\\Uploads\\N1-Ex.8__transactions.csv"
+INTO TABLE transactions
+FIELDS TERMINATED BY ';'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(@id, @card_id, @com_id, @instant, @amount, @declined, @products, @user_id, @lat, @lon, @discount,
+@tax, @shipping, @channel, @campaign, @device, @international, @decl_reason, @distance)
+SET
+  id             = TRIM(@id), -- VARCHAR(40)
+  card_id        = TRIM(@card_id), -- VARCHAR(15)
+  company_id     = TRIM(@com_id), -- VARCHAR(15)
+  instant        = STR_TO_DATE(@instant, '%Y-%m-%d %H:%i:%s'), -- TIMESTAMP
+  amount         = CAST(@amount AS DECIMAL(8,2)), -- DECIMAL(8,2)
+  declined       = CAST(@declined AS BINARY), -- BOOL
+  product_ids    = TRIM(@products), -- VARCHAR(255)
+  user_id        = CAST(@user_id AS UNSIGNED), -- INT
+  latitude       = CAST(@lat AS FLOAT), -- FLOAT
+  longitude      = CAST(@lon AS FLOAT), -- FLOAT
+  discount       = CAST(@discount AS DECIMAL(8,2)), -- DECIMAL(8,2)
+  tax            = CAST(@tax AS DECIMAL(8,2)), -- DECIMAL(8,2)
+  shipping       = CAST(@shipping AS DECIMAL(8,2)), -- DECIMAL(8,2)
+  channel        = TRIM(@channel), -- VARCHAR(20)
+  campaign_id    = TRIM(@campaign), -- VARCHAR(30)
+  device_type    = TRIM(@device), -- VARCHAR(20)
+  international  = CAST(@international AS BINARY), -- BOOL
+  decline_reason = TRIM(@decl_reason), -- VARCHAR(255)
+  distance_km    = CAST(@distance AS DECIMAL(8,2)) -- DECIMAL(8,2)
+;
+
+SELECT * FROM transactions;
