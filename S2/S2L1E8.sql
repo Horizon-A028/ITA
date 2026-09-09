@@ -73,6 +73,25 @@ CREATE TABLE IF NOT EXISTS products (
 );
 
 CREATE TABLE IF NOT EXISTS transactions (
-  id            VARCHAR(40),
-  
+  id             VARCHAR(40) PRIMARY KEY,
+  card_id        VARCHAR(15),
+  company_id     VARCHAR(15),
+  instant        TIMESTAMP,
+  amount         DECIMAL(6,2),
+  declined       BOOL,
+  product_ids    VARCHAR(255),
+  user_id        INT,
+  latitude       FLOAT,
+  longitude      FLOAT,
+  discount       DECIMAL(6,2),
+  tax            DECIMAL(6,2),
+  shipping       DECIMAL(6,2),
+  channel        VARCHAR(20),
+  campaign_id    VARCHAR(30),
+  device_type    VARCHAR(20),
+  international  BOOL,
+  decline_reason VARCHAR(255),
+  distance_km    DECIMAL(6,2),
+  FOREIGN KEY (company_id) REFERENCES companies(id),
+  FOREIGN KEY (user_id) REFERENCES users(id)
 );
