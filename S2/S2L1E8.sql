@@ -98,7 +98,8 @@ CREATE TABLE IF NOT EXISTS transactions (
   decline_reason VARCHAR(255),
   distance_km    DECIMAL(8,2),
   FOREIGN KEY (company_id) REFERENCES companies(id),
-  FOREIGN KEY (user_id) REFERENCES users(id)
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (card_id) REFERENCES cards(id)
 );
 
 CREATE INDEX idx_cards_user_id ON cards(user_id);

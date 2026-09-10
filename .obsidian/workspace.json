@@ -4,19 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "6cde6921788c0d8d",
+        "id": "ab29645b993a2cbd",
         "type": "tabs",
         "children": [
           {
-            "id": "a98beaf7987ecad6",
+            "id": "50d15fabce120af2",
             "type": "leaf",
             "state": {
-              "type": "code-editor",
+              "type": "markdown",
               "state": {
-                "file": "S2/S2L2E2.sql"
+                "file": "S2/S2L1E8.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "file-code",
-              "title": "S2L2E2.sql"
+              "icon": "lucide-file",
+              "title": "S2L1E8"
             }
           }
         ]
@@ -197,21 +199,22 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "efe0595d2cad2b1d",
+  "active": "50d15fabce120af2",
   "lastOpenFiles": [
+    "S2/S2L1E7.sql",
+    "S2/S2L1E8.md",
+    "S2/diagrams/S2L1E8D.png",
+    "S2/diagrams/Screenshot from 2026-09-10 10-51-45.png",
+    "S2/S2L1E8.sql.I79OV3",
+    "S2/S2L2E2.sql",
+    "S2/S2L3E1.sql",
+    "S2/S2L3E1.sql.QIHRV3",
     "S2/S2L2E5.sql.KGOPV3",
     "S2/S2L2E5.sql.YA8VV3",
     "S2/S2L2E5.sql.1CXDV3",
     "S2/S2L2E5.sql",
     "S2/S2L2E5.sql.0F1HV3",
     "S2/S2L2E4.sql.Q9NPV3",
-    "S2/S2L2E4.sql",
-    "S2/S2L2E4.sql.0DJQV3",
-    "S2/S2L2E3.sql.EFYLV3",
-    "S2/S2L2E3.sql.KN8VV3",
-    "S2/S2L2E3.sql.Z1VVV3",
-    "S2/S2L1E8.md",
-    "S2/diagrams/S2L1E8D.png",
     "S2/diagrams/Screenshot from 2026-09-09 12-58-05.png"
   ]
 }
