@@ -8,31 +8,18 @@
         "type": "tabs",
         "children": [
           {
-            "id": "2a9fdf5e642ecc71",
-            "type": "leaf",
-            "state": {
-              "type": "code-editor",
-              "state": {
-                "file": "S2/init/estructura_dades.sql"
-              },
-              "icon": "file-code",
-              "title": "estructura_dades.sql"
-            }
-          },
-          {
             "id": "a98beaf7987ecad6",
             "type": "leaf",
             "state": {
               "type": "code-editor",
               "state": {
-                "file": "S2/exerci.sql"
+                "file": "S2/S2L2E2.sql"
               },
               "icon": "file-code",
-              "title": "exerci.sql"
+              "title": "S2L2E2.sql"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -210,20 +197,20 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "efe0595d2cad2b1d",
+  "active": "a98beaf7987ecad6",
   "lastOpenFiles": [
+    "S2/S2L2E2.sql.P3ULV3",
+    "S2/S2L2E2.sql.00VDV3",
+    "S2/S2L2E2.sql.1KKQV3",
+    "S2/S2L2E2.sql.OULNV3",
+    "S2/S2L2E2.sql.NDWJV3",
+    "S2/exerci.sql",
+    "S2/init/estructura_dades.sql",
     "S2/S2L2E2.sql.NU9EV3",
     "S2/S2L2E2.sql",
     "S2/S2L2E2.sql.KOOXV3",
     "S2/S2L2E1.sql.XA6QV3",
-    "S2/S2L2E1.sql.7KAUV3",
     "S2/S2L1E8.md",
-    "S2/S2L2E1.sql.ON7PV3",
-    "S2/S2L2E1.sql.F8KTV3",
-    "S2/S2L2E1.sql.7S8EV3",
-    "S2/S2L2E1.sql",
-    "S2/S2L2E1.sql.S7ZDV3",
-    "S2/S2L1E10.sql.V1MEV3",
     "S2/diagrams/S2L1E8D.png",
     "S2/diagrams/Screenshot from 2026-09-09 12-58-05.png"
   ]
