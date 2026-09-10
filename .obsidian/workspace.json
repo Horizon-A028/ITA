@@ -11,14 +11,12 @@
             "id": "50d15fabce120af2",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "code-editor",
               "state": {
-                "file": "S2/S2L1E8.md",
-                "mode": "source",
-                "source": false
+                "file": "S2/S2L3E1.sql"
               },
-              "icon": "lucide-file",
-              "title": "S2L1E8"
+              "icon": "file-code",
+              "title": "S2L3E1.sql"
             }
           }
         ]
@@ -201,20 +199,20 @@
   },
   "active": "50d15fabce120af2",
   "lastOpenFiles": [
-    "S2/S2L1E7.sql",
+    "S2/S2L3E1.sql.LTFSV3",
+    "S2/S2L3E1.sql.JABYV3",
+    "S2/S2L3E1.sql.UY9EV3",
+    "S2/S2L3E1.sql.98MRV3",
+    "S2/S2L3E1.sql.7KFSV3",
+    "S2/S2L3E1.sql.6GOJV3",
+    "S2/S2L3E1.sql.AVBIV3",
+    "S2/S2L3E1.sql.WOBPV3",
+    "S2/S2L3E1.sql.K43VV3",
+    "S2/S2L3E1.sql.27RGV3",
+    "S2/S2L3E1.sql.RQWQV3",
     "S2/S2L1E8.md",
     "S2/diagrams/S2L1E8D.png",
     "S2/diagrams/Screenshot from 2026-09-10 10-51-45.png",
-    "S2/S2L1E8.sql.I79OV3",
-    "S2/S2L2E2.sql",
-    "S2/S2L3E1.sql",
-    "S2/S2L3E1.sql.QIHRV3",
-    "S2/S2L2E5.sql.KGOPV3",
-    "S2/S2L2E5.sql.YA8VV3",
-    "S2/S2L2E5.sql.1CXDV3",
-    "S2/S2L2E5.sql",
-    "S2/S2L2E5.sql.0F1HV3",
-    "S2/S2L2E4.sql.Q9NPV3",
     "S2/diagrams/Screenshot from 2026-09-09 12-58-05.png"
   ]
 }
