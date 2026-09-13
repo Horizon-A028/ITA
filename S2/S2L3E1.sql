@@ -29,7 +29,6 @@ WITH
     FROM ranked AS r
     WHERE r.rn < 4
     GROUP BY r.id
-    HAVING act > 0
   )
 SELECT
   a.id,
