@@ -27,3 +27,6 @@ GROUP BY
   c.country
 ORDER BY avg_sale DESC
 ;
+
+SELECT *
+FROM vistamarketing;

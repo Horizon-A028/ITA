@@ -13,15 +13,15 @@ SELECT
     ELSE '<400'
   END AS category
 FROM (
-SELECT
-  c.id,
-  c.name,
-  COUNT(t.id) AS n_tr
-FROM companies AS c
-JOIN transactions AS t
-ON t.company_id = c.id
-GROUP BY
-  c.id,
-  c.name
-ORDER BY n_tr DESC
+  SELECT
+    c.id,
+    c.name,
+    COUNT(t.id) AS n_tr
+  FROM companies AS c
+  JOIN transactions AS t
+  ON t.company_id = c.id
+  GROUP BY
+    c.id,
+    c.name
+  ORDER BY n_tr DESC
 ) AS t;

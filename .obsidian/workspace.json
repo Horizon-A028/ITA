@@ -11,12 +11,12 @@
             "id": "50d15fabce120af2",
             "type": "leaf",
             "state": {
-              "type": "code-editor",
+              "type": "pdf",
               "state": {
-                "file": "S2/S2L3E2.sql"
+                "file": "S2/ITADATAS2.pdf"
               },
-              "icon": "file-code",
-              "title": "S2L3E2.sql"
+              "icon": "lucide-file-text",
+              "title": "ITADATAS2"
             }
           }
         ]
@@ -199,18 +199,19 @@
   },
   "active": "50d15fabce120af2",
   "lastOpenFiles": [
-    "S2/S2L3E2.sql.COHRV3",
-    "S2/S2L3E2.sql.QTIYV3",
-    "S2/S2L3E2.sql.9DYEV3",
-    "S2/S2L3E2.sql.35UOV3",
-    "S2/S2L3E2.sql.ABBFV3",
-    "S2/S2L3E2.sql.TLQJV3",
-    "S2/S2L3E2.sql.XP7WV3",
-    "S2/S2L3E2.sql.3DZOV3",
-    "S2/exerci.sql",
-    "S2/S2L3E1.sql",
-    "S2/S2L3E2.sql",
     "S2/S2L1E8.md",
+    "S2/ITADATAS2.pdf",
+    "S2/Unconfirmed 297305.crdownload",
+    "S2/S2L3E1.sql.XQ0JV3",
+    "S2/S2L3E1.sql.NRWKV3",
+    "S2/S2L3E1.sql.NCUHV3",
+    "S2/S2L3E1.sql.U84RV3",
+    "S2/S2L2E5.sql.4R0SV3",
+    "S2/S2L2E3.sql.G2ZNV3",
+    "S2/S2L1E8.sql",
+    "S2/S2L1E4.md",
+    "S2/S2L1E4.sql",
+    "S2/S2L1E1.md",
     "S2/diagrams/S2L1E8D.png",
     "S2/diagrams/Screenshot from 2026-09-10 10-51-45.png",
     "S2/diagrams/Screenshot from 2026-09-09 12-58-05.png"

@@ -10,7 +10,7 @@ WHERE c.id = "CcU-2938"
 ;
 
 -- Asumo que por "informació que s'ha de mostrar en aquest registre",
--- se esta refiriendo al iban cual es "CA137550525951024363769804".
+-- se esta refiriendo al iban que inicialmente es "TR301950312213576817638661".
 
 UPDATE credit_card AS c
 SET iban = "TR323456312213576817699999"

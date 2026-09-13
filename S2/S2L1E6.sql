@@ -10,10 +10,6 @@
 -- amount: 111.11 
 -- declined: 0
 
-SELECT *
-FROM transaction
-LIMIT 1;
-
 INSERT INTO transaction (
   id,
   credit_card_id,

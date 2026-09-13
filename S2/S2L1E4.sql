@@ -9,16 +9,11 @@
 DROP TABLE IF EXISTS credit_card;
 CREATE TABLE IF NOT EXISTS credit_card (
   id VARCHAR(15) PRIMARY KEY,
-  user_id INT,
   iban VARCHAR(50),
   pan VARCHAR(30),
   pin INT,
   cvv INT,
-  track1 VARCHAR(80),
-  track2 VARCHAR(40),
-  expiring_date VARCHAR(10),
-  card_type VARCHAR(20),
-  card_renewal_flag BOOL
+  expiring_date VARCHAR(10)
 );
 
 ALTER TABLE transaction

@@ -31,8 +31,17 @@ WITH
     GROUP BY r.id
     HAVING act > 0
   )
-SELECT COUNT(1) AS active_cards
+SELECT
+  a.id,
+  CASE
+    WHEN act < 1 THEN FALSE
+    ELSE TRUE
+  END AS is_active
 FROM activity AS a
 ;
 
 SELECT * FROM cards_activity;
+
+SELECT COUNT(1) AS n_active
+FROM cards_activity AS c
+WHERE c.is_active = TRUE;
