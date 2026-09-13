@@ -24,8 +24,8 @@ REFERENCES credit_card(id);
 SELECT *
 FROM credit_card;
 
-ALTER TABLE transaction
-DROP CONSTRAINT fk_card;
+-- ALTER TABLE transaction
+-- DROP CONSTRAINT fk_card;
 
 -- Mal entendido del enunciado lleva al siguiente codigo,
 -- No lo borro para dejar como referencia, ni lo comento.
