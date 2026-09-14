@@ -25,10 +25,10 @@
             "state": {
               "type": "code-editor",
               "state": {
-                "file": "S2/S2L3E1.sql"
+                "file": "S2/S2L3E2.sql"
               },
               "icon": "file-code",
-              "title": "S2L3E1.sql"
+              "title": "S2L3E2.sql"
             }
           }
         ],
@@ -210,8 +210,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "81cf32b5224818fe",
+  "active": "b93a4349367ff08d",
   "lastOpenFiles": [
+    "System Volume Information",
+    "S2/S2L3E1.sql",
     "S2/S2L2E5.sql",
     "S2/S2L2E4.sql",
     "S2/S2L2E3.sql",
@@ -222,8 +224,6 @@
     "S2/S2L1E8.sql",
     "S2/S2L1E8.md",
     "S2/S2L1E7.sql",
-    "S2/S2L1E6.sql",
-    "S2/S2L1E5.sql",
     "S2/S2L1E4.md",
     "S2/S2L1E1.md",
     "S2/diagrams/S2L1E8D.png",
