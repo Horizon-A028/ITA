@@ -76,33 +76,33 @@ SHOW VARIABLES LIKE "secure_file_priv";
 --     column4 = TRIM(@col4),  -- Remove whitespace
 --     column5 = CAST(REPLACE(@col5, '$', '') AS DECIMAL(10,2));  -- Remove currency symbols
 
-LOAD DATA LOCAL
-INFILE "C:\\Program Files\\MySQL\\MySQL Server 8.0\\Uploads\\N1-Ex.8__credit_cards.csv"
-INTO TABLE credit_card
-FIELDS TERMINATED BY ","
-LINES TERMINATED BY "\n"
-IGNORE 1 ROWS
-(@c1, @c2, @c3, @c4, @c5, @c6, @c7, @c8, @c9, @c10, @c11)
-SET
-  id = @c1,
-  user_id = CAST(@c2 AS UNSIGNED),
-  iban = @c3,
-  pan = REPLACE(@c4, ' ', ''),
-  pin = CAST(@c5 AS UNSIGNED),
-  cvv = CAST(@c6 AS UNSIGNED),
-  track1 = @c7,
-  track2 = @c8,
-  expiring_date = STR_TO_DATE(@c9, '%m/%d/%Y'),
-  card_type = @c10,
-  card_renewal_flag = @c11
-;
+-- LOAD DATA LOCAL
+-- INFILE "C:\\Program Files\\MySQL\\MySQL Server 8.0\\Uploads\\N1-Ex.8__credit_cards.csv"
+-- INTO TABLE credit_card
+-- FIELDS TERMINATED BY ","
+-- LINES TERMINATED BY "\n"
+-- IGNORE 1 ROWS
+-- (@c1, @c2, @c3, @c4, @c5, @c6, @c7, @c8, @c9, @c10, @c11)
+-- SET
+--  id = @c1,
+--  user_id = CAST(@c2 AS UNSIGNED),
+--  iban = @c3,
+--  pan = REPLACE(@c4, ' ', ''),
+--  pin = CAST(@c5 AS UNSIGNED),
+--  cvv = CAST(@c6 AS UNSIGNED),
+--  track1 = @c7,
+--  track2 = @c8,
+--  expiring_date = STR_TO_DATE(@c9, '%m/%d/%Y'),
+--  card_type = @c10,
+--  card_renewal_flag = @c11
+-- ;
 
-SELECT * FROM credit_card;
+-- SELECT * FROM credit_card;
 
-ALTER TABLE transaction
-ADD CONSTRAINT fk_transactions_card
-FOREIGN KEY (credit_card_id) 
-REFERENCES credit_card(id);
+-- ALTER TABLE transaction
+-- ADD CONSTRAINT fk_transactions_card
+-- FOREIGN KEY (credit_card_id) 
+-- REFERENCES credit_card(id);
 
 
 

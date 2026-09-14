@@ -35,14 +35,12 @@
             "id": "994fe833fa32bc1c",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "code-editor",
               "state": {
-                "file": "S2/S2L3E2.md",
-                "mode": "preview",
-                "source": true
+                "file": "S2/S2L1E4.sql"
               },
-              "icon": "lucide-file",
-              "title": "S2L3E2"
+              "icon": "file-code",
+              "title": "S2L1E4.sql"
             }
           }
         ],
@@ -226,8 +224,8 @@
   },
   "active": "994fe833fa32bc1c",
   "lastOpenFiles": [
-    "S2/diagrams/S2L3E2D.png",
     "S2/S2L3E2.md",
+    "S2/diagrams/S2L3E2D.png",
     "S2/S2L3E2.sql",
     "S2/diagrams/S2L3E2png",
     "S2/diagrams/Screenshot from 2026-09-14 10-32-25.png",
