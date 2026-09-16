@@ -1,0 +1,57 @@
+{
+  "items": [
+    {
+      "name": "Markdown"
+    },
+    {
+      "name": "Markdown (Hugo)"
+    },
+    {
+      "name": "Html"
+    },
+    {
+      "name": "Typst"
+    },
+    {
+      "name": "PDF"
+    },
+    {
+      "name": "PDF (Typst)"
+    },
+    {
+      "name": "Word (.docx)"
+    },
+    {
+      "name": "OpenOffice"
+    },
+    {
+      "name": "Epub"
+    },
+    {
+      "name": "Latex"
+    },
+    {
+      "name": "Bibliography"
+    },
+    {
+      "name": "PowerPoint (.pptx)"
+    }
+  ],
+  "seededTemplates": [
+    "Markdown",
+    "Markdown (Hugo)",
+    "Html",
+    "Typst",
+    "PDF",
+    "PDF (Typst)",
+    "Word (.docx)",
+    "OpenOffice",
+    "Epub",
+    "Latex",
+    "Bibliography",
+    "PowerPoint (.pptx)"
+  ],
+  "defaultExportDirectoryMode": "Same",
+  "openExportedFile": true,
+  "env": {}
+}

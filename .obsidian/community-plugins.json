@@ -1,5 +1,6 @@
 [
   "obsidian-git",
   "code-editor",
-  "obsidian-languagetool-plugin"
+  "obsidian-languagetool-plugin",
+  "pandoc-gui"
 ]

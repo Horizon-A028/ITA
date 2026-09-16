@@ -1,0 +1,2590 @@
+/*
+ * Settings tab.
+ *
+ * Obsidian 1.13 renders a setting group as a card and restyles every row inside
+ * it. The whole tab is rendered into a single row of one group, so the group
+ * card and that host row are blanked out here and the rows the plugin draws
+ * inside get the flat layout the UI was written against.
+ */
+
+.ex-settings-group > .setting-items {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+}
+
+/*
+ * Host row for the plugin's own DOM. Needs three classes to outrank
+ * `.setting-group .setting-item:not(.setting-item-heading)`.
+ */
+.ex-settings-group .setting-item.ex-settings-anchor {
+  display: block;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+
+.ex-settings-group .setting-item.ex-settings-anchor::before {
+  content: none;
+}
+
+/* The row's stock label only exists for the settings search. */
+.ex-settings-anchor > .setting-item-info,
+.ex-settings-anchor > .setting-item-control {
+  display: none;
+}
+
+/*
+ * Reset for the rows rendered inside the tab.
+ * KEEP EVERY CUSTOM ROW RULE BELOW THIS ONE: they tie at the same specificity,
+ * so file order is what makes them win.
+ */
+.ex-settings-root .setting-item:not(.setting-item-heading) {
+  border: none;
+  border-top: var(--border-width) solid var(--background-modifier-border);
+  background-color: transparent;
+  border-radius: 0;
+  padding: var(--size-4-4) 0;
+  margin-bottom: 0;
+  /* Obsidian 1.13's base rule is `flex-start`, which lifts controls to the top
+     of the row. Harmless for the narrow-pane column layout, which left-aligns
+     through `align-self` and `width: 100%` instead. */
+  align-items: center;
+}
+
+.ex-settings-root .setting-item:not(.setting-item-heading)::before {
+  content: none;
+}
+
+/* Line the titles up with what they head: the cards below inset their rows. */
+.ex-settings-root .setting-item.setting-item-heading {
+  padding-inline: var(--size-4-4) 0;
+}
+
+/*
+ * Doubled class rather than a `.ex-settings-root` prefix: this one is also used
+ * by the legacy setting tab, which renders outside the root.
+ */
+.setting-item.ex-setting-item.ex-setting-item {
+  border-top: unset;
+  padding-top: 0;
+}
+
+/*
+ * Pandoc dashboard.
+ */
+
+/*
+ * Everything about pandoc in one card: a row to each thing it is read for, and a
+ * pandoc to each half of a row — the installed one on the left, the wasm build
+ * on the right, all the way down. `overflow` keeps a half's hover fill inside
+ * the rounded corners.
+ */
+.ex-pandoc-panel {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--setting-items-radius);
+  background: var(--setting-items-background);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.ex-pandoc-panel-row {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+/* A row narrower than the things in it need side by side breaks onto a second
+   line rather than squeezing them: the basis is the width each wants, and what
+   is left over is shared out equally, so a line holding one is one full-width
+   half. */
+.ex-pandoc-panel-row.ex-pandoc-engines,
+.ex-pandoc-panel-row.ex-pandoc-links {
+  flex-wrap: wrap;
+  /* The lines down the row, drawn as the gaps between its halves over a
+     background of that colour. A border would have to be taken off again at the
+     start of every wrapped line, and no selector can pick those out. */
+  gap: 1px;
+  background-color: var(--background-modifier-border);
+}
+
+/* `min-width` so nothing inside — a long status, a dropdown as wide as its
+   longest option — can argue for more than the half it stands in. */
+.ex-pandoc-engines > * {
+  flex: 1 1 15rem;
+  min-width: 0;
+}
+
+/* The line across, between one row of the card and the next. */
+.ex-pandoc-panel-row + .ex-pandoc-panel-row {
+  border-top: 1px solid var(--background-modifier-border);
+}
+
+/* A button standing as a half is as tall as the row, whatever the half beside
+   it holds. */
+.ex-pandoc-panel-row .ex-action {
+  align-self: stretch;
+  height: auto;
+}
+
+/* The pages to read are the foot of the card rather than a half of it: they
+   answer nothing, so they take the height of their own label and no more. Both
+   of the row's classes are named, to outrank the `.ex-action.ex-action` below
+   that gives every other button in the card its height. */
+.ex-pandoc-panel-row.ex-pandoc-links .ex-action {
+  min-height: 0;
+  padding-block: var(--size-4-2);
+}
+
+/* Opaque, so the colour the row is divided by is only ever seen in the gaps. */
+.ex-pandoc-dashboard-half {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--size-4-4);
+  background-color: var(--setting-items-background, var(--background-primary));
+}
+
+/* The wasm half carries one thing no other does: what the build can be given
+   past itself. It stands at the end of the half, so the half is a row of two —
+   everything the other halves hold, and then that. */
+.ex-pandoc-dashboard-half.ex-wasm-half {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--size-4-2);
+}
+
+.ex-wasm-half-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* `min-width` so a long status asks for the width of the half rather than of
+     the button beside it. */
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Read as a way in rather than as an action on the line: the size of the icons
+   in the row, in the colour of the text it stands beside. */
+.ex-wasm-extensions.ex-wasm-extensions {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: var(--size-4-2);
+  background: none;
+  border: none;
+  box-shadow: none;
+  color: var(--text-muted);
+  cursor: var(--cursor);
+}
+
+.ex-wasm-extensions.ex-wasm-extensions:hover {
+  color: var(--text-accent);
+  background: var(--background-modifier-hover);
+}
+
+/* The name of the pandoc this half is about, and — while there is one to ask —
+   the mark that says what it is. They share a line and wrap together, a half
+   this narrow having nowhere else to put the second of them. */
+.ex-pandoc-dashboard-version {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--size-4-1);
+  font-size: var(--font-ui-medium);
+  font-weight: var(--font-semibold);
+  color: var(--text-normal);
+  line-height: 1.2;
+}
+
+/* Faint: it is there to be found by whoever is wondering, not to be read by
+   everyone who is not. */
+.ex-pandoc-dashboard-hint {
+  display: flex;
+  align-items: center;
+  color: var(--text-faint);
+  transition: color 100ms ease-in-out;
+}
+
+.ex-pandoc-dashboard-hint:hover {
+  color: var(--text-muted);
+}
+
+.ex-pandoc-dashboard-hint .svg-icon {
+  width: var(--icon-s);
+  height: var(--icon-s);
+}
+
+/* A press needs something to land on, which a hover does not — so on a phone,
+   where the mark is pressed rather than pointed at, it is given the room.
+   `clickable-icon` is Obsidian's own, and is only on it where there is a press
+   to make. */
+.ex-pandoc-dashboard-hint.clickable-icon {
+  padding: var(--size-2-2);
+  margin: calc(-1 * var(--size-2-2));
+  margin-inline-start: 0;
+}
+
+/* Status line: the dot and its label share the state colour. What can be done
+   about the state follows the label, and drops below it where a long enough
+   status leaves no room. */
+.ex-pandoc-dashboard-status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--size-4-2);
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  margin-top: var(--size-2-2);
+}
+
+.ex-pandoc-dashboard-indicator {
+  flex: none;
+  width: 0.30rem;
+  height: 0.30rem;
+  border-radius: 50%;
+  background-color: currentColor;
+  /* Halo in the same colour as the dot, only much fainter. */
+  box-shadow: 0 0 0 3px color-mix(in srgb, currentColor 20%, transparent);
+  /* Centred on the first line rather than on the label, which a long enough
+     status wraps onto a second one. */
+  margin-top: calc((1lh - 0.30rem) / 2);
+}
+
+.ex-pandoc-dashboard-status.is-ok {
+  color: var(--text-success);
+}
+
+.ex-pandoc-dashboard-status.is-outdated {
+  color: var(--text-warning);
+}
+
+.ex-pandoc-dashboard-status.is-missing {
+  color: var(--text-error);
+}
+
+/* Nothing installed yet is not a fault, and does not read as one — neither the
+   wasm build that has not been asked for, nor the program someone using that
+   build exclusively never installed. The error colour is kept for a pandoc that
+   is there and will not run. */
+.ex-pandoc-dashboard-status.is-absent {
+  color: var(--text-muted);
+}
+
+.ex-pandoc-dashboard-status.is-checking .ex-pandoc-dashboard-indicator {
+  box-shadow: none;
+}
+
+/* A line too long to stand in a half of the card beside a version and a button.
+   It is a row of the card like any other, so the rule above it is the one the
+   rows are already divided by. */
+.ex-pandoc-panel-row.ex-pandoc-notice {
+  /* One run of text rather than two halves. */
+  display: block;
+  padding: var(--size-4-2) var(--size-4-4);
+  font-size: var(--font-ui-smaller);
+  line-height: var(--line-height-tight);
+  color: var(--text-muted);
+}
+
+/*
+ * What is new in this version, the first row of the card until it is dismissed.
+ * `overflow` is for the closing: the row is animated down to no height at all,
+ * and what stands in it is cut rather than spilling over the row below.
+ */
+.ex-pandoc-panel-row.ex-changelog-notice {
+  align-items: center;
+  gap: var(--size-4-2);
+  padding: var(--size-4-2) var(--size-4-4);
+  overflow: hidden;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+}
+
+.ex-changelog-notice-text {
+  flex: 1;
+  min-width: 0;
+}
+
+/* The version is what opens the changelog — a link in the line of text rather
+   than a button standing beside it. */
+.ex-changelog-notice .ex-changelog-version {
+  height: auto;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+  color: var(--text-accent);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: var(--font-semibold);
+  text-decoration: underline;
+  cursor: var(--cursor);
+}
+
+.ex-changelog-notice .ex-changelog-version:hover {
+  color: var(--text-accent-hover);
+  background: none;
+  box-shadow: none;
+}
+
+.ex-changelog-dismiss {
+  flex: none;
+  color: var(--text-muted);
+}
+
+/* The dot beside the version keeps the state; the notice repeats it only where
+   the state is something gone wrong or something to do. */
+.ex-pandoc-notice.is-warning {
+  color: var(--text-warning);
+}
+
+.ex-pandoc-notice.is-error {
+  color: var(--text-error);
+}
+
+/* The buttons that stand in the status line rather than in a card of their own:
+   no fill, no border, and the colour of the line they belong to. */
+.ex-pandoc-dashboard-inline.ex-pandoc-dashboard-inline {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  /* One line of the status, exactly: `1lh` is the button's own line-height, and
+     a button is handed a font of its own — so both are taken from the line the
+     button stands in. Left to the button's font, the box is taller than the
+     text beside it and the row's `flex-start` drops the icon below its middle. */
+  font-size: inherit;
+  line-height: inherit;
+  height: 1lh;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  color: inherit;
+  cursor: var(--cursor);
+}
+
+/* Removing what is installed is not what the line is about, so it says less. */
+.ex-pandoc-dashboard-inline.is-quiet.is-quiet {
+  color: var(--text-muted);
+}
+
+/* The one the card is waiting on: nothing is installed until it is pressed, so
+   it takes the colour of something to press. */
+.ex-pandoc-dashboard-inline.is-cta.is-cta {
+  color: var(--text-accent);
+}
+
+.ex-pandoc-dashboard-inline.ex-pandoc-dashboard-inline:hover {
+  color: var(--text-accent);
+}
+
+.ex-pandoc-dashboard-inline.ex-pandoc-dashboard-inline:disabled {
+  color: var(--text-faint);
+  cursor: default;
+}
+
+/* Laid out rather than typeset: an inline svg sits on a baseline, and the space
+   the baseline leaves under it is what tips the icon off the middle of the line
+   even inside a box the right height. */
+.ex-pandoc-dashboard-inline .svg-icon {
+  display: block;
+  width: var(--icon-xs);
+  height: var(--icon-xs);
+}
+
+
+/* On a phone the export folder is one of the vault's, typed into a field that
+   suggests them — which wants the width the folder button would have taken. */
+.ex-export-modal-folder input[type='text'] {
+  width: 100%;
+}
+
+/* Stands between the template that caused it and the button that agrees to it,
+   so it is read on the way from one to the other rather than found afterwards. */
+.ex-export-modal-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--size-4-2);
+  margin-bottom: var(--size-4-3);
+  padding: var(--setting-items-padding-x);
+  border: 1px solid var(--text-warning);
+  border-radius: var(--setting-items-radius);
+  background: var(--background-secondary);
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+  line-height: var(--line-height-tight);
+}
+
+/* Kept off the first line's baseline: the triangle marks the whole block, not
+   the word it happens to sit beside. */
+.ex-export-modal-warning .svg-icon {
+  width: var(--icon-s);
+  height: var(--icon-s);
+  color: var(--text-warning);
+}
+
+/*
+ * A card that is nothing but the things it can be asked to do: equal halves of
+ * one card, told apart by the rule between them rather than by any chrome of
+ * their own — and stacked, where the card is too narrow to hold them side by
+ * side. The background is the colour of that rule, which the buttons cover but
+ * for the gaps they are divided by. `overflow` keeps a half's hover fill inside
+ * the rounded corners.
+ */
+.ex-actions-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 1px;
+  margin-bottom: var(--size-4-4);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--setting-items-radius);
+  background-color: var(--background-modifier-border);
+  overflow: hidden;
+}
+
+/*
+ * Written at two-class specificity throughout: these are `button` elements, and
+ * every one of these properties is something the theme's button rules would
+ * otherwise set.
+ */
+.ex-action.ex-action {
+  /* Halves of whatever the card has, but never narrower than the label: the
+     line is broken on the labels' own widths, so a card too narrow to hold both
+     of them side by side stacks them instead of setting either one to a word a
+     line. Whichever label it is — the Russian ones are half again as long. */
+  flex: 1 1 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-4-2);
+  min-width: max-content;
+  margin: 0;
+  /* Tall enough to read as a panel of the card rather than a button sitting in
+     it — the height is the point, so it is set rather than left to the label. */
+  min-height: 42px;
+  padding: var(--size-4-5) var(--size-4-4);
+  /* Opaque, so the colour the card is divided by is only ever seen in the
+     gaps. */
+  background-color: var(--setting-items-background, var(--background-primary));
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  color: var(--text-normal);
+  font-size: var(--font-ui-small);
+  cursor: var(--cursor);
+  transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
+}
+
+/* Accent under the pointer only: these are what the card is for, but not what
+   it is about. */
+.ex-action.ex-action:hover,
+.ex-action.ex-action:focus-visible {
+  background-color: var(--background-modifier-hover);
+  color: var(--text-accent);
+}
+
+/* Reached by tab, so it has to show where it is — but inside the card, where an
+   outline would otherwise be clipped by the corners. */
+.ex-action.ex-action:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--background-modifier-border-focus);
+}
+
+.ex-action .svg-icon {
+  width: var(--icon-s);
+  height: var(--icon-s);
+}
+
+/*
+ * Card holding a section's rows, matching the one the templates table draws.
+ * The rows inside keep the vertical rhythm of the reset above and only take the
+ * inset the card's border asks for.
+ */
+.ex-settings-card {
+  margin-bottom: var(--size-4-4);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--setting-items-radius);
+  background: var(--setting-items-background);
+}
+
+.ex-settings-root .ex-settings-card .setting-item {
+  padding-inline: var(--size-4-4);
+}
+
+/* The card's own border is the line above the first row. */
+.ex-settings-root .ex-settings-card > .setting-item:first-child {
+  border-top: none;
+}
+
+/* A row the one above asks the question for: no label of its own, no line
+   between the two, and the field across the whole width. */
+.ex-settings-root .setting-item.ex-nameless-setting {
+  border-top: none;
+  padding-top: 0;
+}
+
+.ex-nameless-setting > .setting-item-info {
+  display: none;
+}
+
+.ex-nameless-setting > .setting-item-control {
+  width: 100%;
+  justify-content: flex-start;
+}
+
+/*
+ * Environment variables. The rows and the text say the same thing two ways, and
+ * whichever is showing has the panel's actions under it.
+ */
+.ex-env-panel > .setting-item-control {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--size-4-2);
+  /* A control ends its text where a row's answer ends, against the right edge.
+     This one is not an answer at the end of a row, it is a panel across the
+     card, and everything in it is read from the left. */
+  text-align: start;
+}
+
+/*
+ * A folder for each variable and the way over to the text, in one row across
+ * the card: equal shares of the width, so the row reads as a group of answers
+ * to the same question rather than as buttons that happen to sit together.
+ */
+.ex-env-actions {
+  display: flex;
+  gap: var(--size-4-2);
+  width: 100%;
+  /* Standing away from the last folder above it: the row belongs to the panel,
+     not to the variable it happens to follow. */
+  margin-top: var(--size-4-2);
+}
+
+.ex-env-action {
+  flex: 1 1 0;
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-4-2);
+  transition: color 100ms ease-in-out;
+}
+
+/* Accent under the pointer only: these are what the panel is for, but not what
+   it is about. */
+.ex-env-action:hover {
+  color: var(--text-accent);
+}
+
+.ex-env-action .svg-icon {
+  width: var(--icon-s);
+  height: var(--icon-s);
+}
+
+/* The height is set from the script, one line at a time, so there is nothing to
+   scroll and nothing worth dragging: a drag would only hold until the next
+   keystroke measured the lines again. */
+.ex-env-vars {
+  width: 100%;
+  resize: none;
+  overflow-y: hidden;
+  min-height: 3em;
+}
+
+.ex-env-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4-3);
+  width: 100%;
+}
+
+.ex-env-var {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4-1);
+}
+
+/* The name a variable is known by, spelled as the system spells it. */
+.ex-env-var-name {
+  font-family: var(--font-monospace);
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+}
+
+/* A folder, the button that picks another, and the one that drops it. */
+.ex-env-folder {
+  display: flex;
+  align-items: center;
+  gap: var(--size-4-2);
+}
+
+.ex-env-folder > input[type='text'] {
+  flex: 1;
+  min-width: 0;
+}
+
+.ex-env-folder > .setting-editor-extra-setting-button {
+  flex: 0 0 auto;
+}
+
+/*
+ * Export destination.
+ */
+
+/* A row another setting has taken the question out of. Its height is animated
+   from the script, so it has to clip what does not fit yet. */
+.ex-collapsible {
+  overflow: hidden;
+}
+
+/* Set once the closing animation has finished, so a closed panel leaves no gap
+   and nothing for a tab key to land in. */
+.ex-collapsed {
+  display: none;
+}
+
+/* The path belongs to the dropdown above it: no divider between them, and the
+   field takes the whole width instead of the sliver at the end of a row. */
+.ex-settings-root .setting-item.ex-export-destination-path {
+  border-top: none;
+  padding-top: 0;
+}
+
+.ex-export-destination-path > .setting-item-info {
+  display: none;
+}
+
+.ex-export-destination-path > .setting-item-control {
+  flex: 1;
+  width: 100%;
+}
+
+.ex-export-destination-path > .setting-item-control > input[type='text'] {
+  flex: 1;
+  min-width: 0;
+}
+
+/*
+ * Export templates.
+ */
+
+/*
+ * A phone screen is not as wide as a row of this table: the name, the format
+ * and three icons across it leave the name folding over three lines. The strip
+ * scrolls sideways there instead, the table keeping the width its content asks
+ * for. On a pointer the wrapper is nothing but a div.
+ */
+.ex-template-table-scroll.is-touch {
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin-bottom: var(--size-4-4);
+}
+
+.ex-template-table-scroll.is-touch .ex-template-table {
+  width: max-content;
+  min-width: 100%;
+  margin-bottom: 0;
+}
+
+/* The half-width name column is what forces the folding, and a table sized to
+   its content has no half to give it. */
+.ex-template-table-scroll.is-touch .ex-template-table th:first-child,
+.ex-template-table-scroll.is-touch .ex-template-table td:first-child {
+  width: auto;
+  white-space: nowrap;
+}
+
+.ex-template-table {
+    width: 100%;
+    margin-bottom: var(--size-4-4);
+    border: 1px solid var(--background-modifier-border);
+    padding: 0px 0px 8px 0px;
+    border-radius: var(--setting-items-radius);
+    background: var(--setting-items-background);
+}
+
+.ex-template-table th,
+.ex-template-table td {
+  text-align: left;
+  vertical-align: middle;
+  padding: var(--size-4-2);
+  border-bottom: var(--border-width) solid var(--background-modifier-border);
+}
+
+/*
+ * The name column takes half the table, so the output format starts at the
+ * middle of it whatever the templates happen to be called. Left to itself the
+ * column is as wide as the longest name in it, and renaming one template moved
+ * the format of every other.
+ */
+.ex-template-table th:first-child,
+.ex-template-table td:first-child {
+    width: 50%;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.ex-template-table th:last-child,
+.ex-template-table td:last-child {
+    padding-inline-end: 0;
+    padding-right: 16px;
+}
+
+.ex-template-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* A column header, which is also the control that orders by it. */
+/*
+ * Capitals and a step of weight, which is how a column heading is told from the
+ * values under it when both are the same size — the letterforms do the work
+ * that a rule or a fill would otherwise have to. The tracking is opened up a
+ * little because capitals set at a small size close up without it.
+ */
+.ex-template-table-heading {
+  cursor: var(--cursor);
+  user-select: none;
+  transition: color 100ms ease-in-out;
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ex-template-table-heading:hover {
+  color: var(--text-accent);
+}
+
+/* Inline, not on the cell itself: a `display` of its own would stop the header
+   being a table cell and take the column out of alignment with the rows. */
+.ex-template-table-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-4-1);
+}
+
+/* The arrow keeps its space whether or not this is the column being sorted by,
+   so the header does not jump as the order moves between columns. */
+.ex-template-table-sort {
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 100ms ease-in-out;
+}
+
+.ex-template-table-heading:hover .ex-template-table-sort {
+  opacity: 0.5;
+}
+
+.ex-template-table-heading.is-sorted .ex-template-table-sort,
+.ex-template-table-heading.is-sorted:hover .ex-template-table-sort {
+  opacity: 1;
+}
+
+/* Block, so the arrow is a box of its own height rather than a letter standing
+   on a baseline with the descender space left under it — that space is what was
+   pushing it above the middle of the heading. */
+.ex-template-table-sort .svg-icon {
+  display: block;
+  width: var(--icon-xs);
+  height: var(--icon-xs);
+  stroke-width: 2px;
+}
+
+.ex-template-table-name {
+  color: var(--text-normal);
+  font-size: var(--font-ui-small);
+}
+
+/* Always visible, unlike the row actions: it is about the template rather than
+   about what can be done to it, and a warning that appears on hover is one
+   nobody was looking for. */
+.ex-template-table-warning {
+  display: flex;
+  align-items: center;
+  color: var(--text-warning);
+}
+
+.ex-template-table-warning .svg-icon {
+  width: var(--icon-s);
+  height: var(--icon-s);
+}
+
+/* Takes what the half above it leaves, less the icons at the end of the row.
+   No longer sized to its own content: a column that shrinks to fit is a column
+   that starts somewhere different on every table. */
+.ex-template-table-output {
+  white-space: nowrap;
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+}
+
+.ex-template-table-actions {
+  width: 1%;
+  white-space: nowrap;
+  text-align: right;
+}
+
+/*
+ * Wide enough apart that the trash is never the one hit by mistake, and only on
+ * the row under the pointer: a table read for its names is quieter without an
+ * icon on every line of it.
+ */
+.ex-template-table-row-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--size-4-4);
+  opacity: 0;
+  transition: opacity 150ms ease-in-out;
+}
+
+.ex-template-table-row-actions > * {
+  transition: color 100ms ease-in-out;
+}
+
+.ex-template-table tbody tr:hover .ex-template-table-row-actions {
+  opacity: 1;
+}
+
+/* Nothing to hover with on a touch screen: an action nobody can reveal is an
+   action nobody has. Every row carries its own from the start there. */
+.ex-template-table.is-touch .ex-template-table-row-actions {
+  opacity: 1;
+}
+
+/* On a phone the row opens the editor as well as the pencil does. */
+.ex-template-table tbody tr.is-tappable {
+  cursor: var(--cursor);
+}
+
+/* The accent for what edits the template, the error colour for what ends it. */
+.ex-template-table-row-actions .ex-template-table-edit:hover,
+.ex-template-table-row-actions .ex-template-table-duplicate:hover {
+  color: var(--text-accent);
+}
+
+.ex-template-table-row-actions .ex-template-table-remove:hover {
+  color: var(--text-error);
+}
+
+.ex-template-table-empty td {
+  padding-block: var(--size-4-6);
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.ex-template-table-empty:hover {
+  background-color: transparent;
+}
+
+/*
+ * Template modal.
+ *
+ * The modal's class is written twice in every rule below. Obsidian rules a line
+ * above each `.setting-item` and a theme may draw more on top of that, and a
+ * plain `.ex-template-modal .setting-item` weighs exactly as much as the
+ * `.modal .setting-item` sort of selector both of them reach these rows with —
+ * so which one wins comes down to the order the stylesheets happen to load,
+ * which is not something a plugin gets to decide. Repeating the class settles
+ * it. It is the same trick `.ex-setting-item.ex-setting-item` plays above.
+ */
+
+/*
+ * Nothing in here carries a line it was not given below. This is the one reset;
+ * every line in the modal is drawn by a rule after it.
+ *
+ * Two rules, because Obsidian 1.13 draws the divider between rows twice over: a
+ * border on some of them and a `::before` on the rest. Blanking the borders
+ * alone leaves half the lines exactly where they were, which is what the rows
+ * rendered into the settings tab ran into as well — see the same pair above.
+ */
+.ex-template-modal.ex-template-modal .setting-item,
+.ex-template-modal.ex-template-modal .setting-item-heading,
+.ex-template-modal.ex-template-modal .ex-collapsible,
+.ex-template-modal.ex-template-modal .modal-content,
+.ex-template-modal.ex-template-modal .modal-button-container,
+.ex-export-modal.ex-export-modal .setting-item,
+.ex-export-modal.ex-export-modal .modal-content,
+.ex-export-modal.ex-export-modal .modal-button-container,
+.ex-import-modal.ex-import-modal .setting-item,
+.ex-import-modal.ex-import-modal .modal-content,
+.ex-import-modal.ex-import-modal .modal-button-container {
+  border: none;
+}
+
+.ex-template-modal.ex-template-modal .setting-item::before,
+.ex-template-modal.ex-template-modal .modal-button-container::before,
+.ex-export-modal.ex-export-modal .setting-item::before,
+.ex-export-modal.ex-export-modal .modal-button-container::before,
+.ex-import-modal.ex-import-modal .setting-item::before,
+.ex-import-modal.ex-import-modal .modal-button-container::before {
+  content: none;
+}
+
+/* Obsidian's close button sits over the modal's top right corner rather than in
+   the title row, so the row has to leave it the space. */
+.ex-template-modal.ex-template-modal .modal-title,
+.ex-export-modal.ex-export-modal .modal-title,
+.ex-import-modal.ex-import-modal .modal-title {
+  padding-inline-end: var(--size-4-8);
+}
+
+/*
+ * The one button at the foot of the modal, given its whole width: it is the end
+ * of the form rather than one more control in it, and a form this long deserves
+ * to end in something that plainly is the end.
+ */
+.ex-template-modal.ex-template-modal .modal-button-container,
+.ex-import-modal.ex-import-modal .modal-button-container {
+  display: flex;
+  margin-top: var(--size-4-3);
+}
+
+.ex-template-modal.ex-template-modal .modal-button-container > button,
+.ex-import-modal.ex-import-modal .modal-button-container > button {
+  flex: 1 1 auto;
+  width: 100%;
+  margin: 0;
+}
+
+/*
+ * Cards, not rules.
+ *
+ * Every option is a bordered box holding its own label, description and
+ * control, and a group of options is one box around several. Nothing in the
+ * modal is separated by a line: the boxes do the separating, and a stack of
+ * them reads as a list of answers rather than as a page chopped into stripes.
+ *
+ * A row keeps its box wherever it stands, folded away in a section as much as
+ * out in the open — the modal is one kind of thing throughout, and an option
+ * does not stop being an option for being an advanced one.
+ *
+ * The export dialog is asked the same way. It is a shorter list — what to
+ * write, what to call it, where to put it — but they are the same kind of
+ * question, and there is no reason for them to be drawn as another kind of
+ * thing on the way out of the plugin.
+ */
+.ex-template-modal.ex-template-modal .setting-item:not(.setting-item-heading),
+.ex-export-modal.ex-export-modal .setting-item:not(.setting-item-heading),
+.ex-import-modal.ex-import-modal .setting-item:not(.setting-item-heading) {
+  margin-bottom: var(--size-4-3);
+  padding: var(--setting-items-padding-x);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--setting-items-radius);
+  background: var(--setting-items-background);
+}
+
+/*
+ * The same three properties again, said where nothing can take them back.
+ *
+ * Obsidian reads the rows of a modal as one form and rounds the ends of it off:
+ * `.modal:not(.mod-settings) …:first-child` drops the line above the first row
+ * and the padding over it, and `…:last-child` drops the padding under the last.
+ * Sound enough for a run of rows divided by lines — here every row is a box,
+ * and one drawn without its top or its floor is simply a broken box. It bit
+ * every row that happened to come first or last inside its own card: the first
+ * row of a group, the field a collapsible panel holds on its own, the last row
+ * before a card's edge.
+ *
+ * Those two rules weigh five classes — `:where()` is free but the `.modal` and
+ * the `:not(.mod-settings)` in front of it are not — which is one more than the
+ * doubled class above carries. Hence the chain: the container, the modal, the
+ * content, the row. It is written out rather than won on load order, which is
+ * not something a plugin gets to decide.
+ */
+.ex-template-modal.ex-template-modal .modal .modal-content .setting-item:not(.setting-item-heading),
+.ex-export-modal.ex-export-modal .modal .modal-content .setting-item:not(.setting-item-heading),
+.ex-import-modal.ex-import-modal .modal .modal-content .setting-item:not(.setting-item-heading) {
+  border-top: 1px solid var(--background-modifier-border);
+  padding-top: var(--setting-items-padding-x);
+  padding-bottom: var(--setting-items-padding-x);
+}
+
+/*
+ * A folding section is not a box at all — only a fold.
+ *
+ * It was a card around cards, and that reads as mud however carefully the two
+ * are spaced: a box inside a box says the inner thing is a lesser kind of
+ * thing, which an advanced option is not. So the heading is a row like any
+ * other, and what it opens are rows like any other, at the width and the inset
+ * of everything above them. The only thing the section still does is open and
+ * shut, which is the only thing it was ever for.
+ */
+.ex-template-modal.ex-template-modal .modal-content > .ex-section {
+  margin-bottom: var(--size-4-3);
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
+}
+
+/* The heading that folds it, drawn as the row it now is — and the whole of the
+   section while it stands closed. Both margins are pinned: Obsidian gives a
+   heading room above and below to set a new part of a form apart, and this one
+   is not starting a part, it is standing in the list. */
+.ex-template-modal.ex-template-modal .ex-card > .setting-item.ex-section-header {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: var(--setting-items-padding-x);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--setting-items-radius);
+  background: var(--setting-items-background);
+}
+
+/*
+ * The rows a group holds are spaced off each other rather than off the group,
+ * which has no edge of its own for them to stand away from any more.
+ *
+ * The spacing goes on the rows and not as a `gap` on what holds them:
+ * `Collapsible` hides a panel with a `display` that a `display: flex` set here
+ * would outrank, and the panel would never close again.
+ */
+.ex-template-modal.ex-template-modal .ex-card .setting-item {
+  margin: 0;
+}
+
+.ex-template-modal.ex-template-modal .ex-card .setting-item + .setting-item,
+.ex-template-modal.ex-template-modal .ex-card .ex-collapsible > .setting-item {
+  margin-top: var(--size-4-2);
+}
+
+/*
+ * The name and the format the template writes share a row, read left to right:
+ * the name takes whatever room is left over, the picker only what it needs.
+ */
+.ex-template-modal.ex-template-modal .setting-item.ex-template-modal-name > .setting-item-control {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--size-4-2);
+}
+
+.ex-template-modal.ex-template-modal .setting-item.ex-template-modal-name > .setting-item-control > input[type='text'] {
+  flex: 1 1 auto;
+}
+
+.ex-template-modal.ex-template-modal .setting-item.ex-template-modal-name > .setting-item-control > select.dropdown {
+  flex: 0 1 auto;
+  width: auto;
+  max-width: 40%;
+}
+
+/*
+ * Every field sits under the label that asks for it and takes the width of the
+ * modal — a pandoc command line does not fit the sliver at the end of a row.
+ * Toggles are left alone: an answer of that size belongs beside its question.
+ *
+ * Layout only. What the row is drawn as — box or plain — is settled above by
+ * where it stands, so this one rule can reach every row in the modal without
+ * boxing the ones already inside a box.
+ *
+ * Headings are left alone along with the toggles: a section's name and the
+ * chevron that opens it share a line, and a control given the full width would
+ * leave the name a sliver to be cut short in.
+ */
+.ex-template-modal.ex-template-modal .setting-item:not(.mod-toggle):not(.ex-inline-setting):not(.setting-item-heading) {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/*
+ * The two that do share their row sit in the middle of it — a toggle, and any
+ * row marked `ex-inline-setting`, which is how a control small enough to stand
+ * beside its own question says so. Obsidian starts a row's control at the top,
+ * which is right where the control is as tall as the text beside it — and wrong
+ * here: a description running to a second line left the switch floating up
+ * beside the first, reading as though it answered that line rather than the row.
+ */
+.ex-template-modal.ex-template-modal .setting-item.mod-toggle,
+.ex-template-modal.ex-template-modal .setting-item.ex-inline-setting {
+  align-items: center;
+}
+
+.ex-template-modal.ex-template-modal
+  .setting-item:not(.mod-toggle):not(.ex-inline-setting):not(.setting-item-heading)
+  > .setting-item-info {
+  margin-right: 0;
+}
+
+.ex-template-modal.ex-template-modal
+  .setting-item:not(.mod-toggle):not(.ex-inline-setting):not(.setting-item-heading)
+  > .setting-item-control {
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.ex-template-modal.ex-template-modal .setting-item:not(.mod-toggle) > .setting-item-control > input[type='text'],
+.ex-template-modal.ex-template-modal .setting-item:not(.mod-toggle) > .setting-item-control > select,
+.ex-template-modal.ex-template-modal .setting-item:not(.mod-toggle) > .setting-item-control > textarea {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+}
+
+/*
+ * The export dialog keeps its answers beside its questions.
+ *
+ * The template editor drops them under instead, and has to: a pandoc command
+ * line, a path with `${currentDir}` in it, a list of variables — none of those
+ * fit the sliver at the end of a row. Nothing here is that long. A format
+ * picked from a list, a name, a switch: each is short enough to sit next to
+ * what it answers, and the dialog is shorter for it, which is worth something
+ * in the one window that stands between a note and the file.
+ *
+ * Centred rather than aligned to the top, so a control stays level with a label
+ * that has run to a second line. Obsidian stacks the two itself once the modal
+ * is under 400px wide.
+ */
+.ex-export-modal.ex-export-modal .setting-item,
+.ex-import-modal.ex-import-modal .setting-item {
+  align-items: center;
+}
+
+/*
+ * The label takes what it needs and the field takes the rest of the row.
+ *
+ * Half each was still half each: the labels here are two or three words, so
+ * the field began at the middle of the card whatever stood to its left, and
+ * the space between the two belonged to nothing. The label is sized to itself
+ * instead — it never grows — and everything left over goes to the control.
+ *
+ * The cap is there for the description under a label, which is the part that
+ * can run long: past half the row it would be eating the field rather than
+ * explaining it, and it wraps instead.
+ *
+ * Toggles are left out: a switch is the size it is, and stretching the block
+ * around it would only move it away from the label it answers. So is a group's
+ * heading, which has no control beside it to leave room for.
+ */
+.ex-export-modal.ex-export-modal .setting-item:not(.mod-toggle) > .setting-item-info {
+  flex: 0 1 auto;
+  max-width: 50%;
+}
+
+/* More of the row in the import dialog, where a label stands beside a dropdown
+   rather than a field: half a row broke its description over two lines. */
+.ex-import-modal.ex-import-modal .setting-item:not(.mod-toggle):not(.setting-item-heading) > .setting-item-info {
+  flex: 0 1 auto;
+  max-width: 70%;
+}
+
+.ex-export-modal.ex-export-modal .setting-item:not(.mod-toggle) > .setting-item-control,
+.ex-import-modal.ex-import-modal .setting-item:not(.mod-toggle) > .setting-item-control {
+  flex: 1 1 auto;
+  min-width: 0;
+  /* Level with the label it answers, whatever height the row comes to. */
+  align-self: center;
+}
+
+/*
+ * And the field fills it, rather than standing at whatever width a text box
+ * happens to come to.
+ *
+ * Text fields only. A dropdown is left at the width its own names give it: it
+ * is picked from rather than typed into, so there is nothing in it that a wider
+ * box would show more of, and it sits at the end of its row as the switch below
+ * it does.
+ */
+.ex-export-modal.ex-export-modal .setting-item:not(.mod-toggle) > .setting-item-control > input[type='text'],
+.ex-import-modal.ex-import-modal .setting-item:not(.mod-toggle) > .setting-item-control > input[type='text'] {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/*
+ * A path is read down the row: the label, the field at the width of the row, and
+ * the line that answers it under both. Half a row of a path loses the end of it,
+ * which is the part that names something. `PathSetting` in ImportDialog writes
+ * the description after the control, which is what lets this be one column.
+ */
+.ex-import-modal.ex-import-modal .setting-item.ex-import-modal-path {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Nothing stands beside the label here for the cap to protect. */
+.ex-import-modal.ex-import-modal .setting-item.ex-import-modal-path > .setting-item-info {
+  max-width: none;
+}
+
+.ex-import-modal.ex-import-modal .ex-import-modal-path > .setting-item-control {
+  /* Down a column, the `flex: 1` and the centring above work on the other axis. */
+  flex: 0 0 auto;
+  align-self: stretch;
+  width: 100%;
+  margin-top: var(--size-2-3);
+}
+
+.ex-import-modal.ex-import-modal .ex-import-modal-path > .setting-item-description {
+  margin-top: var(--size-2-2);
+}
+
+/*
+ * The table of contents is read across the row instead: the slider names its
+ * steps under itself, and beside a label there was not enough of the row left
+ * for six of them to stand apart.
+ */
+.ex-export-modal.ex-export-modal .setting-item.ex-export-modal-toc {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Nothing stands beside the label here for the cap to protect. */
+.ex-export-modal.ex-export-modal .setting-item.ex-export-modal-toc > .setting-item-info {
+  max-width: none;
+}
+
+.ex-export-modal.ex-export-modal .setting-item.ex-export-modal-toc > .setting-item-control {
+  /* Down a column, the `flex: 1` and the centring above work on the other axis. */
+  flex: 0 0 auto;
+  align-self: stretch;
+  width: 100%;
+}
+
+/*
+ * A group's heading is the first row of its card, and takes a row's inset.
+ *
+ * The template modal's headings carry a margin to set a group apart from the
+ * boxes around it. Here the card is the group, and that margin only pushed the
+ * name off the card's top edge and the first row off the line under it.
+ */
+.ex-import-modal.ex-import-modal .ex-card > .setting-item.setting-item-heading {
+  margin: 0;
+  padding: var(--setting-items-padding-x);
+  border: none;
+  border-bottom: 1px solid var(--setting-items-border-color);
+  background: none;
+}
+
+/* A heading has no control, so its empty control block takes none of the row —
+   held open, it wrapped the name and the line under it. */
+.ex-import-modal.ex-import-modal .ex-card > .setting-item.setting-item-heading > .setting-item-control {
+  flex: 0 0 auto;
+}
+
+/*
+ * A grid of checkboxes — the heading levels a table of contents reaches, and
+ * the lua filters a template runs. Both are a set of things that are either on
+ * or off, and both read better all at once than through a dropdown that shows
+ * one answer at a time. The box it is drawn in here is its own; in the template
+ * modal the row's card is usually the box, and the rule below takes this one
+ * back off.
+ *
+ * `auto-fit` rather than `auto-fill`: with only a few boxes the columns stretch
+ * to fill the card instead of leaving a stretch of empty grid to their right.
+ */
+.ex-check-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--size-4-1) var(--size-4-3);
+  width: 100%;
+  min-width: 0;
+  padding: var(--size-4-3);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  background: var(--background-secondary);
+}
+
+/* One to a line, whatever the grid would otherwise fit across. Asked for by
+   what is in it rather than by the width: a name that has to be read in full is
+   worth the length the list runs to. */
+.ex-check-grid.is-single-column {
+  grid-template-columns: 1fr;
+}
+
+/* The whole row is the hit area, label included — a checkbox alone is a small
+   target for a mouse. */
+.ex-check {
+  display: flex;
+  align-items: center;
+  gap: var(--size-4-2);
+  min-width: 0;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  cursor: var(--cursor);
+}
+
+.ex-check:hover,
+.ex-check.is-checked {
+  color: var(--text-normal);
+}
+
+/*
+ * Its own size, said here rather than left to Obsidian's own `input` rule.
+ *
+ * Under `@container (max-width: 400px)` Obsidian gives every input in a row's
+ * control block `width: 100%` — meant for the text fields that are the usual
+ * thing to find there. A checkbox took it too: each box stretched the width of
+ * its column and left the name beside it nothing at all, so a grid of ticks
+ * read as a grid of empty fields. A narrow pane is enough to bring it on; a
+ * phone is only the surest way.
+ *
+ * The grid's class is written twice: that rule carries the same weight as this
+ * one, and a tie settled by which stylesheet loaded last is not settled.
+ */
+.ex-check-grid.ex-check-grid .ex-check input[type='checkbox'] {
+  flex: 0 0 auto;
+  width: var(--checkbox-size);
+  height: var(--checkbox-size);
+  margin: 0;
+}
+
+/* A filter's name can be longer than its column; it is cut rather than allowed
+   to push the grid wider than the card. `min-width` is what lets it be cut: a
+   flex item is floored at its own content until it is told otherwise. */
+.ex-check-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Said in the grid's place when there is nothing to tick — the card stays, so
+   the row does not collapse to nothing. It is about the card rather than about
+   a column of it, so it takes the whole width and sits in the middle instead of
+   starting where the first checkbox would. */
+.ex-check-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+}
+
+/*
+ * A track of named steps — the depth a table of contents is taken to.
+ *
+ * The labels are placed rather than laid out in columns: a range input keeps
+ * its thumb half a thumb's width inside either end of the track, so a label
+ * evenly spaced across the whole width would sit further and further from the
+ * step it names the closer it got to an edge. The width the thumb travels is
+ * named here and the positions are worked out against it in the script.
+ */
+.ex-step-slider {
+  --ex-step-slider-thumb: var(--slider-thumb-width, 18px);
+  width: 100%;
+  min-width: 0;
+  /* More air than a field takes under its label: a thumb stands proud of its
+     track, and sitting where a text box would sit it crowds the line above. */
+  margin-top: var(--size-4-4);
+}
+
+/*
+ * Obsidian draws the track on the input itself, so the steps already passed are
+ * painted over it: an image in the accent as far as the thumb, and nothing at
+ * all after it, which leaves the track's own colour standing where it is.
+ */
+.ex-step-slider > input[type='range'] {
+  display: block;
+  width: 100%;
+  margin: 0;
+  background-image: linear-gradient(
+    to right,
+    var(--interactive-accent) 0 var(--ex-step-slider-fill),
+    transparent var(--ex-step-slider-fill)
+  );
+}
+
+/* Absolutely placed children, so the row has no height of its own to take. */
+.ex-step-slider-ticks {
+  position: relative;
+  height: 1.4em;
+  margin-top: var(--size-4-1);
+}
+
+.ex-step-slider-tick {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+  margin-top: 8px;
+  font-weight: var(--font-medium);
+}
+
+.ex-step-slider-tick:first-child {
+  transform: none;
+}
+
+.ex-step-slider-tick:last-child {
+  transform: translateX(-100%);
+}
+
+/* The one being asked for, said in words as well as by where the thumb is. */
+.ex-step-slider-tick.is-current {
+  color: var(--text-accent);
+  font-weight: var(--font-medium);
+}
+
+/*
+ * The grid keeps its columns and loses its box throughout the template modal:
+ * there every row it can sit in is a box of its own, and one box drawn inside
+ * another is a border for nothing.
+ */
+.ex-template-modal.ex-template-modal .ex-check-grid {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+/* A field whose question is asked by the heading over it, so it carries no
+   label of its own. The space above it belongs to the card it sits in. */
+.ex-template-modal.ex-template-modal .ex-template-modal-nameless > .setting-item-info {
+  display: none;
+}
+
+/*
+ * The advanced panel: a heading that folds, and under it a run of rows no
+ * different from the ones above it. What it opens is not held in anything —
+ * the fold is the only thing that says these rows belong to that heading.
+ */
+
+/*
+ * Spaced by the same gap that stands between two rows outside the panel, so
+ * opening one adds to the list rather than starting a second one. The first
+ * row is included, so an open panel starts a gap below its heading rather than
+ * against it; the panel's own `overflow` is what keeps that first margin
+ * inside it, where the opening animation can measure it.
+ *
+ * A collapsible panel of its own is passed over: it may be closed, and the
+ * space belongs to the row inside it, which the card rules above already give.
+ */
+.ex-template-modal.ex-template-modal .ex-section > .ex-collapsible > *:not(.ex-collapsible) {
+  margin-top: var(--size-4-3);
+}
+
+/*
+ * A group inside the panel is a card — one card, not a stack of them. The
+ * border goes round the whole run of rows the heading names, and the rows
+ * inside are divided by a line rather than boxed each: a box per row inside a
+ * box around all of them is what read as mud.
+ *
+ * No side padding, so the lines between the rows run the width of the card;
+ * the rows carry the inset themselves. The import dialog groups its rows the
+ * same way.
+ */
+.ex-template-modal.ex-template-modal .ex-card:not(.ex-section),
+.ex-import-modal.ex-import-modal .ex-card:not(.ex-section) {
+  margin: 0;
+  border: 1px solid var(--setting-items-border-color);
+  border-radius: var(--setting-items-radius);
+  background: var(--setting-items-background);
+}
+
+/* A group standing in the modal rather than inside a panel keeps the spacing of
+   the rows it stands among. */
+.ex-template-modal.ex-template-modal .modal-content > .ex-card:not(.ex-section),
+.ex-import-modal.ex-import-modal .modal-content > .ex-card:not(.ex-section) {
+  margin-bottom: var(--size-4-3);
+}
+
+/*
+ * The rows it holds, stripped of the box every other row in the modal wears.
+ * The group's class is written twice: the rule that draws a row as a box
+ * carries six classes to outweigh Obsidian's own — see the padding fix above —
+ * and this has to outweigh that in turn.
+ */
+.ex-template-modal.ex-template-modal .ex-card.ex-card:not(.ex-section) .setting-item:not(.setting-item-heading),
+.ex-import-modal.ex-import-modal .ex-card.ex-card:not(.ex-section) .setting-item:not(.setting-item-heading) {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
+}
+
+/*
+ * One line between two rows, and nowhere else: not under the heading, which has
+ * its own space below it, and not above the first row or below the last, where
+ * the card's own border already stands.
+ *
+ * A collapsible panel is looked through rather than divided from: the line
+ * belongs to the row inside it, so a panel that is shut takes its line with it
+ * and the row after it still has one of its own.
+ */
+.ex-template-modal.ex-template-modal .ex-card.ex-card:not(.ex-section) .setting-item:not(.setting-item-heading) + .setting-item,
+.ex-template-modal.ex-template-modal .ex-card.ex-card:not(.ex-section) .ex-collapsible > .setting-item:not(.setting-item-heading),
+.ex-template-modal.ex-template-modal .ex-card.ex-card:not(.ex-section) .ex-collapsible + .setting-item:not(.setting-item-heading),
+.ex-import-modal.ex-import-modal .ex-card.ex-card:not(.ex-section) .setting-item:not(.setting-item-heading) + .setting-item {
+  border-top: 1px solid var(--setting-items-border-color);
+}
+
+/*
+ * The resulting command is one card with its heading inside it.
+ *
+ * The advanced panel cannot be: it holds a dozen groups, and a card around all
+ * of them is the box around boxes that read as mud. This panel holds one group,
+ * so the fold and the card are the same boundary, and drawing them as two said
+ * the same thing twice.
+ *
+ * The card is the section itself. The `.ex-card` within keeps what it is for —
+ * marking its rows as a divided list rather than a stack of boxes — and gives
+ * up its own chrome to the one now drawn around it.
+ */
+.ex-template-modal.ex-template-modal .modal-content > .ex-card.ex-template-modal-command-section {
+  padding: 0;
+  border: 1px solid var(--setting-items-border-color);
+  border-radius: var(--setting-items-radius);
+  background: var(--setting-items-background);
+}
+
+/* The heading is a row of the card now, not a card of its own. */
+.ex-template-modal.ex-template-modal .ex-card.ex-template-modal-command-section > .setting-item.ex-section-header {
+  border: none;
+  border-radius: 0;
+  background: none;
+}
+
+/* And what it opens sits straight under it: the heading's own padding and the
+   first row's are the gap between them, as a group's heading and its first row
+   are spaced everywhere else. */
+.ex-template-modal.ex-template-modal .ex-card.ex-template-modal-command-section > .ex-collapsible > .ex-card {
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
+}
+
+/* The whole heading is the button, not the chevron at its end. */
+.ex-template-modal.ex-template-modal .ex-section-header {
+  cursor: var(--cursor);
+}
+
+.ex-template-modal.ex-template-modal .ex-section-header:hover .setting-item-name {
+  color: var(--text-normal);
+}
+
+/* Reached by tab as well as by mouse, so it has to show where the tab landed. */
+.ex-template-modal.ex-template-modal .ex-section-header:focus-visible {
+  border-radius: var(--radius-s);
+  box-shadow: 0 0 0 2px var(--background-modifier-border-focus);
+  outline: none;
+}
+
+/*
+ * Points down at what it opens, and turns to point at the heading once there is
+ * nothing below it — the panel's own 180ms, so the two move together.
+ */
+.ex-section-chevron {
+  display: flex;
+  color: var(--text-muted);
+  transition: transform 180ms ease-in-out;
+}
+
+.ex-section:not(.is-open) .ex-section-chevron {
+  transform: rotate(-90deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ex-section-chevron {
+    transition: none;
+  }
+}
+
+/*
+ * Buttons belonging to the section rather than to opening it — the copy beside
+ * the resulting command. They sit inside the heading's own control, before the
+ * chevron, and keep the gap from the label that any control in a row would.
+ */
+.ex-section-actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--size-4-1);
+  margin-inline-start: var(--size-4-2);
+}
+
+/*
+ * A path and the button that fills it in are the one answer, so they share the
+ * row: the field takes what room there is, the button only what it needs. The
+ * field stays writable — a path is as often written with `${currentDir}` as it
+ * is picked off a disk — so the button sits beside it rather than replacing it.
+ */
+.ex-template-modal.ex-template-modal .setting-item-control > .setting-editor-extra-setting-button,
+.ex-export-modal.ex-export-modal .setting-item-control > .setting-editor-extra-setting-button,
+.ex-import-modal.ex-import-modal .setting-item-control > .setting-editor-extra-setting-button {
+  flex: 0 0 auto;
+  align-self: center;
+  margin-inline-start: var(--size-4-2);
+}
+
+/*
+ * The other variables, one `key=value` a line. The height is set
+ * from the script a line at a time, as the environment variables' is, so there
+ * is nothing to scroll and nothing worth dragging: a drag would only hold until
+ * the next keystroke measured the lines again.
+ *
+ * No floor under that height. `3em` was one: three of the font's own ems, which
+ * is not three lines of anything — a line is an em times the line height, and
+ * the field's padding is on top of that again. It came to a line and a sliver,
+ * so an empty list stood a few pixels taller than the one line it holds and the
+ * text sat off centre in it. The measured height is the right height; the `rows`
+ * the field is given carries it until there is something on screen to measure.
+ */
+.ex-template-modal.ex-template-modal .ex-template-modal-pairs {
+  width: 100%;
+  resize: none;
+  overflow-y: hidden;
+  line-height: var(--line-height-tight);
+}
+
+/*
+ * The command as it will be run, one option a line. Monospace, so the flags line
+ * up down the left; scrolled rather than wrapped, so the count of lines is the
+ * count of options and a long path cannot push the rest of the command down the
+ * card. Sized from the script like the lists above, so however many options a
+ * template carries, the whole of it is on screen.
+ *
+ * Drawn as a field rather than as text so it can be selected from and scrolled
+ * by keyboard, and given the flat secondary background to say it takes no
+ * typing — the row below it is the one that does.
+ */
+.ex-template-modal.ex-template-modal .ex-template-modal-command-line {
+  /* Block, not the inline-block a textarea is by default: inline leaves a
+     descender's worth of space under the field, inside the wrapper below. */
+  display: block;
+  width: 100%;
+  resize: none;
+  overflow-x: auto;
+  overflow-y: hidden;
+  font-family: var(--font-monospace);
+  font-size: var(--font-smaller);
+  line-height: var(--line-height-tight);
+  white-space: pre;
+  background: var(--background-secondary);
+  color: var(--text-normal);
+  cursor: text;
+  /* Room at the top right for the copy sitting over it, so a first line long
+     enough to reach the corner is not read out from under the button. */
+  padding-inline-end: var(--size-4-8);
+}
+
+/*
+ * The copy, in the field's own top right corner. The wrapper is what the button
+ * is placed against, and takes the width the field would otherwise be given by
+ * the control around it.
+ */
+.ex-template-modal.ex-template-modal .ex-template-modal-command-preview {
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+}
+
+.ex-template-modal.ex-template-modal .ex-template-modal-command-preview > .setting-editor-extra-setting-button {
+  position: absolute;
+  top: var(--size-4-1);
+  inset-inline-end: var(--size-4-1);
+  margin: 0;
+  padding: var(--size-4-1);
+  border-radius: var(--radius-s);
+  color: var(--text-muted);
+  /* Over the field rather than in it: the fill is what keeps the glyph legible
+     against whatever line of the command happens to run under it. */
+  background: var(--background-secondary);
+}
+
+.ex-template-modal.ex-template-modal .ex-template-modal-command-preview > .setting-editor-extra-setting-button:hover {
+  color: var(--text-normal);
+  background: var(--background-modifier-hover);
+}
+
+/* Nothing to focus into, so nothing to draw a focus ring for. */
+.ex-template-modal.ex-template-modal .ex-template-modal-command-line:focus {
+  box-shadow: none;
+}
+
+/*
+ * A group's own heading — the include files, and the page the writer is told
+ * about. It names the rows under it and has no control of its own, so it is
+ * never drawn as a box; it is only indented to where their labels start, so
+ * the heading and what it heads read down one line rather than two.
+ */
+.ex-template-modal.ex-template-modal .ex-card > .setting-item.setting-item-heading:not(.ex-section-header) {
+  /* Pinned, because Obsidian adds room above a heading that follows a row and
+     not above one that follows anything else — which fell to some of these
+     groups and not others, and now that a group is only its spacing, an
+     inconsistent gap is the group itself changing size. */
+  margin-top: 16px;
+  /* The card it heads has no side padding, so the inset is the heading's own
+     to take — the same one its rows take, or the name would stand a few
+     pixels to the left of everything it names. Obsidian's default here is
+     `--size-4-4`, which is close enough to look like a mistake. */
+  padding-inline: var(--setting-items-padding-x);
+  /* Room under the words for the line to stand clear of them; pinned rather
+     than left to Obsidian, which gives a heading no floor of its own. */
+  padding-bottom: var(--size-4-4);
+  border: none;
+  /* The line the group's rows are divided by, drawn once more under the name of
+     them: the heading is the top edge of the run rather than the first of it.
+     It runs the width of the card, as those do — the inset above is padding,
+     and a border stands outside it. */
+  border-bottom: 1px solid var(--setting-items-border-color);
+  background: none;
+}
+
+/* A heading is read in two beats — what the group is, then what it is for — and
+   the second wants a little more room than a row's description, which sits
+   under a label no larger than itself. */
+.ex-template-modal.ex-template-modal
+  .ex-card
+  > .setting-item.setting-item-heading:not(.ex-section-header)
+  > .setting-item-info
+  > .setting-item-description,
+.ex-import-modal.ex-import-modal .ex-card > .setting-item.setting-item-heading > .setting-item-info > .setting-item-description {
+  margin-top: var(--size-2-2);
+}
+
+/*
+ * Lua filter store.
+ *
+ * The chrome is the extensions store from the Advanced Word Count plugin,
+ * refitted to this plugin's spacing scale: a search field, a row of counted
+ * filter chips, and a list of cards with the actions at their end.
+ */
+
+/*
+ * The width is Obsidian's own — no `--modal-width` of this plugin's is set, so
+ * the store is as wide as every other modal here and as wide as the theme says
+ * a modal should be. It was pinned to 760px, which read as a narrower window
+ * than the template editor beside it for no reason a user could see.
+ *
+ * Height is still this plugin's business: the list is as long as the catalogue,
+ * so the modal stands only as tall as it needs to and stops well inside the
+ * window, and the content below scrolls.
+ */
+.ex-lua-modal {
+  --modal-height: auto;
+  --modal-max-height: 80vh;
+}
+
+.ex-lua-modal .modal {
+  max-height: var(--modal-max-height);
+}
+
+/* The modal's own content scrolls. A single stable gutter keeps the cards from
+   shifting sideways when the scrollbar appears, without the second reservation
+   `both-edges` makes — that one narrowed the content box enough to cut the
+   cards off. */
+.ex-lua-modal .modal-content {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  /* A scroll container trims a trailing child's margin but never its own
+     padding, so the last card needs this to clear the bottom edge. */
+  padding-bottom: var(--size-4-4);
+}
+
+/*
+ * A phone lays a modal's content out as a flex column, which the desktop does
+ * not — and a field standing in one is shrunk to make room for everything under
+ * it, the list of filters being as long as it likes. The height a field is
+ * given is a height, not an opening bid: it keeps it whatever else is in the
+ * column. `auto` is that height rather than a second copy of it.
+ */
+.ex-lua-search {
+  flex: 0 0 auto;
+  width: 100%;
+  margin-bottom: var(--size-4-3);
+}
+
+/*
+ * The chips: one row, scrolled sideways rather than wrapped, so adding a chip
+ * never costs the list a line of height. The row and its edge chevrons share a
+ * relative wrapper, which also carries the gap below the row.
+ */
+.ex-lua-filters-wrap {
+  /* Squeezed by the same column as the field above it, and with less to stand
+     on: the row inside it scrolls, so nothing in it argues for its height. */
+  flex: 0 0 auto;
+  position: relative;
+  margin-bottom: var(--size-4-3);
+}
+
+/* Single non-wrapping row; the overflow scrolls and the scrollbar is hidden. */
+.ex-lua-filters {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--size-4-1);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.ex-lua-filters::-webkit-scrollbar {
+  display: none;
+}
+
+/*
+ * The "there is more" affordances: a chevron pinned over a fade at each cut-off
+ * edge, slid in by scroll position through `.is-visible` — the right one while
+ * the row is not scrolled to its end, the left one while it is scrolled away
+ * from its start. Desktop only; touch scrolls the row directly.
+ */
+.ex-lua-filters-more,
+.ex-lua-filters-less {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  width: 36px;
+  padding: 0 2px;
+  /* Strip the native and theme button chrome, so only the rules here paint it. */
+  appearance: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  cursor: var(--cursor);
+  color: var(--text-muted);
+  /* Revealed by opacity alone. The background colour is held transparent in
+     every state below, so the theme's solid button background never bleeds
+     through the gradient mid-fade; `pointer-events` keeps the hidden button
+     from swallowing clicks meant for the chips underneath it. */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.ex-lua-filters-more {
+  right: 0;
+  justify-content: flex-end;
+  background: linear-gradient(to right, transparent, var(--background-primary) 100%);
+}
+
+.ex-lua-filters-less {
+  left: 0;
+  justify-content: flex-start;
+  background: linear-gradient(to left, transparent, var(--background-primary) 100%);
+}
+
+/* The theme's button rules set a solid background at a specificity above a
+   single class, and it shows through the gradient's transparent half. Pin the
+   paint properties transparent at the wrapper's two-class specificity, in every
+   state, so nothing changes as `.is-visible` toggles. */
+.ex-lua-filters-wrap .ex-lua-filters-more,
+.ex-lua-filters-wrap .ex-lua-filters-less,
+.ex-lua-filters-more:hover,
+.ex-lua-filters-more:focus,
+.ex-lua-filters-more:active,
+.ex-lua-filters-less:hover,
+.ex-lua-filters-less:focus,
+.ex-lua-filters-less:active {
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+  outline: none;
+  color: var(--text-muted);
+}
+
+.ex-lua-filters-more.is-visible,
+.ex-lua-filters-less.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ex-lua-filter {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  padding: var(--size-4-1) var(--size-4-3);
+  border: none;
+  border-radius: 2em;
+  font-size: var(--font-ui-smaller);
+  background: var(--background-modifier-hover);
+  color: var(--text-muted);
+  box-shadow: none;
+  cursor: var(--cursor);
+}
+
+.ex-lua-filter:hover {
+  background: var(--background-modifier-active-hover);
+  color: var(--text-normal);
+}
+
+.ex-lua-filter.is-active {
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+}
+
+/* The "(N)" after a chip's label. The margin is the gap — a text-node space
+   between the two would be collapsed away. */
+.ex-lua-filter-count {
+  margin-left: 0.35em;
+  opacity: 0.65;
+}
+
+.ex-lua-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4-2);
+}
+
+.ex-lua-status {
+  padding: var(--size-4-6) var(--size-4-2);
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.ex-lua-retry {
+  align-self: center;
+}
+
+/* A filter is a card: what it is, and along the foot of it what to do with it. */
+.ex-lua-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--size-4-4);
+  padding: var(--size-4-4);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  background-color: var(--background-secondary);
+  /* The card is as wide as the list and no wider; its text wraps rather than
+     pushing the actions off the right-hand edge. */
+  max-width: 100%;
+  min-width: 0;
+  /* The actions run out to the card's edges, and the corners crop them. */
+  overflow: hidden;
+}
+
+.ex-lua-card-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* A filter's name can be one long unbroken word; it wraps rather than overflows. */
+.ex-lua-name,
+.ex-lua-desc,
+.ex-lua-author {
+  overflow-wrap: anywhere;
+}
+
+.ex-lua-card-head {
+  display: flex;
+  align-items: center;
+  gap: var(--size-4-2);
+}
+
+.ex-lua-name {
+  font-weight: var(--font-semibold);
+  font-size: var(--font-ui-medium);
+  color: var(--text-normal);
+}
+
+/* The shelf a filter sits on, drawn beside its name. */
+.ex-lua-category-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+
+.ex-lua-category-icon .svg-icon {
+  width: var(--icon-s);
+  height: var(--icon-s);
+}
+
+/* Installed filters carry the accent, so what is already in the vault reads
+   apart from what is merely on offer. */
+.ex-lua-card.is-installed .ex-lua-name,
+.ex-lua-card.is-installed .ex-lua-category-icon {
+  color: var(--text-accent);
+}
+
+/* Whose work the filter is, in the row along the foot of the card: the space
+   the buttons do not need is the credit's, and it takes the card's own inset so
+   it starts where the text above it does. */
+.ex-lua-author {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: var(--size-4-2) var(--size-4-4);
+  font-size: var(--font-smallest);
+  color: var(--text-faint);
+}
+
+.ex-lua-desc {
+  margin: var(--size-4-1) 0 0;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+}
+
+/* What the filter needs to be given before it can work — said while the
+   Install button is still the next thing to press. In the card's own secondary
+   colour: it is something to read before installing, not something wrong. */
+.ex-lua-requires {
+  margin-top: 8px;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  border-top: 1px solid var(--setting-items-border-color);
+  padding-top: 8px;
+}
+
+.ex-lua-requires-label {
+  font-weight: var(--font-medium);
+}
+
+/* Bullets inside the card's inset rather than hanging off its edge. */
+.ex-lua-requires-list {
+  margin: var(--size-4-1) 0 0;
+  padding-inline-start: var(--size-4-4);
+  list-style: disc;
+}
+
+.ex-lua-requires-list li {
+  margin: 0;
+}
+
+/*
+ * The foot of the card: what to do with the filter, under what it is.
+ *
+ * Out through the card's padding to its edges — the negative margins are the
+ * padding given back — so the line above the row runs the whole width of the
+ * card rather than stopping short of it, as a footer does and an inset row of
+ * buttons cannot. The card crops the corners.
+ */
+.ex-lua-actions {
+  display: flex;
+  align-items: stretch;
+  margin: 0 calc(-1 * var(--size-4-4)) calc(-1 * var(--size-4-4));
+  border-top: 1px solid var(--background-modifier-border);
+}
+
+/*
+ * Segments of one bar, divided by a line rather than spaced apart — the credit
+ * included, which is why the line is drawn between everything in the row and
+ * not between the buttons alone.
+ */
+.ex-lua-actions > * + * {
+  border-left: 1px solid var(--background-modifier-border);
+}
+
+/* A button is as wide as it needs to be, and the same width as the others; the
+   row is filled by the credit beside them. */
+.ex-lua-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  min-width: 44px;
+  padding: var(--size-4-2);
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: var(--text-muted);
+  box-shadow: none;
+  cursor: var(--cursor);
+}
+
+/* Nothing to the left of them — the card carries no credit — so they take the
+   width themselves rather than huddling at the end of an empty bar. Marked by
+   the card rather than asked of the row's contents: `:has` is one selector the
+   browser re-evaluates against half the subtree on every change. */
+.ex-lua-actions:not(.is-credited) button {
+  flex: 1 1 0;
+}
+
+.ex-lua-actions .svg-icon {
+  width: var(--icon-s);
+  height: var(--icon-s);
+}
+
+/* Under the pointer a segment takes the colour of the window behind the card
+   and colours its glyph; nothing is filled in. Pinned rather than left off —
+   Obsidian tints a hovered button with `--interactive-hover` otherwise. */
+.ex-lua-actions button:hover {
+  background: var(--color-base-00);
+}
+
+.ex-lua-readme:hover,
+.ex-lua-install:hover {
+  color: var(--text-accent);
+}
+
+.ex-lua-uninstall:hover {
+  color: var(--text-error);
+}
+
+.ex-lua-actions button:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+/*
+ * The card a filter of the user's own is written in, and the card of one being
+ * rewritten: the store's own card, with the fields standing where a description
+ * would and the buttons in the row along the foot. Closed, the card that adds
+ * one is drawn in a dashed border — it is the one card in the list that is a
+ * thing to do rather than a thing on offer.
+ *
+ * Every selector names the modal twice. The card is the one place in the store
+ * holding Obsidian's own controls — a button, two text fields, a textarea — and
+ * each of those is drawn by a rule of Obsidian's, and again by whatever rule the
+ * vault's theme has for it. Two classes and a descendant outrank both. It is
+ * the same trick `.ex-template-modal.ex-template-modal` plays above.
+ */
+.ex-lua-modal.ex-lua-modal .ex-lua-add:not(.is-open) {
+  border-style: dashed;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+/* Closed, the head is a button, so a key reaches it as the pointer does. Open,
+   it is a plain card head and none of this is asked of it. */
+.ex-lua-modal.ex-lua-modal .ex-lua-add-head {
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--text-muted);
+  cursor: var(--cursor);
+}
+
+.ex-lua-modal.ex-lua-modal .ex-lua-add-head:hover {
+  background: transparent;
+  color: var(--text-accent);
+}
+
+/* The name is the card's own, drawn in whatever colour the head is in. */
+.ex-lua-modal.ex-lua-modal .ex-lua-add-head .ex-lua-name {
+  color: inherit;
+  font-size: var(--font-ui-normal);
+}
+
+.ex-lua-modal.ex-lua-modal .ex-lua-add-head .svg-icon {
+  width: var(--icon-s);
+  height: var(--icon-s);
+}
+
+.ex-lua-modal.ex-lua-modal .ex-lua-draft {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4-2);
+  padding-top: var(--size-4-3);
+}
+
+.ex-lua-modal.ex-lua-modal .ex-lua-draft input[type='text'] {
+  width: 100%;
+}
+
+/* The buttons the card is written and saved from, coloured like the store's own. */
+.ex-lua-modal.ex-lua-modal .ex-lua-edit:hover,
+.ex-lua-modal.ex-lua-modal .ex-lua-pick:hover,
+.ex-lua-modal.ex-lua-modal .ex-lua-save:hover {
+  color: var(--text-accent);
+}
+
+/* The way out, which is not an undoing: the muted grey the row is drawn in. */
+.ex-lua-modal.ex-lua-modal .ex-lua-cancel:hover {
+  color: var(--text-normal);
+}
+
+/*
+ * A field for code: the numbers down one side and the text beside them, sharing
+ * a line height so the two columns stay level, and a font that does not wrap so
+ * a line of code is a line on screen.
+ *
+ * Named twice for the same reason the card above is, and on its own root rather
+ * than the modal's: what a textarea is drawn like is Obsidian's to say and a
+ * theme's to say again, and this field looks the same wherever it is put.
+ */
+.ex-code.ex-code {
+  --ex-code-line: 1.5;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-s);
+  background: var(--background-primary);
+}
+
+.ex-code.ex-code .ex-code-gutter {
+  flex: 0 0 auto;
+  min-width: 2.5em;
+  padding: var(--size-4-2) var(--size-4-1);
+  /* Moved by however far the field has been scrolled, rather than scrolled itself. */
+  overflow: hidden;
+  border-right: 1px solid var(--background-modifier-border);
+  background-color: var(--background-secondary);
+  color: var(--text-faint);
+  font-family: var(--font-monospace);
+  font-size: var(--font-smaller);
+  line-height: var(--ex-code-line);
+  text-align: right;
+  white-space: pre;
+  user-select: none;
+}
+
+.ex-code.ex-code .ex-code-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 15em;
+  padding: var(--size-4-2);
+  overflow: auto;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: var(--text-normal);
+  font-family: var(--font-monospace);
+  font-size: var(--font-smaller);
+  line-height: var(--ex-code-line);
+  white-space: pre;
+  tab-size: 4;
+  resize: vertical;
+}
+
+.ex-code.ex-code .ex-code-input:focus {
+  box-shadow: none;
+}
+
+/*
+ * What the wasm build can be given past itself — typst, and the fonts it sets a
+ * document in.
+ *
+ * The cards are the filter store's, class names and all: the bargain is the
+ * same one, so it is shown the same way rather than described twice. What is
+ * new is the line under a card's description, the word it says while it is
+ * working, and the folder the fonts card is pointed at.
+ */
+.ex-ext-intro {
+  margin: 0 0 var(--size-4-3);
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+}
+
+/* What it costs, where it was installed, or what it is doing — one line, in the
+   place the store gives a filter's credit: the start of the row the buttons
+   end, taking the width they leave. */
+.ex-ext-note {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: var(--size-4-2) var(--size-4-4);
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+
+/* Not a fault, but the one thing on the card standing between it and a button. */
+.ex-ext-note.is-blocked {
+  color: var(--text-faint);
+}
+
+.ex-ext-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4-1);
+  margin-top: var(--size-4-2);
+}
+
+.ex-ext-field input {
+  width: 100%;
+}
+
+.ex-ext-field-note {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+}
+
+/*
+ * The box a failed export ends in.
+ *
+ * Three things in order of what can be done about them: which template and file
+ * this was, what the program said, and what to try. The command line is not one
+ * of them — it went to the console.
+ */
+.ex-export-error {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4-2);
+}
+
+/* Label and value on one line, the labels in a column of their own so the two
+   facts read as a pair rather than as two sentences. */
+.ex-export-error-fact {
+  display: flex;
+  gap: var(--size-4-2);
+  font-size: var(--font-ui-small);
+  line-height: var(--line-height-tight);
+}
+
+.ex-export-error-label {
+  flex: 0 0 auto;
+  min-width: 5em;
+  color: var(--text-muted);
+}
+
+.ex-export-error-value {
+  /* A long name breaks rather than widening the modal, and can be selected:
+     half of what this box is for is being quoted into a bug report. */
+  overflow-wrap: anywhere;
+  user-select: text;
+  color: var(--text-normal);
+  font-weight: var(--font-medium);
+}
+
+/*
+ * The program's own output, kept as it was written — pandoc and every LaTeX
+ * engine line theirs up in columns. A long log scrolls inside the box instead
+ * of pushing the recommendation below the fold.
+ */
+.ex-export-error-detail {
+  margin-top: var(--size-4-1);
+  padding: var(--size-4-2) var(--size-4-3);
+  max-height: 40vh;
+  overflow: auto;
+  border-radius: var(--radius-s);
+  background: var(--background-secondary);
+  border-left: 3px solid var(--background-modifier-error);
+  color: var(--text-normal);
+  font-family: var(--font-monospace);
+  font-size: var(--font-ui-smaller);
+  line-height: var(--line-height-tight);
+  white-space: pre-wrap;
+  user-select: text;
+}
+
+/* The command line itself, where the template asks for it to be shown. */
+.ex-export-error-command {
+  padding: var(--size-4-2) var(--size-4-3);
+  border-radius: var(--radius-s);
+  background: var(--background-secondary);
+  color: var(--text-muted);
+  font-family: var(--font-monospace);
+  font-size: var(--font-ui-smaller);
+  line-height: var(--line-height-tight);
+  overflow-wrap: anywhere;
+  user-select: text;
+}
+
+/* Warnings are the same report with a milder outcome: the file was written. */
+.ex-export-error.is-warning .ex-export-error-detail {
+  border-left-color: var(--text-warning);
+}
+
+/* The one line that says what to do next, so it is not read as more output. */
+.ex-export-error-hint {
+  padding: var(--size-4-2) var(--size-4-3);
+  border-radius: var(--radius-s);
+  background: var(--background-modifier-hover);
+  border-left: 3px solid var(--text-accent);
+  font-size: var(--font-ui-small);
+  color: var(--text-normal);
+}
+
+/*
+ * Export progress notice. Borrowed from the Classy PDF Extractor.
+ */
+
+/* Obsidian lays a notice out as a column on the desktop and a row on a phone, and this is the item in either. Left
+   alone, the row leaves it as wide as its text and the bar sits short of the notice. */
+.ex-progress-message {
+  flex: 1;
+}
+
+.ex-progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4-2);
+  /* A notice is as wide as its message, and the bar would otherwise be as short as the word above it. Well inside
+     the 300px a notice is capped at. */
+  min-width: 14em;
+}
+
+/* A file name can be longer than the notice, and one that grew to fit would jump as the export moved on. */
+.ex-progress-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* The outcome is a sentence, not a name: nothing follows it, so it can take the lines it needs. */
+.ex-progress-label.is-final {
+  overflow: visible;
+  white-space: normal;
+}
+
+/* The accent under itself at 0.4, which is how Obsidian draws the track its own progress bar fills. Not a
+   `--background-modifier-*`: a notice is dark whatever the theme, and those resolve to a colour the track would
+   disappear into. */
+.ex-progress-track {
+  position: relative;
+  height: 4px;
+  border-radius: var(--radius-s);
+  background-color: hsla(var(--interactive-accent-hsl), 0.4);
+  overflow: hidden;
+}
+
+/* Placed from the inline start rather than the left, so it fills the way the interface is written. */
+.ex-progress-bar {
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  height: 100%;
+  width: var(--ex-progress, 0%);
+  border-radius: inherit;
+  background-color: var(--interactive-accent);
+  transition: width 150ms ease-in-out;
+}
+
+/* Nothing to count — pandoc says nothing until it is done — so the bar sweeps instead of filling, which says the
+   export is still going where a bar standing still would not. The sweep is the one Obsidian's loading bar runs. */
+.ex-progress-bar.is-waiting {
+  width: 5%;
+  transition: none;
+  animation: ex-progress-sweep 2s infinite;
+}
+
+.ex-progress-bar.is-done {
+  background-color: var(--color-green);
+}
+
+.ex-progress-bar.is-warn {
+  background-color: var(--color-yellow);
+}
+
+@keyframes ex-progress-sweep {
+  from {
+    inset-inline-start: -5%;
+    width: 5%;
+  }
+  to {
+    inset-inline-start: 130%;
+    width: 100%;
+  }
+}
+
+/* The sweep is the one part of this that moves for its own sake, so it is the one part that goes. A full track still
+   says the step is running. */
+@media (prefers-reduced-motion: reduce) {
+  .ex-progress-bar {
+    transition: none;
+  }
+
+  .ex-progress-bar.is-waiting {
+    width: 100%;
+    animation: none;
+    opacity: 0.5;
+  }
+}
+
+/* ─── User guide ──────────────────────────────────────────────────────────────
+ *
+ * The guide is a note rather than a form, so it is left to look like one: the
+ * rules below only give it a column narrow enough to read and let it be copied
+ * out of.
+ */
+
+.ex-user-guide-modal {
+  max-width: 680px;
+  /* Obsidian turns selection off inside a modal, which a page meant to be read
+     and quoted from has no use for. */
+  user-select: text;
+  -webkit-user-select: text;
+  cursor: auto;
+}
+
+.ex-user-guide-modal * {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+/* Prose at the size the rest of the settings are read at, rather than the
+   note's own — this is a panel of the plugin, not a note. Set on the page as
+   well as on its paragraphs, so everything the renderer leaves at the base size
+   is read at it too. Headings keep the sizes the renderer gives them, which is
+   what makes them headings.
+   The class is written twice: a theme's stylesheet loads after a plugin's, and
+   a rule of the same weight in one would otherwise be the one that lands. */
+.ex-user-guide-modal.ex-user-guide-modal,
+.ex-user-guide-modal.ex-user-guide-modal p,
+.ex-user-guide-modal.ex-user-guide-modal li {
+  font-size: var(--font-ui-small);
+}
+
+/* The changelog is read the same way the guide is, and out of the same kind of
+   modal. Its own rules are only what the guide's prose does not cover. */
+.ex-changelog-modal {
+  max-width: 680px;
+  user-select: text;
+  -webkit-user-select: text;
+  cursor: auto;
+}
+
+.ex-changelog-modal * {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.ex-changelog-modal.ex-changelog-modal,
+.ex-changelog-modal.ex-changelog-modal p,
+.ex-changelog-modal.ex-changelog-modal li {
+  font-size: var(--font-ui-small);
+}
+
+/* A version is a heading of the page rather than of a section of it, so it is
+   given the air that says so. The first takes none: the modal's title is
+   directly above it. */
+.ex-changelog-modal h2 {
+  margin-top: var(--size-4-6);
+  font-size: var(--font-ui-large);
+}
+
+.ex-changelog-modal h2:first-child {
+  margin-top: 0;
+}
+
+.ex-changelog-modal h3 {
+  margin-bottom: var(--size-4-1);
+  font-size: var(--font-ui-medium);
+}
+
+/* The renderer hands back a bare `ul`, which is left with the 40px the browser
+   gives one — half of that is enough for a bullet to hang in, and it is what
+   the same list is read at in Publish to Telegram. Every level takes it, so a
+   sub-bullet steps in by the same amount rather than by the browser's. */
+.ex-changelog-modal ul,
+.ex-changelog-modal ol {
+  padding-inline-start: var(--size-4-5);
+  margin-bottom: var(--size-4-3);
+}
+
+/* The variables table is the widest thing in the guide: held to the column, so
+   its cells wrap instead of the page growing sideways. */
+.ex-user-guide-modal table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-block: var(--size-4-2) var(--size-4-4);
+  font-size: var(--font-ui-smaller);
+}
+
+.ex-user-guide-modal th,
+.ex-user-guide-modal td {
+  padding: var(--size-4-1) var(--size-4-2);
+  border: 1px solid var(--background-modifier-border);
+  text-align: start;
+  vertical-align: top;
+}
+
+*[hidden] {
+  display: none;
+}
