@@ -4,5 +4,16 @@
   "showLineNumber": true,
   "spellcheck": false,
   "tabSize": 2,
-  "useTab": false
+  "useTab": false,
+  "spellcheckDictionary": [
+    "Lvl",
+    "dades_introduir",
+    "estructura_dades",
+    "transactions",
+    "company",
+    "transaction",
+    "Tab",
+    "log",
+    "FK"
+  ]
 }
