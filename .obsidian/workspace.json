@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "f10bd10d90617663",
+        "id": "e83c5dd25d2cc104",
         "type": "tabs",
         "children": [
           {
-            "id": "5b4e91df47f7b5b0",
+            "id": "34ded8b7db3d2388",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -201,8 +201,10 @@
       "press-pdf-export:Export current note": false
     }
   },
-  "active": "5b4e91df47f7b5b0",
+  "active": "34ded8b7db3d2388",
   "lastOpenFiles": [
+    "S2/S2.pdf",
+    "S2/S2.md",
     "S2/screenshots/OP073.png",
     "S2/screenshots/OP072.png",
     "S2/S2.sql.KNJMV3",
@@ -214,9 +216,7 @@
     "S2/screenshots/OP059.png",
     "S2/screenshots/OP058.png",
     "S2/screenshots/OP057.png",
-    "S2/screenshots/OP056.png",
     "S2/S2.sql",
-    "S2/S2.md",
     "S2/data/dades_introduir.sql",
     "S2/init/estructura_dades.sql",
     "S2/init",
@@ -224,7 +224,6 @@
     "S2/data/N1-Ex.8__american_users.csv",
     "S2/data/N1-Ex.8__companies.csv",
     "S2/data/N1-Ex.8__credit_cards.csv",
-    "S2/data/N1-Ex.8__european_users.csv",
     "S2/S2L3E2.md",
     "S2/S2L1E4.md",
     "S2/S2L1E1.md",
