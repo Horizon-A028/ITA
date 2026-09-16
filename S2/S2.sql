@@ -1238,11 +1238,11 @@ JOIN JSON_TABLE (
   '$[*]' COLUMNS (id INT PATH '$')
 ) AS p;
 
--- [OP073] Observamos que la tabla se relleno corectamente
+-- [OP072] Observamos que la tabla se relleno corectamente
 SELECT *
 FROM orders AS o;
 
--- [OP074] Cuantas veces se ha vendido cada producto?
+-- [OP073] Cuantas veces se ha vendido cada producto?
 SELECT
   o.product_id,
   p.name,
