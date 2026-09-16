@@ -11,13 +11,11 @@
             "id": "34ded8b7db3d2388",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "S2/S2.md",
-                "mode": "source",
-                "source": true
+                "file": "S2/S2.pdf"
               },
-              "icon": "lucide-file",
+              "icon": "lucide-file-text",
               "title": "S2"
             }
           }
@@ -203,8 +201,10 @@
   },
   "active": "34ded8b7db3d2388",
   "lastOpenFiles": [
-    "S2/S2.pdf",
     "S2/S2.md",
+    "S2/S2.pdf",
+    "S2/S2.sql",
+    "S2/pandoc_command.sh",
     "S2/screenshots/OP073.png",
     "S2/screenshots/OP072.png",
     "S2/S2.sql.KNJMV3",
@@ -216,14 +216,12 @@
     "S2/screenshots/OP059.png",
     "S2/screenshots/OP058.png",
     "S2/screenshots/OP057.png",
-    "S2/S2.sql",
     "S2/data/dades_introduir.sql",
     "S2/init/estructura_dades.sql",
     "S2/init",
     "S2/data/N1-Ex.4__ datos_introducir_credit.sql",
     "S2/data/N1-Ex.8__american_users.csv",
     "S2/data/N1-Ex.8__companies.csv",
-    "S2/data/N1-Ex.8__credit_cards.csv",
     "S2/S2L3E2.md",
     "S2/S2L1E4.md",
     "S2/S2L1E1.md",
