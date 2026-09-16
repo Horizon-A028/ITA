@@ -3,7 +3,7 @@
 
 SELECT
   c.iban,
-  AVG(t.amount) AS mitjana
+  ROUND(AVG(t.amount), 2) AS mitjana
 FROM transactions AS t
 JOIN users AS u
 ON t.user_id = u.id

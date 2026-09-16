@@ -1,0 +1,1249 @@
+-- ############################################################
+-- Ejecutar paso a paso y seguir las instrucciones.
+-- ############################################################
+-- ############################################################
+-- Lvl. 1
+-- ############################################################
+-- ############################################################
+-- Ex. 1
+-- ############################################################
+-- A partir dels documents adjunts
+--   estructura_dades
+--   dades_introduir
+-- importa les dues taules.
+-- Mostra les característiques principals de l'esquema creat
+-- i explica les diferents taules i variables que existeixen.
+-- Assegura't d'incloure un diagrama que il·lustri la relació
+-- entre les diferents taules i variables.
+
+-- [OP001] Creamos la base de datos
+CREATE DATABASE IF NOT EXISTS transactions;
+-- [OP002]
+USE transactions;
+
+-- [OP003] Creamos la tabla company
+CREATE TABLE IF NOT EXISTS company (
+  -- Identificador unico de cada fila en la tabla
+  id VARCHAR(15) PRIMARY KEY,
+  -- Nombre de la empresa
+  company_name VARCHAR(255),
+  -- Numero de telefono de la empresa
+  phone VARCHAR(15),
+  -- Email de la empresa
+  email VARCHAR(100),
+  -- Pais donde opera la empresa
+  country VARCHAR(100),
+  -- Pagina web de la empresa
+  website VARCHAR(255)
+);
+
+-- [OP004] Creamos la tabla transaction
+CREATE TABLE IF NOT EXISTS transaction (
+  -- Identificador unico de cada fila en la tabla
+  id VARCHAR(255) PRIMARY KEY,
+  -- Referecia a identificadores unicos
+  -- de la tabla "credit_card" que aun no hemos creado.
+  -- Cada fila de la tabla "transaction" esta ligada
+  -- a 0 o 1 filas de "credit_card", ya que
+  -- la variable es nulable. [2]
+  credit_card_id VARCHAR(15) REFERENCES credit_card(id),
+  -- Referencia a identificadores unicos
+  -- de la tabla "company". Cada fila de la tabla
+  -- "transaction" esta ligada a 0 o 1 filas de "company",
+  -- ya que la variable es nulable. [1]
+  company_id VARCHAR(20),
+  -- Referencia a identificadores unicos
+  -- de la tabla "user" que aun no hemos creado.
+  -- Cada fila de la tabla "transaction" esta ligada
+  -- a 0 o 1 filas de "user", ya que
+  -- la variable es nulable.
+  user_id INT REFERENCES user(id),
+  -- La latitud geografica donde ocurrio la transaccion.
+  lat FLOAT,
+  -- La longitud geografica donde ocurrio la transaccion.
+  longitude FLOAT,
+  -- Indica el momento en el tiempo cuando
+  -- ocurrio la transaccion.
+  timestamp TIMESTAMP,
+  -- Indica la cantidad de dinero movido
+  -- en esta transaccion.
+  amount DECIMAL(10, 2),
+  -- Indica si la transaccion a sido rechazada.
+  -- Si ha sido rechazada, podemos dar por entendido que
+  -- no hubo venta / la venta fallo.
+  declined BOOLEAN,
+  -- Constraint que liga la variable "company_id"
+  -- al identificador unico "id" de la tabla "company"
+  FOREIGN KEY (company_id) REFERENCES company(id) 
+);
+
+-- ############################################################
+-- ############################################################
+-- Importar los datos de "dades_introduir.sql":
+-- 01. Panel izquierda "Navigator" >
+-- 02. "Data Import/Restore" >
+-- 03. Selecciona "Import from Self-Contained File"
+-- 04. Itroduce la direccion donde se encuentra el fichero.
+-- 05. "Default Schema to be Imported To" >
+-- 06. Selecciona el SCHEMA "transactions"
+-- 07. Click "Start Import"
+-- 08. "Import Progress" tab >
+-- 09. Comprueba en el log que la operacion se haya completado
+--      sin errores.
+-- 10. Menu de arriba, tab "Database" >
+-- 11. Click "Reverse Engineer"
+-- 12. Configura la conexion.
+-- 13. Next > Next >
+-- 14. Selecciona SCHEMA "transactions".
+-- 15. Next > Execute > Next > Finish
+-- 16. Tab "EER Diagram" debera mostrar el diagrama de
+--       los datos que acabamos de cargar.
+-- ############################################################
+-- ############################################################
+-- Diagrama S2L1E1D
+-- ############################################################
+
+-- El diagrama se encuentra en "./diagrams/S2L1E1D.png"
+-- Este es un simple esquema estrella con dos tablas:
+-- # transaction
+--   Es la tabla de hechos central del esquema estrella,
+--   ya que enlaza tablas de dimension con sus FK
+--   Cada fila representa una transaccion monetaria
+-- # company
+--   Es una tabla de dimension, ya que tiene datos
+--   varios de la empresa que representa, y no tiene FK
+-- En el diagrama podemos observar:
+-- [1] Relacion "transaction" 0..N <-> 1 "company"
+
+-- ############################################################
+-- Ex. 2
+-- ############################################################
+
+-- Llistat dels països que estan generant vendes.
+
+-- [OP005]
+SELECT DISTINCT c.country
+FROM transaction AS t
+JOIN company AS c
+ON t.company_id = c.id;
+
+-- Des de quants països es generen les vendes?
+
+-- [OP006]
+SELECT COUNT(DISTINCT c.country)
+FROM transaction AS t
+JOIN company AS c
+ON t.company_id = c.id;
+
+-- Identifica la companyia amb la mitjana més gran de vendes.
+
+-- [OP007] Una venta constituye una transaccion no denegada.
+SELECT
+  c.id,
+  c.company_name,
+  ROUND(AVG(t.amount), 2) AS media
+FROM transaction AS t
+JOIN company AS c
+ON t.company_id = c.id
+WHERE t.declined = FALSE
+GROUP BY c.id
+ORDER BY n_ventas DESC
+LIMIT 1;
+
+-- Segun mi consulta de documentacion SQL, se considera buena
+-- practica hacer un GROUP BY de todas las variables no
+-- resumidas (AVG en este caso), por motivos de compatibilidad.
+-- En el P2P se me ha comentado que mi mentora Alana
+-- prefiere los GROUP BY ajustados, por eso todas las
+-- operaciones en este sprint tendran GROUP BY minimalistas.
+
+-- ############################################################
+-- Ex. 3
+-- ############################################################
+
+-- Utilitzant només subconsultes (sense utilitzar JOIN):
+
+-- Mostra totes les transaccions realitzades per
+-- empreses d'Alemanya.
+
+-- [OP008]
+SELECT *
+FROM transaction AS t
+WHERE declined = FALSE
+AND EXISTS (
+  SELECT 1
+  FROM company as c
+  WHERE t.company_id = c.id
+  AND c.country = "Germany"
+);
+
+-- Llista les empreses que han realitzat transaccions per
+-- un amount superior a la mitjana de totes les transaccions.
+
+-- [OP009]
+SELECT
+  c.id,
+  c.company_name
+FROM company AS c
+WHERE EXISTS (
+  SELECT 1
+  FROM transaction AS t
+  WHERE t.company_id = c.id
+  AND t.amount > (
+    SELECT AVG(t.amount)
+    FROM transaction AS t
+  )
+);
+
+-- Elimina del sistema les empreses que no tenen
+-- transaccions registrades, entrega el llistat
+-- d'aquestes empreses.
+
+-- [OP010] Lista de empresas sin transacciones.
+-- Todas las empresas tienen transacciones,
+-- la lista esta vacia.
+SELECT *
+FROM company AS c
+WHERE NOT EXISTS (
+  SELECT 1
+  FROM transaction AS t
+  WHERE t.company_id = c.id
+);
+
+-- [OP012] Temporarily disable Safe Mode
+SET SQL_SAFE_UPDATES = 0;
+
+-- [OP011] Esta operacion elimina 0 empresas,
+-- ya que todas las empresas tienen transacciones.
+DELETE FROM company AS c
+WHERE NOT EXISTS (
+  SELECT 1
+  FROM transaction AS t
+  WHERE t.company_id = c.id
+);
+
+-- [OP013]
+SET SQL_SAFE_UPDATES = 1;
+
+-- ############################################################
+-- Ex. 4
+-- ############################################################
+
+-- La teva tasca és dissenyar i crear una taula
+-- anomenada "credit_card" que emmagatzemi detalls crucials
+-- sobre les targetes de crèdit. La nova taula ha de ser capaç
+-- d'identificar de manera única cada targeta i establir
+-- una relació adequada amb les altres dues taules
+-- ("transaction" i "company"). Després de crear la taula serà
+-- necessari que ingressis la informació del document denominat
+-- "dades_introduir_credit". Recorda mostrar el diagrama i
+-- realitzar una breu descripció d'aquest.
+
+-- [OP014]
+DROP TABLE IF EXISTS credit_card;
+-- [OP015] Creamos la tabla
+CREATE TABLE IF NOT EXISTS credit_card (
+  -- Identificador unico de cada fila de la tabla.
+  id VARCHAR(15) PRIMARY KEY,
+  -- El iban de la tarjeta.
+  iban VARCHAR(50),
+  -- El pan de la tarjeta.
+  pan VARCHAR(30),
+  -- El pin de la tarjeta.
+  pin VARCHAR(10),
+  -- El cvv de la tarjeta.
+  cvv VARCHAR(10),
+  -- La data de caducidad de la tarjeta.
+  expiring_date VARCHAR(10)
+);
+
+-- ############################################################
+-- ############################################################
+-- Importar los datos de
+--   "N1-Ex.4__datos_introducir_credit.sql":
+-- 01. Panel izquierda "Navigator" >
+-- 02. "Data Import/Restore" >
+-- 03. Selecciona "Import from Self-Contained File"
+-- 04. Itroduce la direccion donde se encuentra el fichero.
+-- 05. "Default Schema to be Imported To" >
+-- 06. Selecciona el SCHEMA "transactions"
+-- 07. Click "Start Import"
+-- 08. "Import Progress" tab >
+-- 09. Comprueba en el log que la operacion se haya completado
+--      sin errores.
+-- ############################################################
+-- ############################################################
+
+-- [OP016] Añadimos la constraint FK a la tabla transaction,
+-- ya que hemos creado la tabla
+ALTER TABLE transaction
+ADD CONSTRAINT fk_card
+FOREIGN KEY (credit_card_id) 
+REFERENCES credit_card(id);
+
+-- ############################################################
+-- ############################################################
+-- 01. Menu de arriba, tab "Database" >
+-- 02. Click "Reverse Engineer"
+-- 03. Configura la conexion.
+-- 04. Next > Next >
+-- 05. Selecciona SCHEMA "transactions".
+-- 06. Next > Execute > Next > Finish
+-- 07. Tab "EER Diagram" debera mostrar el diagrama de
+--       los datos que acabamos de cargar.
+-- ############################################################
+-- ############################################################
+-- Diagrama S2L1E4D
+-- ############################################################
+
+-- [OP017] Mostramos la tabla credit_card
+SELECT *
+FROM credit_card;
+
+-- El diagrama se encuentra en "./diagrams/S2L1E4D.png"
+-- Este es un simple esquema estrella con tres tablas:
+-- # transaction
+--   Es la tabla de hechos central del esquema estrella,
+--   ya que enlaza tablas de dimension con sus FK
+--   Cada fila representa una transaccion monetaria
+-- # company
+--   Es una tabla de dimension, ya que tiene datos
+--   varios de la empresa que representa, y no tiene FK
+-- # credit_card
+--   Es una tabla de dimension, ya que tiene datos
+--   variados de la tarjeta que representa, y no tiene FK
+-- En el diagrama podemos observar:
+-- [1] Relacion "transaction" 0..N <-> 1 "company"
+-- [2] Relacion "transaction" 0..N <-> 1 "credit_card"
+
+-- ############################################################
+-- Ex. 5
+-- ############################################################
+
+-- El departament de Recursos Humans ha identificat un error
+-- en el número de compte associat a la targeta de crèdit amb
+--   ID CcU-2938
+-- La informació que ha de mostrar-se per a aquest registre és:
+--   TR323456312213576817699999
+-- Recorda mostrar que el canvi es va realitzar.
+
+-- [OP018] Observamos la fila antes del cambio tiene el iban:
+--   TR301950312213576817638661
+SELECT *
+FROM credit_card AS c
+WHERE c.id = "CcU-2938";
+
+-- [OP019] Efectuamos el cambio que RH ha pedido.
+UPDATE credit_card AS c
+SET iban = "TR323456312213576817699999"
+WHERE c.id = "CcU-2938";
+
+-- [OP020] Comprobamos si el cambio se ha realizado.
+SELECT *
+FROM credit_card AS c
+WHERE c.id = "CcU-2938";
+
+-- ############################################################
+-- Ex. 6
+-- ############################################################
+
+-- En la taula "transaction" ingressa una nova transacció
+-- amb la següent informació:
+
+-- Id: 108B1D1D-5B23-A76C-55EF-C568E49A99DD 
+-- credit_card_id: CcU-9999 
+-- company_id: b-9999 
+-- user_id: 9999 
+-- lat: 829.999 
+-- longitude: -117.999 
+-- amount: 111.11 
+-- declined: 0
+
+-- [OP021] Esta operacion va a fallar:
+INSERT INTO transaction (
+  id,
+  credit_card_id,
+  company_id,
+  user_id,
+  lat,
+  longitude,
+  amount,
+  declined,
+  timestamp
+) VALUES (
+  "108B1D1D-5B23-A76C-55EF-C568E49A99DD",
+  "CcU-9999",
+  "b-9999",
+  9999,
+  829.999,
+  -117.999,
+  111.11,
+  0,
+  NOW()
+);
+
+-- [OP022] Comprobamos que no existe una compania con
+-- ID b-9999
+SELECT *
+FROM company AS c
+WHERE c.id = "b-9999";
+
+-- No puedo proceder sin consultar: necesito datos adicionales
+-- sobre la tarjeta de credito y compania involucrados en esta
+-- transaccion. No puedo inventarmelos. No puedo quitar las
+-- FOREIGN KEY CONSTRAINT ya que tengo que mantener la
+-- integridad de los datos.
+
+-- ############################################################
+-- Ex. 7
+-- ############################################################
+
+-- Des de recursos humans et sol·liciten eliminar
+-- la columna "pan" de la taula credit_card.
+-- Recorda mostrar el canvi realitzat.
+
+-- [OP023] Observamos la tabla "credit_card"
+SELECT *
+FROM credit_card
+LIMIT 10;
+
+-- [OP024] Eliminamos la columna como se nos ha pedido.
+ALTER TABLE credit_card
+DROP COLUMN pan;
+
+-- [OP025] Comprobamos que se ha realizado el cambio.
+SELECT *
+FROM credit_card
+LIMIT 10;
+
+-- ############################################################
+-- Ex. 8
+-- ############################################################
+
+-- Descarrega els arxius CSV:
+--   american_users.csv
+--   european_users.csv
+--   companies.csv
+--   credit_cards.csv
+--   transactions.csv
+-- Estudia'ls i dissenya una base de dades amb
+-- un esquema d'estrella que contingui, almenys 4 taules de
+-- les quals puguis realitzar les següents consultes:
+-- La taula de products.csv l'utilitzarem més endavant.
+
+-- ############################################################
+-- ############################################################
+-- 01. Crear la carpeta:
+--     "C:\Program Files\MySQL\MySQL Server 8.0\Uploads"
+-- 02. Mover los ficheros en ella
+-- 03. Configurar la coneccion del workbench
+-- 04. "advanced" >
+-- 05. Escribir en el text field "others":
+--     "OPT_LOCAL_INFILE=1"
+-- ############################################################
+-- ############################################################
+
+-- [OP026]
+CREATE SCHEMA IF NOT EXISTS S2L1E8;
+-- [OP027]
+USE S2L1E8;
+-- [OP028]
+DROP TABLE IF EXISTS transactions;
+-- [OP029]
+DROP TABLE IF EXISTS products;
+-- [OP030]
+DROP TABLE IF EXISTS cards;
+-- [OP031]
+DROP TABLE IF EXISTS users;
+-- [OP032]
+DROP TABLE IF EXISTS companies;
+
+-- [OP033]
+CREATE TABLE IF NOT EXISTS users (
+  -- Identificador unico de cada fila
+  id          INT PRIMARY KEY,
+  -- Nombre
+  name        VARCHAR(20),
+  -- Apellido
+  surname     VARCHAR(20),
+  -- Numero de telefono
+  phone       VARCHAR(20),
+  -- Email
+  email       VARCHAR(80),
+  -- Data de nacimiento
+  birth_date  DATE,
+  -- Pais
+  country     VARCHAR(20),
+  -- Ciudad
+  city        VARCHAR(20),
+  -- Codigo postal
+  postal_code VARCHAR(10),
+  -- Direccion
+  address     VARCHAR(100),
+  -- Data de registro
+  signup_date DATE,
+  -- Categoria / clasificacion de comprador
+  segment     VARCHAR(40),
+  -- Categoria de sueldo
+  income_band VARCHAR(20)
+);
+
+-- [OP034]
+CREATE TABLE IF NOT EXISTS cards (
+  -- Identificador unico de cada fila
+  id            VARCHAR(15) PRIMARY KEY,
+  -- Referencia a identificadores unicos de la
+  -- tabla "users". Una instancia de "cards"
+  -- puede ser enlazada a 0 o 1 instancias
+  -- de "users", ya que "user_id" es nulable. [1]
+  user_id       INT,
+  -- El iban de la tarjeta que representa la fila.
+  iban          VARCHAR(50),
+  -- El pan de la tarjeta.
+  pan           VARCHAR(30),
+  -- El pin de la tarjeta.
+  pin           VARCHAR(8),
+  -- El cvv de la tarjeta.
+  cvv           VARCHAR(8),
+  -- La banda magnetica uno de la tarjeta.
+  track1        VARCHAR(80),
+  -- La banda magnetica dos de la tarjeta.
+  track2        VARCHAR(40),
+  -- La data de expiracion.
+  expiring_date VARCHAR(10),
+  -- El tipo de tarjeta.
+  card_type     VARCHAR(20),
+  -- Si ha sido renovada.
+  renewal_flag  BOOL,
+  -- Esto programa el constraint FK [1]
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+-- [OP035]
+CREATE TABLE IF NOT EXISTS companies (
+  -- Identificador unico de cada fila.
+  id       VARCHAR(15) PRIMARY KEY,
+  -- El nombre de la empresa.
+  name     VARCHAR(50),
+  -- Numero de telefono.
+  phone    VARCHAR(20),
+  -- Email
+  email    VARCHAR(80),
+  -- Pais
+  country  VARCHAR(20),
+  -- Pagina web
+  website  VARCHAR(60),
+  -- Categoria de producto
+  category VARCHAR(20),
+  -- Categoria de market (alto, medio, barato)
+  -- al cual dirige sus productos.
+  price    VARCHAR(20)
+);
+
+-- [OP036]
+CREATE TABLE IF NOT EXISTS products (
+  -- Identificador unico de cada fila.
+  id           INT PRIMARY KEY,
+  -- Nombre del producto.
+  name         VARCHAR(40),
+  -- Precio.
+  price        DECIMAL(8,2),
+  -- Color RGB en notacion hexadecimal
+  hex_color    CHAR(6),
+  -- El peso del producto
+  weight       DECIMAL(8,2),
+  -- La id del almacen
+  warehouse_id INT,
+  -- La categoria del producto
+  category     VARCHAR(20),
+  -- La marka del producto
+  brand        VARCHAR(20),
+  -- Cuanto costo adquirir/producir el producto a la empresa.
+  cost         DECIMAL(8,2),
+  -- La data cuando el producto se puso en venta.
+  launch_date  DATE
+);
+
+-- [OP037]
+CREATE TABLE IF NOT EXISTS transactions (
+  -- Identificador unico de cada fila.
+  id             VARCHAR(40) PRIMARY KEY,
+  -- [2] Enlaza con el identificador unico "id"
+  -- de la tabla "cards".
+  card_id        VARCHAR(15),
+  -- [3] Enlaza con el identificador unico "id"
+  -- de la tabla "company".
+  company_id     VARCHAR(15),
+  -- Indica el momento en el tiempo
+  -- cuando ocurrio la transaccion.
+  instant        TIMESTAMP,
+  -- Indica la cantidad de dinero transferido.
+  amount         DECIMAL(8,2),
+  -- Indica si se ha denegado la transaccion.
+  declined       BOOL,
+  -- Una lista de ids que en teoria enlazan
+  -- con identificadores unicos de la tabla
+  -- "products". Se tienen que procesar para
+  -- ser usables en nuestra base de datos.
+  product_ids    VARCHAR(255),
+  -- [4] Enlaza con el identificador unico "id"
+  -- de la tabla "users".
+  user_id        INT,
+  -- Indica la latitud geografica
+  -- donde ocurrio la transaccion.
+  latitude       FLOAT,
+  -- Indica la longitud geografica
+  -- donde ocurrio la transaccion.
+  longitude      FLOAT,
+  -- Indica descuentos monetarios de la transaccion
+  discount       DECIMAL(8,2),
+  -- Indica la porcion cargada de impuesto.
+  tax            DECIMAL(8,2),
+  -- Indica la porcion cargada de transporte.
+  shipping       DECIMAL(8,2),
+  -- Indica el canal donde se ejecuta la transaccion.
+  -- ("online", "store", "marketplace")
+  channel        VARCHAR(20),
+  -- Indica el identificador de "campaign"
+  -- ("SUMMER_TRAVEL", "WINTER_SALE")
+  campaign_id    VARCHAR(30),
+  -- Indica el dispositivo electronico desde el cual
+  -- se realizo la transaccion.
+  device_type    VARCHAR(20),
+  -- Indica si la transaccion es internacional.
+  international  BOOL,
+  -- Si la transaccion fue denegada, aqui se indica la razon.
+  decline_reason VARCHAR(255),
+  -- Supongo que es la distancia del transporte a "domicilio".
+  distance_km    DECIMAL(8,2),
+  -- Esto programa el constraint FK [3]
+  FOREIGN KEY (company_id) REFERENCES companies(id),
+  -- Esto programa el constraint FK [4]
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  -- Esto programa el constraint FK [2]
+  FOREIGN KEY (card_id) REFERENCES cards(id)
+);
+
+-- [OP038] cremos indices para acelerar joins
+-- Doy por supuesto que PRIMARY KEY ya genera su propio indice
+CREATE INDEX idx_cards_user_id
+ON cards(user_id);
+-- [OP039]
+CREATE INDEX idx_transactions_card_id
+ON transactions(card_id);
+-- [OP040]
+CREATE INDEX idx_transactions_company_id
+ON transactions(company_id);
+-- [OP041]
+CREATE INDEX idx_transactions_user_id
+ON transactions(user_id);
+
+-- [OP042] Lo necesitamos para cargar los datos.
+SET GLOBAL local_infile = ON;
+
+-- [OP043] Nos permite ver donde puede el servidor leer
+-- los ficheros con datos.
+SHOW VARIABLES LIKE "secure_file_priv";
+-- "C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\"
+
+-- # Guia
+-- LOAD DATA
+-- [LOW_PRIORITY | CONCURRENT] [LOCAL]
+-- INFILE 'file_name'
+-- [REPLACE | IGNORE]
+-- INTO TABLE tbl_name
+-- [PARTITION (partition_name [, partition_name] ...)]
+-- [CHARACTER SET charset_name]
+-- [{FIELDS | COLUMNS}
+--   [TERMINATED BY 'string']
+--   [[OPTIONALLY] ENCLOSED BY 'char']
+--   [ESCAPED BY 'char']
+-- ]
+-- [LINES
+--   [STARTING BY 'string']
+--   [TERMINATED BY 'string']
+-- ]
+-- [IGNORE number {LINES | ROWS}]
+-- [(col_name_or_user_var
+--   [, col_name_or_user_var] ...)]
+-- [SET col_name={expr | DEFAULT}
+--   [, col_name={expr | DEFAULT}] ...]
+
+-- [OP044]
+LOAD DATA LOCAL
+INFILE "C:\\Program Files\\MySQL\\MySQL Server 8.0\\Uploads\\N1-Ex.8__american_users.csv"
+INTO TABLE users
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(@id, @name, @surname, @phone, @email, @birth, @country, @city,
+  @postal, @address, @signup, @segment,@income)
+SET
+  id          = CAST(@id AS UNSIGNED),
+  name        = TRIM(@name),
+  surname     = TRIM(@surname),
+  phone       = TRIM(@phone),
+  email       = TRIM(@email),
+  birth_date  = STR_TO_DATE(@birth, '%b %d, %Y'),
+  country     = TRIM(@country),
+  city        = TRIM(@city),
+  postal_code = TRIM(@postal),
+  address     = TRIM(@address),
+  signup_date = STR_TO_DATE(@signup, '%Y-%m-%d'),
+  segment     = TRIM(@segment),
+  income_band = TRIM(@income)
+;
+
+-- [OP045]
+LOAD DATA LOCAL
+INFILE "C:\\Program Files\\MySQL\\MySQL Server 8.0\\Uploads\\N1-Ex.8__european_users.csv"
+INTO TABLE users
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(@id, @name, @surname, @phone, @email, @birth, @country, @city,
+  @postal, @address, @signup, @segment, @income)
+SET
+  id          = CAST(@id AS UNSIGNED),
+  name        = TRIM(@name),
+  surname     = TRIM(@surname),
+  phone       = TRIM(@phone),
+  email       = TRIM(@email),
+  birth_date  = STR_TO_DATE(@birth, '%b %d, %Y'),
+  country     = TRIM(@country),
+  city        = TRIM(@city),
+  postal_code = TRIM(@postal),
+  address     = TRIM(@address),
+  signup_date = STR_TO_DATE(@signup, '%Y-%m-%d'),
+  segment     = TRIM(@segment),
+  income_band = TRIM(@income)
+;
+
+-- [OP046] Comprobamos que los datos se cargaron
+SELECT * FROM users;
+
+-- [OP047]
+LOAD DATA LOCAL
+INFILE "C:\\Program Files\\MySQL\\MySQL Server 8.0\\Uploads\\N1-Ex.8__credit_cards.csv"
+INTO TABLE cards
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(@id, @user_id, @iban, @pan, @pin, @cvv, @track1, @track2,
+  @expiring, @card_t, @renewal)
+SET
+  id = TRIM(@id),
+  user_id = CAST(@user_id AS UNSIGNED),
+  iban = TRIM(@iban),
+  pan = REPLACE(@pan, ' ', ''),
+  pin = TRIM(@pin),
+  cvv = TRIM(@cvv),
+  track1 = @track1,
+  track2 = @track2,
+  expiring_date = STR_TO_DATE(@expiring, '%m/%d/%Y'),
+  card_type = TRIM(@card_t),
+  renewal_flag = CAST(@renewal AS BINARY)
+;
+
+-- [OP048] Comprobamos que los datos se cargaron
+SELECT * FROM cards;
+
+-- [OP050]
+LOAD DATA LOCAL
+INFILE "C:\\Program Files\\MySQL\\MySQL Server 8.0\\Uploads\\N1-Ex.8__companies.csv"
+INTO TABLE companies
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(@id, @name, @phone, @email, @country, @website,
+  @category, @price)
+SET
+  id       = TRIM(@id),
+  name     = TRIM(@name),
+  phone    = TRIM(@phone),
+  email    = TRIM(@email),
+  country  = TRIM(@country),
+  website  = TRIM(@website),
+  category = TRIM(@category),
+  price    = TRIM(@price)
+;
+
+-- [OP051] Comprobamos que los datos se cargaron
+SELECT * FROM companies;
+
+-- [OP052]
+LOAD DATA LOCAL
+INFILE "C:\\Program Files\\MySQL\\MySQL Server 8.0\\Uploads\\N1-Ex.8__products.csv"
+INTO TABLE products
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(@id, @name, @price, @color, @weight, @w_id, @category,
+  @brand, @cost, @launch_date)
+SET
+  id           = CAST(@id AS UNSIGNED),
+  name         = TRIM(@name),
+  price        = CAST(REPLACE(@price, '$', '') AS DECIMAL(8,2)),
+  hex_color    = UPPER(REPLACE(TRIM(@color), '#', '')),
+  weight       = CAST(@weight AS DECIMAL(8,2)),
+  warehouse_id = REPLACE(TRIM(@w_id), 'WH-', ''),
+  category     = TRIM(@category),
+  brand        = TRIM(@brand),
+  cost         = CAST(REPLACE(@cost, '$', '') AS DECIMAL(8,2)),
+  launch_date  = STR_TO_DATE(@launch_date, '%Y-%m-%d')
+;
+
+-- [OP053] Comprobamos que los datos se cargaron
+SELECT * FROM products;
+
+-- [OP054]
+LOAD DATA LOCAL
+INFILE "C:\\Program Files\\MySQL\\MySQL Server 8.0\\Uploads\\N1-Ex.8__transactions.csv"
+INTO TABLE transactions
+FIELDS TERMINATED BY ';'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(@id, @card_id, @com_id, @instant, @amount, @declined,
+  @products, @user_id, @lat, @lon, @discount, @tax, @shipping,
+  @channel, @campaign, @device, @international, @decl_reason,
+  @distance)
+SET
+  id             = TRIM(@id), -- VARCHAR(40)
+  card_id        = TRIM(@card_id), -- VARCHAR(15)
+  company_id     = TRIM(@com_id), -- VARCHAR(15)
+  instant        = STR_TO_DATE(@instant, '%Y-%m-%d %H:%i:%s'), -- TIMESTAMP
+  amount         = CAST(@amount AS DECIMAL(8,2)), -- DECIMAL(8,2)
+  declined       = CAST(@declined AS BINARY), -- BOOL
+  product_ids    = TRIM(@products), -- VARCHAR(255)
+  user_id        = CAST(@user_id AS UNSIGNED), -- INT
+  latitude       = CAST(@lat AS FLOAT), -- FLOAT
+  longitude      = CAST(@lon AS FLOAT), -- FLOAT
+  discount       = CAST(@discount AS DECIMAL(8,2)), -- DECIMAL(8,2)
+  tax            = CAST(@tax AS DECIMAL(8,2)), -- DECIMAL(8,2)
+  shipping       = CAST(@shipping AS DECIMAL(8,2)), -- DECIMAL(8,2)
+  channel        = TRIM(@channel), -- VARCHAR(20)
+  campaign_id    = TRIM(@campaign), -- VARCHAR(30)
+  device_type    = TRIM(@device), -- VARCHAR(20)
+  international  = CAST(@international AS BINARY), -- BOOL
+  decline_reason = TRIM(@decl_reason), -- VARCHAR(255)
+  distance_km    = CAST(@distance AS DECIMAL(8,2)) -- DECIMAL(8,2)
+;
+
+-- [OP055] Comprobamos que los datos se cargaron
+SELECT * FROM transactions;
+
+-- ############################################################
+-- Ex. 9
+-- ############################################################
+
+-- Realitza una subconsulta que mostri tots els usuaris amb
+-- més de 80 transaccions utilitzant almenys 2 taules.
+
+-- [OP056]
+WITH
+  tr_count AS (
+    SELECT
+      t.user_id,
+      COUNT(1) AS n
+    FROM transactions AS t
+    GROUP BY t.user_id
+    HAVING n > 80
+  )
+SELECT u.*, c.n
+FROM users AS u
+JOIN tr_count AS c
+ON u.id = c.user_id;
+
+-- ############################################################
+-- Ex. 10
+-- ############################################################
+
+-- Mostra la mitjana d'amount per IBAN
+-- de les targetes de crèdit a la companyia Donec Ltd,
+-- utilitza almenys 2 taules.
+
+-- [OP057]
+SELECT
+  c.iban,
+  AVG(t.amount) AS mitjana
+FROM transactions AS t
+JOIN cards AS c
+ON t.card_id = c.id
+JOIN companies AS cm
+ON t.company_id = cm.id
+WHERE cm.name = "Donec Ltd"
+GROUP BY c.iban;
+
+-- ############################################################
+-- ############################################################
+-- Lvl. 2
+-- ############################################################
+-- ############################################################
+-- Ex. 1
+-- ############################################################
+
+-- Identifica els cinc dies que es va generar la quantitat
+-- més gran d'ingressos a l'empresa per vendes.
+-- Mostra la data de cada transacció juntament
+-- amb el total de les vendes.
+
+-- Traduccion para aclarar >>
+
+-- Identifica los cinco dias en los cuales se genero la mayor
+-- cantidad de ingresos en la empresa.
+-- 
+-- Nota que nos referimos a una empresa concreta en singular: 
+-- # No se nos aclara cual es la empresa en concreto.
+-- # No se nos pide que hagamos una suma de ingresos.
+-- # No se nos pide un top 5 entre todas.
+-- # No se nos pide un top 5 para cada empresa.
+-- >> Por contexto, deduzco que "la empresa", se refiere a
+-- especificamente "Donec Ltd".
+--
+-- Muestra la data de cada transaccion juntamente con el ingreso
+-- total (del dia).
+--
+-- Nota que "cada transaccion" sugiere que entregemos una
+-- data (i.e. dia) individual para cada transaccion (presupongo
+-- que delimitandonos a los cinco dias que hemos identificado).
+-- # Habran 5 datas distintas entre más de 5 transacciones
+-- que hayan ocurrido en los dias identificados.
+-- # No se nos pide que mostremos transacciones individuales
+-- explicitamente.
+-- Por contexto asumo que el enunciado esta mal expreaso y
+-- realmente se queria decir: "Muestra la data de los cinco
+-- dias que has identificado y el ingreso total de cada uno
+-- de estos cinco dias."
+
+-- [OP058]
+WITH
+  -- agregate all "Donec Ltd" transaction amounts by date.
+  agregated AS (
+    SELECT
+      DATE(t.instant) AS t_day,
+      SUM(t.amount) AS total
+    FROM transactions AS t
+    JOIN companies AS c
+    ON t.company_id = c.id
+    WHERE c.name = "Donec Ltd"
+    GROUP BY t_day
+  ),
+  -- Rank the dates by total:
+  -- top 1, 2, 3, 4, 5 <- no ties
+  -- top 1, 2, 2, 4, 5 <- tie second place
+  -- top 1, 1, 1, 1, 5 <- four way tie first place
+  ranked AS (
+    SELECT
+      a.*,
+      RANK() OVER(ORDER BY a.total DESC) AS rn
+    FROM agregated AS a
+    ORDER BY a.total DESC
+  )
+SELECT *
+FROM ranked AS r
+WHERE r.rn <= 5
+;
+
+-- ############################################################
+-- Ex. 2
+-- ############################################################
+
+-- Presenta el nom, telèfon, país, data i amount, d'aquelles
+-- empreses que van realitzar transaccions amb un valor comprès
+-- entre 350 i 400 euros i en alguna d'aquestes dates:
+-- 29 d'abril del 2015,
+-- 20 de juliol del 2018,
+-- 13 de març del 2024. 
+-- Ordena els resultats de major a menor quantitat.
+
+-- [OP059]
+SELECT
+  c.name,
+  c.phone,
+  c.country,
+  DATE(t.instant) AS t_day,
+  t.amount
+FROM companies AS c
+JOIN transactions AS t
+ON t.company_id = c.id
+WHERE DATE(t.instant) in (
+  '2015-3-29',
+  '2018-7-20',
+  '2024-3-13')
+AND t.amount BETWEEN 350 AND 400
+ORDER BY t.amount DESC;
+
+-- ############################################################
+-- Ex. 3
+-- ############################################################
+
+-- Necessitem optimitzar l'assignació dels recursos i dependrà
+-- de la capacitat operativa que es requereixi, per la qual
+-- cosa et demanen la informació sobre la quantitat de
+-- transaccions que realitzen les empreses, però el departament
+-- de recursos humans és exigent i vol un llistat de les
+-- empreses on especifiquis si tenen igual o més de 400
+-- transaccions o menys.
+
+-- [OP060]
+SELECT
+  t.id,
+  t.name,
+  CASE
+    WHEN n_tr > 400 THEN 'mas de 400'
+    WHEN n_tr = 400 THEN '400'
+    ELSE 'menos de 400'
+  END AS category
+FROM (
+  SELECT
+    c.id,
+    c.name,
+    COUNT(t.id) AS n_tr
+  FROM companies AS c
+  JOIN transactions AS t
+  ON t.company_id = c.id
+  GROUP BY c.id
+  ORDER BY n_tr DESC
+) AS t;
+
+-- ############################################################
+-- Ex. 4
+-- ############################################################
+
+-- Elimina de la taula transaction el registre amb 
+--   ID 000447FE-B650-4DCF-85DE-C7ED0EE1CAAD
+-- de la base de dades.
+
+-- [OP061] Observamos antes de la operacion
+SELECT *
+FROM transactions AS t
+WHERE t.id = '000447FE-B650-4DCF-85DE-C7ED0EE1CAAD';
+
+-- [OP062] Eliminamos la transaccion
+DELETE FROM transactions AS t
+WHERE t.id = '000447FE-B650-4DCF-85DE-C7ED0EE1CAAD';
+
+-- [OP063] Observamos que ha sido eliminada
+SELECT *
+FROM transactions AS t
+WHERE t.id = '000447FE-B650-4DCF-85DE-C7ED0EE1CAAD';
+
+-- ############################################################
+-- Ex. 5
+-- ############################################################
+
+-- La secció de màrqueting desitja tenir accés a informació
+-- específica per a realitzar anàlisi i estratègies efectives.
+-- S'ha sol·licitat crear una vista que proporcioni detalls
+-- clau sobre les companyies i les seves transaccions.
+-- Serà necessària que creïs una vista anomenada VistaMarketing
+-- que contingui la següent informació:
+--   Nom de la companyia.
+--   Telèfon de contacte.
+--   País de residència.
+--   Mitjana de compra realitzat per cada companyia.
+-- Presenta la vista creada, ordenant les dades de major a
+-- menor mitjana de compra.
+
+-- Asumo que una venta es una transaccion no denegada.
+
+-- [OP064]
+CREATE OR REPLACE VIEW VistaMarketing AS
+SELECT
+  c.name, -- nom
+  c.phone, -- telefon
+  c.country, -- pais residencia
+  AVG(t.amount) AS avg_sale -- mitjana de compra
+FROM companies AS c
+JOIN transactions AS t
+ON t.company_id = c.id
+WHERE t.declined = FALSE
+GROUP BY
+  c.name,
+  c.phone,
+  c.country
+ORDER BY avg_sale DESC;
+
+-- [OP065] Observamos la nueva vista.
+SELECT *
+FROM vistamarketing;
+
+-- ############################################################
+-- ############################################################
+-- Lvl. 3
+-- ############################################################
+-- ############################################################
+-- Ex. 1
+-- ############################################################
+
+-- Crea una nova taula que reflecteixi l'estat de les targetes
+-- de crèdit basat en si les tres últimes transaccions han
+-- estat declinades aleshores és inactiu, si almenys una no és
+-- rebutjada aleshores és actiu.
+--
+-- Partint d’aquesta taula respon:
+--
+-- Quantes targetes estan actives?
+
+-- [OP066]
+DROP TABLE IF EXISTS cards_activity;
+-- [OP067]
+CREATE TABLE IF NOT EXISTS cards_activity AS
+WITH
+  ranked AS (
+    SELECT
+      c.id,
+      t.declined,
+      ROW_NUMBER() OVER(
+        PARTITION BY c.id
+        ORDER BY t.instant DESC
+      ) AS rn
+    FROM transactions AS t
+    JOIN cards AS c
+    ON t.card_id = c.id
+  ),
+  activity AS (
+    SELECT
+      r.id,
+      SUM(r.declined) AS act
+    FROM ranked AS r
+    WHERE r.rn < 4
+    GROUP BY r.id
+  )
+SELECT
+  a.id,
+  CASE
+    WHEN a.act > 2 THEN FALSE
+    ELSE TRUE
+  END AS is_active
+FROM activity AS a;
+
+-- [OP068] Observamos la tala
+SELECT * FROM cards_activity;
+
+-- [OP069] Cuantas tarjetas son activas?
+SELECT COUNT(1) AS n_active
+FROM cards_activity AS c
+WHERE c.is_active = TRUE;
+
+-- ############################################################
+-- Ex. 2
+-- ############################################################
+
+-- Crea una taula amb la qual puguem unir les dades de l'arxiu
+-- de products.csv amb la base de dades creada (ja que fins ara
+-- no podíem fer-ho), tenint en compte que des de transaction
+-- tens product_ids. Genera la següent consulta:
+
+-- Necessitem conèixer el nombre de vegades que s'ha venut
+-- cada producte.
+
+-- [OP070]
+DROP TABLE IF EXISTS orders;
+-- [OP071]
+CREATE TABLE IF NOT EXISTS orders (
+  transaction_id VARCHAR(40),
+  product_id     INT,
+  PRIMARY KEY (transaction_id, product_id),
+  FOREIGN KEY (transaction_id) REFERENCES transactions(id),
+  FOREIGN KEY (product_id) REFERENCES products(id),
+  INDEX idx_product_id (product_id),
+  INDEX idx_transaction_id (transaction_id)
+);
+
+-- Para este ejercicio he tenido que consultar recursos
+-- externos para obtener inspiracion:
+--
+-- Esta es la funcion que originalmente cree para solucionar
+-- el ejercicio. Es una simple funcion recursiva que descompone
+-- el field t.product_ids en una lista de strings, cada uno
+-- conteniendo el numero de producto, a continuacion genera
+-- una fila por cada id de producto y traduce el string
+-- a un numero. El primer SELECT (antes de UNION ALL
+-- separa el primer token de la lista: para eso generea
+-- dos strings, "token" y "remainder". SUBSTRING_INDEX permite
+-- obtener el token ya que puede recoger letras hasta la
+-- primera coma. SUBSTRING permite recoger letras despues
+-- de un index especificado, mientras que INSTR premite
+-- obtener el index de la primera coma. Un index es el numero
+-- que identifica la posicion de una un objeto en un array,
+-- en este caso, el objeto es una letra, y el array es el
+-- string. Un array es una sequencia de elementos del
+-- mismo tipo almacenada en memoria de forma continua
+-- (segun direcciones virtuales concedidas al programa)
+-- El segundo select repite el proceso, solo que dividiendo
+-- el remainder obtenido por recursiones anteriores, o
+-- la recursion base / padre... supongo que ya se me entiende.
+--
+-- En el P2P se me mostro una forma mas corta de hacerlo
+-- que aprovecha funcionalidades existentes, facilitando
+-- el proceso, muy probablemente haciendo el programa
+-- mas eficiente, y evitando los bugs que pueda yo haber
+-- introducido al escribir esto a mano.
+--
+-- INSERT INTO orders
+-- (transaction_id, product_id)
+-- WITH
+--   RECURSIVE split AS (
+--     SELECT
+--       t.id AS tr,
+--       SUBSTRING_INDEX(t.product_ids, ',', 1) AS token,
+--       CASE
+--         WHEN t.product_ids LIKE '%,%'
+--         THEN SUBSTRING(t.product_ids, INSTR(t.product_ids, ',') + 1)
+--         ELSE NULL
+--       END AS remainder
+--     FROM transactions AS t
+--     WHERE
+--       t.product_ids IS NOT NULL
+--       AND t.product_ids <> ''
+--     UNION ALL
+--     SELECT
+--       s.tr,
+--       SUBSTRING_INDEX(s.remainder, ',', 1),
+--       CASE
+--         WHEN s.remainder LIKE '%,%'
+--         THEN SUBSTRING(s.remainder, INSTR(s.remainder, ',') + 1)
+--         ELSE NULL
+--       END
+--     FROM split AS s
+--     WHERE s.remainder IS NOT NULL
+--   )
+-- SELECT
+--   s.tr,
+--   CAST(s.token AS UNSIGNED)
+-- FROM split AS s;
+
+-- [OP072]
+INSERT INTO orders
+(transaction_id, product_id)
+SELECT
+  t.id
+  p.id
+FROM transactions AS t
+JOIN JSON_TABLE (
+  CONCAT('[', t.product_ids, ']'),
+  '$[*]' COLUMNS (
+    id INT PATH '$'
+  )
+) AS p
+
+-- [OP073] Observamos que la tabla se relleno corectamente
+SELECT *
+FROM orders AS o;
+
+-- [OP074] Cuantas veces se ha vendido cada producto?
+SELECT
+  o.product_id,
+  p.name,
+  COUNT(o.transaction_id) AS n_sales
+FROM orders AS o
+JOIN transactions AS t
+ON o.transaction_id = t.id
+JOIN products AS p
+ON o.product_id = p.id
+WHERE t.declined = FALSE
+GROUP BY o.product_id
+ORDER BY o.product_id;

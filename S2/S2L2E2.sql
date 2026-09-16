@@ -17,7 +17,7 @@ FROM companies AS c
 JOIN transactions AS t
 ON t.company_id = c.id
 WHERE 
-  DATE(t.instant) in (DATE '2015-3-29', DATE '2018-7-20', DATE '2024-3-13')
+  DATE(t.instant) in ('2015-3-29', '2018-7-20', '2024-3-13')
   AND t.amount BETWEEN 350 AND 400
 ORDER BY t.amount DESC
 ;

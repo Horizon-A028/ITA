@@ -11,8 +11,8 @@ CREATE TABLE IF NOT EXISTS credit_card (
   id VARCHAR(15) PRIMARY KEY,
   iban VARCHAR(50),
   pan VARCHAR(30),
-  pin INT,
-  cvv INT,
+  pin VARCHAR(10),
+  cvv VARCHAR(10),
   expiring_date VARCHAR(10)
 );
 

@@ -4,47 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "ab29645b993a2cbd",
+        "id": "cf962715c5743a4d",
         "type": "tabs",
         "children": [
           {
-            "id": "50d15fabce120af2",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "S2/ITADATAS2.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "ITADATAS2"
-            }
-          },
-          {
-            "id": "81cf32b5224818fe",
-            "type": "leaf",
-            "state": {
-              "type": "image",
-              "state": {
-                "file": "S2/diagrams/S2L3E2D.png"
-              },
-              "icon": "lucide-image",
-              "title": "S2L3E2D"
-            }
-          },
-          {
-            "id": "994fe833fa32bc1c",
+            "id": "29574e7b6f1e93db",
             "type": "leaf",
             "state": {
               "type": "code-editor",
               "state": {
-                "file": "S2/S2L1E4.sql"
+                "file": "S2/S2L3E2.sql"
               },
               "icon": "file-code",
-              "title": "S2L1E4.sql"
+              "title": "S2L3E2.sql"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -106,7 +81,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 253.5,
+    "collapsed": true
   },
   "right": {
     "id": "2c383d966b4436dd",
@@ -222,26 +198,26 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "994fe833fa32bc1c",
+  "active": "29574e7b6f1e93db",
   "lastOpenFiles": [
     "S2/S2L3E2.md",
-    "S2/diagrams/S2L3E2D.png",
-    "S2/S2L3E2.sql",
-    "S2/diagrams/S2L3E2png",
-    "S2/diagrams/Screenshot from 2026-09-14 10-32-25.png",
-    "S2/Screenshot from 2026-09-14 10-32-25.png",
-    "System Volume Information",
     "S2/S2L3E1.sql",
     "S2/S2L2E5.sql",
     "S2/S2L2E4.sql",
     "S2/S2L2E3.sql",
+    "S2/S2L1E4.sql",
     "S2/S2L2E2.sql",
     "S2/S2L2E1.sql",
-    "S2/S2L1E10.sql",
-    "S2/S2L1E8.md",
-    "S2/S2L1E4.md",
-    "S2/S2L1E1.md",
     "S2/diagrams/S2L1E8D.png",
+    "S2/S2L1E10.sql",
+    "S2/S2L1E9.sql",
+    "S2/S2L1E8.sql",
+    "S2/S2L1E8.md",
+    "S2/S2L1E1.md",
+    "S2/diagrams/S2L3E2D.png",
+    "S2/diagrams/Screenshot from 2026-09-14 10-32-25.png",
+    "S2/Screenshot from 2026-09-14 10-32-25.png",
+    "S2/S2L1E4.md",
     "S2/diagrams/Screenshot from 2026-09-10 10-51-45.png",
     "S2/diagrams/Screenshot from 2026-09-09 12-58-05.png"
   ]

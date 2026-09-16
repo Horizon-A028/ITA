@@ -2,17 +2,27 @@
 
 -- Mostra totes les transaccions realitzades per empreses d'Alemanya.
 
-SELECT t.id
+SELECT *
 FROM transaction AS t
-WHERE "Germany" = (
-  SELECT c.country
+WHERE EXISTS (
+  SELECT 1
   FROM company as c
-  WHERE t.company_id = c.id
+  WHERE
+    t.company_id = c.id
+    AND c.country = "Germany"
 );
+
+SELECT *
+FROM transaction AS t
+WHERE company_id IN (
+  SELECT c.id
+  FROM company AS c
+  WHERE c.country = "Germany"
+) AND declined = FALSE;
 
 -- Llista les empreses que han realitzat transaccions per un amount superior a la mitjana de totes les transaccions.
 
-SELECT DISTINCT
+SELECT
   c.id,
   c.company_name
 FROM company AS c

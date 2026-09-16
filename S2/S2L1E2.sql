@@ -23,7 +23,7 @@ ON t.company_id = c.id
 SELECT
   c.id,
   c.company_name,
-  COUNT(t.id) AS n_ventas
+  ROUND(AVG(t.amount), 2) AS media
 FROM transaction AS t
 JOIN company AS c
 ON t.company_id = c.id

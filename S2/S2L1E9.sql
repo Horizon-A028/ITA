@@ -9,4 +9,5 @@ WITH
   )
 SELECT u.*, c.n
 FROM users AS u
-JOIN tr_count AS c;
+JOIN tr_count AS c
+ON u.id = c.user_id;
