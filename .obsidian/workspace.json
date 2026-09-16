@@ -11,11 +11,13 @@
             "id": "34ded8b7db3d2388",
             "type": "leaf",
             "state": {
-              "type": "pdf",
+              "type": "markdown",
               "state": {
-                "file": "S2/S2.pdf"
+                "file": "S2/S2.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-file-text",
+              "icon": "lucide-file",
               "title": "S2"
             }
           }
@@ -201,9 +203,9 @@
   },
   "active": "34ded8b7db3d2388",
   "lastOpenFiles": [
-    "S2/S2.md",
-    "S2/S2.pdf",
     "S2/S2.sql",
+    "S2/S2.pdf",
+    "S2/S2.md",
     "S2/pandoc_command.sh",
     "S2/screenshots/OP073.png",
     "S2/screenshots/OP072.png",
