@@ -4,19 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "cf962715c5743a4d",
+        "id": "f10bd10d90617663",
         "type": "tabs",
         "children": [
           {
-            "id": "29574e7b6f1e93db",
+            "id": "5b4e91df47f7b5b0",
             "type": "leaf",
             "state": {
-              "type": "code-editor",
+              "type": "markdown",
               "state": {
-                "file": "S2/S2L3E2.sql"
+                "file": "S2/S2.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "file-code",
-              "title": "S2L3E2.sql"
+              "icon": "lucide-file",
+              "title": "S2"
             }
           }
         ]
@@ -81,8 +83,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 253.5,
-    "collapsed": true
+    "width": 253.5
   },
   "right": {
     "id": "2c383d966b4436dd",
@@ -195,23 +196,25 @@
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
       "bases:Create new base": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-git:Open Git source control": false,
+      "obsidian-languagetool-plugin:Check text with LanguageTool": false
     }
   },
-  "active": "29574e7b6f1e93db",
+  "active": "5b4e91df47f7b5b0",
   "lastOpenFiles": [
+    "S2/S2.md",
+    "S2/S2.sql",
+    "S2/S2 (Copy).sql",
+    "S2/S2.sql.MYAMV3",
+    "S2/S2.sql.DNOOV3",
+    "S2/S2.sql.5TLEV3",
+    "S2/S2.sql.BYUNV3",
+    "S2/S2L3E2.sql",
     "S2/S2L3E2.md",
     "S2/S2L3E1.sql",
     "S2/S2L2E5.sql",
     "S2/S2L2E4.sql",
-    "S2/S2L2E3.sql",
-    "S2/S2L1E4.sql",
-    "S2/S2L2E2.sql",
-    "S2/S2L2E1.sql",
     "S2/diagrams/S2L1E8D.png",
-    "S2/S2L1E10.sql",
-    "S2/S2L1E9.sql",
-    "S2/S2L1E8.sql",
     "S2/S2L1E8.md",
     "S2/S2L1E1.md",
     "S2/diagrams/S2L3E2D.png",
