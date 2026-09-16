@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "S2/S2.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
@@ -201,7 +201,7 @@
       "press-pdf-export:Export current note": false
     }
   },
-  "active": "5b4e91df47f7b5b0",
+  "active": "efe0595d2cad2b1d",
   "lastOpenFiles": [
     "S2/screenshots/OP073.png",
     "S2/screenshots/OP072.png",
