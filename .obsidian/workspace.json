@@ -11,14 +11,12 @@
             "id": "6ea6b4caef8d0605",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "code-editor",
               "state": {
-                "file": "S2/S2.md",
-                "mode": "source",
-                "source": false
+                "file": "S2/S2.sql"
               },
-              "icon": "lucide-file",
-              "title": "S2"
+              "icon": "file-code",
+              "title": "S2.sql"
             }
           }
         ]
@@ -202,9 +200,10 @@
   },
   "active": "6ea6b4caef8d0605",
   "lastOpenFiles": [
+    "S2/S2.md",
+    "S2/diagrams/S2L1E4D.png",
     "S2/S2.sql",
     "S2/pandoc_command.sh",
-    "S2/S2.md",
     "S2/S2.pdf",
     "S2/screenshots/OP073.png",
     "S2/screenshots/OP072.png",
@@ -216,7 +215,6 @@
     "S2/screenshots/OP060.png",
     "S2/screenshots/OP059.png",
     "S2/screenshots/OP058.png",
-    "S2/screenshots/OP057.png",
     "S2/data/dades_introduir.sql",
     "S2/init/estructura_dades.sql",
     "S2/init",
