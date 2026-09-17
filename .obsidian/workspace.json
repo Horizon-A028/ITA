@@ -11,12 +11,14 @@
             "id": "6ea6b4caef8d0605",
             "type": "leaf",
             "state": {
-              "type": "code-editor",
+              "type": "markdown",
               "state": {
-                "file": "S2/S2.sql"
+                "file": "S2/S2.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "file-code",
-              "title": "S2.sql"
+              "icon": "lucide-file",
+              "title": "S2"
             }
           }
         ]
