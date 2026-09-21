@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "S2/S2.md",
+                "file": "S3/S3.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
-              "title": "S2"
+              "title": "S3"
             }
           }
         ]
@@ -200,12 +200,13 @@
       "obsidian-languagetool-plugin:Check text with LanguageTool": false
     }
   },
-  "active": "b93a4349367ff08d",
+  "active": "19ee7eb9ca9a301e",
   "lastOpenFiles": [
+    "S2/S2.md",
+    "S3/S3.md",
     "S3",
     "S2/S2.sql",
     "S2/S2.pdf",
-    "S2/S2.md",
     "S2/diagrams/S2L1E4D.png",
     "S2/pandoc_command.sh",
     "S2/screenshots/OP073.png",
@@ -223,7 +224,6 @@
     "S2/init",
     "S2/data/N1-Ex.4__ datos_introducir_credit.sql",
     "S2/data/N1-Ex.8__american_users.csv",
-    "S2/data/N1-Ex.8__companies.csv",
     "S2/S2L3E2.md",
     "S2/S2L1E4.md",
     "S2/S2L1E1.md",
