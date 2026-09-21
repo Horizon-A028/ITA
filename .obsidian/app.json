@@ -30,7 +30,8 @@
     "CTO",
     "Medallion",
     "Silver",
-    "gcloud"
+    "gcloud",
+    "DDL"
   ],
   "pdfExportSettings": {
     "pageSize": "Letter",

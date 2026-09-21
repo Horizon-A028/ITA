@@ -10,5 +10,6 @@
   "motherTongue": "es",
   "staticLanguage": "auto",
   "catalanVeriety": "ca-ES",
-  "englishVeriety": "en-US"
+  "englishVeriety": "en-US",
+  "ruleOtherDisabledRules": "CA_SIMPLE_REPLACE_ANGLICISM_DATASET,CA_SIMPLE_REPLACE_ANGLICISM_DATASETS"
 }

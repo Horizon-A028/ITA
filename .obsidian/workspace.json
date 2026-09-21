@@ -11,10 +11,14 @@
             "id": "19ee7eb9ca9a301e",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "S3/S3.md",
+                "mode": "source",
+                "source": true
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "S3"
             }
           }
         ]
@@ -196,7 +200,7 @@
       "obsidian-languagetool-plugin:Check text with LanguageTool": false
     }
   },
-  "active": "efe0595d2cad2b1d",
+  "active": "19ee7eb9ca9a301e",
   "lastOpenFiles": [
     "prueba.sql",
     "Untitled.md",
