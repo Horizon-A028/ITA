@@ -20,7 +20,17 @@
     "Olivieri",
     "Warehouse",
     "serverless",
-    "ELT"
+    "ELT",
+    "check",
+    "processed",
+    "Multiple",
+    "Sandbox",
+    "Sandbox",
+    "DML",
+    "CTO",
+    "Medallion",
+    "Silver",
+    "gcloud"
   ],
   "pdfExportSettings": {
     "pageSize": "Letter",

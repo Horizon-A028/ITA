@@ -11,14 +11,10 @@
             "id": "19ee7eb9ca9a301e",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "S3/S3.md",
-                "mode": "source",
-                "source": true
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "S3"
+              "title": "New tab"
             }
           }
         ]
@@ -200,18 +196,24 @@
       "obsidian-languagetool-plugin:Check text with LanguageTool": false
     }
   },
-  "active": "19ee7eb9ca9a301e",
+  "active": "b93a4349367ff08d",
   "lastOpenFiles": [
+    "Untitled.md",
+    "prueba.sql",
     "S2/S2.md",
+    "prueba.sql.GT82V3",
+    "prueba.sql.UUZGW3",
     "S3/S3.md",
+    "prueba.sql.RYXGW3",
+    "data.sql",
+    "Unconfirmed 420858.crdownload",
+    "tables.sql",
+    "Unconfirmed 213395.crdownload",
+    "System Volume Information",
     "S3",
-    "S2/S2.sql",
-    "S2/S2.pdf",
     "S2/diagrams/S2L1E4D.png",
-    "S2/pandoc_command.sh",
     "S2/screenshots/OP073.png",
     "S2/screenshots/OP072.png",
-    "S2/S2.sql.KNJMV3",
     "S2/screenshots/OP068.png",
     "S2/screenshots/OP067.png",
     "S2/screenshots/OP064.png",
@@ -219,11 +221,6 @@
     "S2/screenshots/OP060.png",
     "S2/screenshots/OP059.png",
     "S2/screenshots/OP058.png",
-    "S2/data/dades_introduir.sql",
-    "S2/init/estructura_dades.sql",
-    "S2/init",
-    "S2/data/N1-Ex.4__ datos_introducir_credit.sql",
-    "S2/data/N1-Ex.8__american_users.csv",
     "S2/S2L3E2.md",
     "S2/S2L1E4.md",
     "S2/S2L1E1.md",
