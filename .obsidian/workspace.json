@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "S2/S2.md",
-                "mode": "preview",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
@@ -200,8 +200,9 @@
       "obsidian-languagetool-plugin:Check text with LanguageTool": false
     }
   },
-  "active": "19ee7eb9ca9a301e",
+  "active": "b93a4349367ff08d",
   "lastOpenFiles": [
+    "S3",
     "S2/S2.sql",
     "S2/S2.pdf",
     "S2/S2.md",
