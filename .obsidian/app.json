@@ -31,7 +31,10 @@
     "Medallion",
     "Silver",
     "gcloud",
-    "DDL"
+    "DDL",
+    "tipades",
+    "dashboards",
+    "bq"
   ],
   "pdfExportSettings": {
     "pageSize": "Letter",
