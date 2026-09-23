@@ -11,18 +11,6 @@
             "id": "b8c577760e74f2b3",
             "type": "leaf",
             "state": {
-              "type": "image",
-              "state": {
-                "file": "S3/screenshots/S3L1E2-observe-companies-csv.png"
-              },
-              "icon": "lucide-image",
-              "title": "S3L1E2-observe-companies-csv"
-            }
-          },
-          {
-            "id": "604e717dab2c71d6",
-            "type": "leaf",
-            "state": {
               "type": "markdown",
               "state": {
                 "file": "S3/S3.md",
@@ -32,9 +20,32 @@
               "icon": "lucide-file",
               "title": "S3"
             }
+          },
+          {
+            "id": "5ed2d340ce42c0d9",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "S3/screenshots/S3L1E4C-raw-native2.png"
+              },
+              "icon": "lucide-image",
+              "title": "S3L1E4C-raw-native2"
+            }
+          },
+          {
+            "id": "4af91d49441b2ccd",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "S3/screenshots/S3L1E4C-raw-native.png"
+              },
+              "icon": "lucide-image",
+              "title": "S3L1E4C-raw-native"
+            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -226,16 +237,19 @@
   },
   "active": "efe0595d2cad2b1d",
   "lastOpenFiles": [
-    "S3/screenshots/S3L1E2-sql-executed.png",
+    "S3/screenshots/S3L1E5.png",
+    "S3/screenshots/S3L1E4C-raw-native2.png",
     "S3/S3.md",
-    "S3/screenshots/S3L1E2-observe-companies-csv.png",
+    "S3/screenshots/S3L1E4C-raw-native.png",
+    "S3/screenshots/S3L1E4C-raw2.png",
+    "S3/screenshots/S3L1E4C-raw.png",
+    "S3/screenshots/S3L1E4B-raw-additional.png",
+    "S3/screenshots/S3L1E4B-raw-native-additional.png",
+    "S3/screenshots/S3L1E4C-dry-run.png",
+    "S3/screenshots/S3L1E4B-transactions-raw.png",
+    "S3/screenshots/S3L1E4B-transactions-raw-native.png",
+    "Pasted image 20260923114305.png",
     "Untitled.base",
-    "S3/screenshots/S3L1E1-datasets-created.png",
-    "S3/screenshots/S3L1E1-create-gold.png",
-    "S3/screenshots/S3L1E1-create-silver.png",
-    "S3/screenshots/Screenshot from 2026-09-22 11-07-43.png",
-    "S3/screenshots/S3L1E1-bronze-created.png",
-    "S3/screenshots/S3L1E1-create-bronze.png",
     "S3/screenshots",
     "prueba.sql",
     "Untitled.md",
@@ -247,8 +261,6 @@
     "Unconfirmed 420858.crdownload",
     "tables.sql",
     "Unconfirmed 213395.crdownload",
-    "S2/diagrams/S2L1E4D.png",
-    "S2/screenshots/OP073.png",
     "S2/S2L3E2.md",
     "S2/S2L1E4.md",
     "S2/S2L1E1.md",

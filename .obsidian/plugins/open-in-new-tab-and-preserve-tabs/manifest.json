@@ -1,0 +1,9 @@
+{
+  "id": "open-in-new-tab-and-preserve-tabs",
+  "name": "Open in New Tab and Preserve Tabs",
+  "version": "1.1.0",
+  "minAppVersion": "1.0.0",
+  "description": "Open files in new tabs and preserve existing file tabs.",
+  "author": "Zhihao Nan",
+  "isDesktopOnly": false
+}
