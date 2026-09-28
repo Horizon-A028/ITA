@@ -20,30 +20,6 @@
               "icon": "lucide-file",
               "title": "S3"
             }
-          },
-          {
-            "id": "5ed2d340ce42c0d9",
-            "type": "leaf",
-            "state": {
-              "type": "image",
-              "state": {
-                "file": "S3/screenshots/S3L1E4C-raw-native2.png"
-              },
-              "icon": "lucide-image",
-              "title": "S3L1E4C-raw-native2"
-            }
-          },
-          {
-            "id": "4af91d49441b2ccd",
-            "type": "leaf",
-            "state": {
-              "type": "image",
-              "state": {
-                "file": "S3/screenshots/S3L1E4C-raw-native.png"
-              },
-              "icon": "lucide-image",
-              "title": "S3L1E4C-raw-native"
-            }
           }
         ]
       }
@@ -237,18 +213,17 @@
   },
   "active": "efe0595d2cad2b1d",
   "lastOpenFiles": [
-    "S3/screenshots/S3L1E5.png",
-    "S3/screenshots/S3L1E4C-raw-native2.png",
+    "S3/screenshots/S3L2E4-credit-cards.png",
     "S3/S3.md",
-    "S3/screenshots/S3L1E4C-raw-native.png",
-    "S3/screenshots/S3L1E4C-raw2.png",
-    "S3/screenshots/S3L1E4C-raw.png",
-    "S3/screenshots/S3L1E4B-raw-additional.png",
-    "S3/screenshots/S3L1E4B-raw-native-additional.png",
-    "S3/screenshots/S3L1E4C-dry-run.png",
-    "S3/screenshots/S3L1E4B-transactions-raw.png",
-    "S3/screenshots/S3L1E4B-transactions-raw-native.png",
-    "Pasted image 20260923114305.png",
+    "S3/screenshots/S3L2E4-companies.png",
+    "S3/screenshots/S3L2E4-billed.png",
+    "Pasted image 20260928121717.png",
+    "S3/screenshots/S3L2E4-executed.png",
+    "S3/screenshots/S3L2E4-dry-run.png",
+    "S3/screenshots/S3L2E3-check-table.png",
+    "S3/screenshots/S3L2E3-bill.png",
+    "S3/screenshots/S3L2E3-executed.png",
+    "S3/screenshots/S3L2E3-dry-run.png",
     "Untitled.base",
     "S3/screenshots",
     "prueba.sql",
