@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "d3a10d2080222aca",
+        "id": "c185615b2437b8d1",
         "type": "tabs",
         "children": [
           {
-            "id": "b8c577760e74f2b3",
+            "id": "0e5f48b070f5fbc1",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "S3/S3.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "S3"
+              "title": "New tab"
             }
           }
         ]
@@ -213,29 +209,29 @@
   },
   "active": "efe0595d2cad2b1d",
   "lastOpenFiles": [
-    "S3/screenshots/S3L2E4-credit-cards.png",
     "S3/S3.md",
-    "S3/screenshots/S3L2E4-companies.png",
-    "S3/screenshots/S3L2E4-billed.png",
+    "S3/S3.sql",
+    "S3/S3.pdf",
+    "Untitled.md",
+    "Untitled",
+    "S3/screenshots/S3L3E2-bill.png",
+    "S3/screenshots/S3L3E2-executed.png",
+    "S3/screenshots/S3L3E2-dry-run.png",
     "Pasted image 20260928121717.png",
-    "S3/screenshots/S3L2E4-executed.png",
-    "S3/screenshots/S3L2E4-dry-run.png",
-    "S3/screenshots/S3L2E3-check-table.png",
+    "S3/screenshots/S3L3E1-view-the-view.png",
+    "S3/screenshots/S3L3E1-bill.png",
+    "S3/screenshots/S3L3E1-executed.png",
+    "S3/screenshots/S3L3E1-dry-run.png",
+    "S3/screenshots/S3L2E3-proof.png",
     "S3/screenshots/S3L2E3-bill.png",
-    "S3/screenshots/S3L2E3-executed.png",
-    "S3/screenshots/S3L2E3-dry-run.png",
+    "S2/S2.md",
+    "S2/S2.sql",
+    "S2/S2.pdf",
     "Untitled.base",
     "S3/screenshots",
     "prueba.sql",
-    "Untitled.md",
-    "S2/S2.md",
     "prueba.sql.GT82V3",
     "prueba.sql.UUZGW3",
-    "prueba.sql.RYXGW3",
-    "data.sql",
-    "Unconfirmed 420858.crdownload",
-    "tables.sql",
-    "Unconfirmed 213395.crdownload",
     "S2/S2L3E2.md",
     "S2/S2L1E4.md",
     "S2/S2L1E1.md",
