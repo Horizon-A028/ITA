@@ -791,3 +791,85 @@ ON o.product_id = p.id
 WHERE t.declined = FALSE
 GROUP BY o.product_id
 ORDER BY o.product_id;
+
+-- ############################################################
+-- ############################################################
+-- Correccion
+-- ############################################################
+-- ############################################################
+-- Lvl. 1 Ex. 6
+-- ############################################################
+
+INSERT INTO credit_card (
+	id,
+    iban,
+    pin,
+    cvv,
+    expiring_date
+) VALUES (
+	"CcU-9999",
+    "SOME_IBAN_GIVEN_TO_ME",
+    "9999",
+    "999",
+    "2030-5-10"
+);
+
+INSERT INTO company (
+	id,
+    company_name,
+    phone,
+    email,
+    country,
+    website
+) VALUES (
+	"b-9999",
+    "SOME_COMPANY_NAME",
+    "+99 99 999 9999",
+    "SOME_MAIL@SOME_PROVIDER",
+    "SOME_COUNTRY",
+    "SOME_COMPANY_NAME.SOME_DOMAIN"
+);
+
+INSERT INTO transaction (
+  id,
+  credit_card_id,
+  company_id,
+  user_id,
+  lat,
+  longitude,
+  amount,
+  declined,
+  timestamp
+) VALUES (
+  "108B1D1D-5B23-A76C-55EF-C568E49A99DD",
+  "CcU-9999",
+  "b-9999",
+  9999,
+  829.999,
+  -117.999,
+  111.11,
+  0,
+  NOW()
+);
+
+SELECT *
+FROM transaction AS t
+WHERE t.id = "108B1D1D-5B23-A76C-55EF-C568E49A99DD";
+
+-- ############################################################
+-- Lvl. 1 Ex. 9
+-- ############################################################
+
+WITH
+  tr_count AS (
+    SELECT
+      t.user_id,
+      COUNT(1) AS n
+    FROM transactions AS t
+    GROUP BY t.user_id
+    HAVING n > 80
+  )
+SELECT u.*, c.n
+FROM users AS u
+JOIN tr_count AS c
+ON u.id = c.user_id;

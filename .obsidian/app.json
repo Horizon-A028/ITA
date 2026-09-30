@@ -42,7 +42,8 @@
     "Standard",
     "Reporting",
     "Engineer",
-    "Governance"
+    "Governance",
+    "lvl"
   ],
   "pdfExportSettings": {
     "includeName": true,
