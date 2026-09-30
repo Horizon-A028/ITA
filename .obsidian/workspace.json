@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "S2/S2.md",
-                "mode": "preview",
+                "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
@@ -211,7 +211,7 @@
       "aibrowser-chat:Open OmniChat": false
     }
   },
-  "active": "640b59f62bf3c357",
+  "active": "efe0595d2cad2b1d",
   "lastOpenFiles": [
     "S2/S2.sql",
     "S2/S2.md",
