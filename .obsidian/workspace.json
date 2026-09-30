@@ -15,7 +15,7 @@
               "state": {
                 "file": "S3/S3.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
               "title": "S3"
@@ -223,7 +223,7 @@
       "aibrowser-chat:Open OmniChat": false
     }
   },
-  "active": "efe0595d2cad2b1d",
+  "active": "0e5f48b070f5fbc1",
   "lastOpenFiles": [
     "S3/S3.sql",
     "S3/screenshots/S3-create-for-screenshot.png",
