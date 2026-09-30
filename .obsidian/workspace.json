@@ -4,33 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "c185615b2437b8d1",
+        "id": "69ed05cdc4174023",
         "type": "tabs",
         "children": [
           {
-            "id": "3d2649579f1a3d3e",
+            "id": "640b59f62bf3c357",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
                 "file": "S2/S2.md",
-                "mode": "source",
-                "source": false
+                "mode": "preview",
+                "source": true
               },
               "icon": "lucide-file",
               "title": "S2"
-            }
-          },
-          {
-            "id": "b3c6218e685c9f96",
-            "type": "leaf",
-            "state": {
-              "type": "code-editor",
-              "state": {
-                "file": "S2/S2.sql"
-              },
-              "icon": "file-code",
-              "title": "S2.sql"
             }
           }
         ]
@@ -223,7 +211,7 @@
       "aibrowser-chat:Open OmniChat": false
     }
   },
-  "active": "3d2649579f1a3d3e",
+  "active": "640b59f62bf3c357",
   "lastOpenFiles": [
     "S2/S2.sql",
     "S2/S2.md",
