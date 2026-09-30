@@ -11,10 +11,26 @@
             "id": "0e5f48b070f5fbc1",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "S3/S3.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "S3"
+            }
+          },
+          {
+            "id": "142fea63c35f22fb",
+            "type": "leaf",
+            "state": {
+              "type": "code-editor",
+              "state": {
+                "file": "S3/S3.sql"
+              },
+              "icon": "file-code",
+              "title": "S3.sql"
             }
           }
         ]
@@ -191,7 +207,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 719.5
+    "width": 553.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -209,21 +225,21 @@
   },
   "active": "efe0595d2cad2b1d",
   "lastOpenFiles": [
-    "S3/S3.md",
     "S3/S3.sql",
+    "S3/screenshots/S3-create-for-screenshot.png",
+    "S3/S3.md",
+    "S3/screenshots/S3L1E6-bill-revised.png",
+    "S3/screenshots/S3L1E6-executed.png",
+    "S3/screenshots/S3L1E6-dry-run-revised.png",
+    "Pasted image 20260930101433.png",
+    "S3/screenshots/S3L1E5-bill.png",
+    "S3/screenshots/S3L1E5-executed.png",
+    "S3/screenshots/S3L1E5-dry-run.png",
+    "S3/screenshots/S3L1E5-dry-ryn.png",
+    "Pasted image 20260930101119.png",
     "S3/S3.pdf",
     "Untitled.md",
     "Untitled",
-    "S3/screenshots/S3L3E2-bill.png",
-    "S3/screenshots/S3L3E2-executed.png",
-    "S3/screenshots/S3L3E2-dry-run.png",
-    "Pasted image 20260928121717.png",
-    "S3/screenshots/S3L3E1-view-the-view.png",
-    "S3/screenshots/S3L3E1-bill.png",
-    "S3/screenshots/S3L3E1-executed.png",
-    "S3/screenshots/S3L3E1-dry-run.png",
-    "S3/screenshots/S3L2E3-proof.png",
-    "S3/screenshots/S3L2E3-bill.png",
     "S2/S2.md",
     "S2/S2.sql",
     "S2/S2.pdf",

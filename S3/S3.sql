@@ -110,13 +110,26 @@ LIMIT 10;
 
 SELECT
     DATE(t.timestamp) AS t_day,
-    SUM(t.amount) AS day_total
+    ROUND(SUM(t.amount), 2) AS day_total
 FROM `sprint3-analytics-marc-ponce.sprint3_bronze.transactions_raw_native` AS t
+WHERE t.declined = 0
 GROUP BY t_day
 ORDER BY day_total DESC
 LIMIT 5;
 
 #L1E6
+
+SELECT
+    c.company_name,
+    c.country,
+    t.timestamp
+FROM `sprint3-analytics-marc-ponce.sprint3_bronze.transactions_raw_native` AS t
+JOIN `sprint3-analytics-marc-ponce.sprint3_bronze.companies_raw` AS c
+ON t.business_id = c.company_id
+WHERE t.amount BETWEEN 100 AND 200
+AND DATE(t.timestamp) in ('2015-04-29', '2018-07-20', '2024-03-13');
+
+#Old
 
 SELECT
     eu.name,
@@ -128,7 +141,7 @@ ON t.business_id = c.company_id
 JOIN `sprint3-analytics-marc-ponce.sprint3_bronze.european_users_raw` AS eu
 ON t.user_id = eu.id
 WHERE t.amount BETWEEN 100 AND 200
-AND t_day in ('29-04-1015', '20-07-2018', '13-03-2024')
+AND DATE(t.timestamp) in ('2015-04-29', '2018-07-20', '2024-03-13')
 UNION ALL
 SELECT
     au.name,
@@ -137,10 +150,40 @@ SELECT
 FROM `sprint3-analytics-marc-ponce.sprint3_bronze.transactions_raw_native` AS t
 JOIN `sprint3-analytics-marc-ponce.sprint3_bronze.companies_raw` AS c
 ON t.business_id = c.company_id
-JOIN `sprint3-analytics-marc-ponce.sprint3_bronze.american_users_raw` AS eu
+JOIN `sprint3-analytics-marc-ponce.sprint3_bronze.american_users_raw` AS us
 ON t.user_id = au.id
 WHERE t.amount BETWEEN 100 AND 200
-AND t_day in ('29-04-1015', '20-07-2018', '13-03-2024');
+AND DATE(t.timestamp) in ('2015-04-29', '2018-07-20', '2024-03-13');
+
+#Improved
+
+WITH
+    tc AS (
+        SELECT
+            t.user_id,
+            c.country,
+            t.timestamp
+        FROM `sprint3-analytics-marc-ponce.sprint3_bronze.transactions_raw_native` AS t
+        JOIN `sprint3-analytics-marc-ponce.sprint3_bronze.companies_raw` AS c
+        ON t.business_id = c.company_id
+        WHERE t.amount BETWEEN 100 AND 200
+        AND DATE(t.timestamp) in ('2015-04-29', '2018-07-20', '2024-03-13')
+    )
+SELECT
+    eu.name,
+    tc.country,
+    tc.timestamp
+FROM tc
+JOIN `sprint3-analytics-marc-ponce.sprint3_bronze.european_users_raw` AS eu
+ON tc.user_id = eu.id
+UNION ALL
+SELECT
+    us.name,
+    tc.country,
+    tc.timestamp
+FROM tc
+JOIN `sprint3-analytics-marc-ponce.sprint3_bronze.american_users_raw` AS us
+ON tc.user_id = us.id;
 
 #L2E1
 
