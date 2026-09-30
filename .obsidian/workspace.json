@@ -20,6 +20,18 @@
               "icon": "lucide-file",
               "title": "S2"
             }
+          },
+          {
+            "id": "b3c6218e685c9f96",
+            "type": "leaf",
+            "state": {
+              "type": "code-editor",
+              "state": {
+                "file": "S2/S2.sql"
+              },
+              "icon": "file-code",
+              "title": "S2.sql"
+            }
           }
         ]
       }
@@ -213,6 +225,8 @@
   },
   "active": "3d2649579f1a3d3e",
   "lastOpenFiles": [
+    "S2/S2.sql",
+    "S2/S2.md",
     "S2/screenshots/S2CL1E9S2.png",
     "S2/screenshots/S2CL1E9S1.png",
     "S2/S2.sql.EE6BV3",
@@ -221,7 +235,6 @@
     "S2/screenshots/S2CL1E6S3.png",
     "S2/screenshots/S2CL1E6S2.png",
     "S2/screenshots/S2CL1E6S1.png",
-    "S2/S2.md",
     "S3/screenshots/Screenshot from 2026-09-30 11-45-32.png",
     "S2/S2.sql.Y7FJV3",
     "S2/S2.sql.IPNFV3",
@@ -231,11 +244,9 @@
     "S3/screenshots/S3-create-for-screenshot.png",
     "S3/screenshots/S3L1E6-bill-revised.png",
     "S3/screenshots/S3L1E6-executed.png",
-    "S3/screenshots/S3L1E6-dry-run-revised.png",
     "S3/S3.pdf",
     "Untitled.md",
     "Untitled",
-    "S2/S2.sql",
     "S2/S2.pdf",
     "S2/S2L3E2.md",
     "S2/S2L1E4.md",

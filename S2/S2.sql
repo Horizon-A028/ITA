@@ -860,16 +860,23 @@ WHERE t.id = "108B1D1D-5B23-A76C-55EF-C568E49A99DD";
 -- Lvl. 1 Ex. 9
 -- ############################################################
 
-WITH
-  tr_count AS (
-    SELECT
-      t.user_id,
-      COUNT(1) AS n
-    FROM transactions AS t
-    GROUP BY t.user_id
-    HAVING n > 80
-  )
+SELECT *
+FROM users AS u
+WHERE (
+  SELECT
+    COUNT(1)
+  FROM transactions AS t
+  WHERE t.user_id = u.id
+) > 80;
+
 SELECT u.*, c.n
 FROM users AS u
-JOIN tr_count AS c
+JOIN (
+  SELECT
+    t.user_id,
+	COUNT(1) AS n
+  FROM transactions AS t
+  GROUP BY t.user_id
+  HAVING n > 80
+) AS c
 ON u.id = c.user_id;
