@@ -43,7 +43,11 @@
     "Reporting",
     "Engineer",
     "Governance",
-    "lvl"
+    "lvl",
+    "Partitioning",
+    "Particionament",
+    "Clustering",
+    "particionada"
   ],
   "pdfExportSettings": {
     "includeName": true,
