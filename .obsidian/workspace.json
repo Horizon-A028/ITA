@@ -20,20 +20,6 @@
               "icon": "lucide-file",
               "title": "S4"
             }
-          },
-          {
-            "id": "570ba895813443f7",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "S2/S2.md",
-                "mode": "preview",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "S2"
-            }
           }
         ]
       }
@@ -227,24 +213,24 @@
   },
   "active": "efe0595d2cad2b1d",
   "lastOpenFiles": [
-    "S2/S2.md",
+    "S4/screenshots/S4L2E1-executed.png",
     "S4/S4.md",
+    "S4/screenshots/S4L1E5-executed.png",
+    "S4/screenshots/S4L1E4-bytes-processed.png",
+    "S4/screenshots/S4L1E4-view-viewed.png",
+    "S4/screenshots/S4L1E3-optimized.png",
+    "S4/screenshots/S4L1E4-view-created.png",
+    "S4/screenshots/S4L1E3-recent.png",
+    "S4/screenshots/S4L1E2-details.png",
+    "S4/screenshots/Screenshot from 2026-10-13 13-02-18.png",
+    "S4/screenshots/Screenshot from 2026-10-13 12-59-56.png",
+    "S2/S2.md",
     "S3/S3.md",
-    "S4/screenshots/S4L1E1-billed.png",
-    "S4/screenshots/S4L1E1-executed.png",
-    "S4/screenshots/S4L1E1-dry-run.png",
-    "Pasted image 20260930133309.png",
-    "Pasted image 20260930134553.png",
-    "Pasted image 20260930134526.png",
     "S4/screenshots",
     "S4",
     "S2/S2.sql",
-    "S2/screenshots/S2CL1E9S2.png",
-    "S2/screenshots/S2CL1E9S1.png",
     "S2/S2.sql.EE6BV3",
     "S2/S2.sql.KFSLV3",
-    "S2/screenshots/S2CL1E6S4.png",
-    "S2/screenshots/S2CL1E6S3.png",
     "S2/S2.sql.Y7FJV3",
     "S2/S2.sql.IPNFV3",
     "System Volume Information",

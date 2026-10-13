@@ -47,7 +47,8 @@
     "Partitioning",
     "Particionament",
     "Clustering",
-    "particionada"
+    "particionada",
+    "unpartitioned"
   ],
   "pdfExportSettings": {
     "includeName": true,
