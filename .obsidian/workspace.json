@@ -20,6 +20,18 @@
               "icon": "lucide-file",
               "title": "S4"
             }
+          },
+          {
+            "id": "b5bf7083c5b817a0",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "S4/screenshots/S4L3E3-function.png"
+              },
+              "icon": "lucide-image",
+              "title": "S4L3E3-function"
+            }
           }
         ]
       }
@@ -213,17 +225,17 @@
   },
   "active": "efe0595d2cad2b1d",
   "lastOpenFiles": [
-    "S4/screenshots/S4L2E1-executed.png",
+    "S4/screenshots/S4L3E3-function.png",
     "S4/S4.md",
-    "S4/screenshots/S4L1E5-executed.png",
-    "S4/screenshots/S4L1E4-bytes-processed.png",
-    "S4/screenshots/S4L1E4-view-viewed.png",
-    "S4/screenshots/S4L1E3-optimized.png",
-    "S4/screenshots/S4L1E4-view-created.png",
-    "S4/screenshots/S4L1E3-recent.png",
-    "S4/screenshots/S4L1E2-details.png",
-    "S4/screenshots/Screenshot from 2026-10-13 13-02-18.png",
-    "S4/screenshots/Screenshot from 2026-10-13 12-59-56.png",
+    "S4/screenshots/S4L3E2-bill.png",
+    "S4/screenshots/S4L3E2-executed.png",
+    "S4/screenshots/S4L3E1-table.png",
+    "S4/screenshots/S4L3E1-executed.png",
+    "S4/screenshots/S4L2E4-bill.png",
+    "S4/screenshots/Screenshot from 2026-10-14 10-52-59.png",
+    "S4/screenshots/S4L2E4-executed.png",
+    "S4/screenshots/Screenshot from 2026-10-14 10-37-57.png",
+    "S4/screenshots/S4L2E3-bill.png",
     "S2/S2.md",
     "S3/S3.md",
     "S4/screenshots",
