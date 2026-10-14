@@ -15,13 +15,26 @@
               "state": {
                 "file": "S4/S4.md",
                 "mode": "source",
-                "source": true
+                "source": false
               },
               "icon": "lucide-file",
               "title": "S4"
             }
+          },
+          {
+            "id": "183d8063ec11075d",
+            "type": "leaf",
+            "state": {
+              "type": "code-editor",
+              "state": {
+                "file": "S4/S4.sql"
+              },
+              "icon": "file-code",
+              "title": "S4.sql"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -211,10 +224,12 @@
       "aibrowser-chat:Open OmniChat": false
     }
   },
-  "active": "aaca6403a659f0f0",
+  "active": "183d8063ec11075d",
   "lastOpenFiles": [
-    "S4/screenshots/S4L3E4-charts.png",
     "S4/S4.md",
+    "S4/S4.sql",
+    "S4/S4.pdf",
+    "S4/screenshots/S4L3E4-charts.png",
     "S4/screenshots/S4L3E3-schedule-not-enabled.png",
     "S4/screenshots/S4L3E3-billing-dissabled.png",
     "S4/screenshots/S4L3E3-console-schedule.png",
@@ -234,8 +249,6 @@
     "S2/S2.sql.Y7FJV3",
     "S2/S2.sql.IPNFV3",
     "System Volume Information",
-    "S3/S3.sql",
-    "S3/S3.pdf",
     "Untitled.md",
     "S2/S2L3E2.md",
     "S2/S2L1E4.md",
