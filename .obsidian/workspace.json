@@ -15,7 +15,7 @@
               "state": {
                 "file": "S4/S4.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
               "title": "S4"
@@ -195,7 +195,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 692.5
+    "width": 435.5
   },
   "left-ribbon": {
     "hiddenItems": {
