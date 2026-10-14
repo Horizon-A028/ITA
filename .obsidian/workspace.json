@@ -20,21 +20,8 @@
               "icon": "lucide-file",
               "title": "S4"
             }
-          },
-          {
-            "id": "183d8063ec11075d",
-            "type": "leaf",
-            "state": {
-              "type": "code-editor",
-              "state": {
-                "file": "S4/S4.sql"
-              },
-              "icon": "file-code",
-              "title": "S4.sql"
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -224,10 +211,10 @@
       "aibrowser-chat:Open OmniChat": false
     }
   },
-  "active": "183d8063ec11075d",
+  "active": "aaca6403a659f0f0",
   "lastOpenFiles": [
-    "S4/S4.md",
     "S4/S4.sql",
+    "S4/S4.md",
     "S4/S4.pdf",
     "S4/screenshots/S4L3E4-charts.png",
     "S4/screenshots/S4L3E3-schedule-not-enabled.png",
