@@ -14,8 +14,8 @@
               "type": "markdown",
               "state": {
                 "file": "S5/S5.md",
-                "mode": "source",
-                "source": false
+                "mode": "preview",
+                "source": true
               },
               "icon": "lucide-file",
               "title": "S5"
@@ -211,7 +211,7 @@
       "aibrowser-chat:Open OmniChat": false
     }
   },
-  "active": "efe0595d2cad2b1d",
+  "active": "c6dce3d1f2fd2e1c",
   "lastOpenFiles": [
     "S5/screenshots/S5L1E2.png",
     "S5/S5.md",
