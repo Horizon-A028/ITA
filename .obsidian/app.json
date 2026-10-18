@@ -48,7 +48,9 @@
     "Particionament",
     "Clustering",
     "particionada",
-    "unpartitioned"
+    "unpartitioned",
+    "CS",
+    "GEI"
   ],
   "pdfExportSettings": {
     "includeName": true,

@@ -195,7 +195,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 435.5
+    "width": 637.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -213,17 +213,18 @@
   },
   "active": "efe0595d2cad2b1d",
   "lastOpenFiles": [
-    "S5/screenshots/S5L1E3-query.png",
+    "S5/screenshots/S5L2E2.png",
     "S5/S5.md",
+    "S5/screenshots/S5L2E1.png",
+    "S5/screenshots/S5L1E3-query.png",
+    "Untitled.md",
+    "S5/screenshots/S5L1E3-query.png",
     "S5/screenshots/S5L1E3-distinct.png",
     "S5/screenshots/S5L1E2-query.png",
     "S5/screenshots/S5L1E2-distinct.png",
     "S5/screenshots/S5L1E2-distinct.png",
     "S5/screenshots/S5L1E1-3-query.png",
     "S5/screenshots/S5L1E1-5-query.png",
-    "S5/screenshots/S5L1E1-5-distinct.png",
-    "S5/screenshots/S5L1E1-4.png",
-    "S5/screenshots/S5L1E1-3-query.png",
     "S5/screenshots",
     "S4/S4.md",
     "S5",
@@ -237,7 +238,6 @@
     "S2/S2.sql.EE6BV3",
     "S2/S2.sql.KFSLV3",
     "S2/S2.sql.Y7FJV3",
-    "Untitled.md",
     "S2/S2L3E2.md",
     "S2/S2L1E4.md",
     "S2/S2L1E1.md",
