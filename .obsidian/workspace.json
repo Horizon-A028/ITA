@@ -14,8 +14,8 @@
               "type": "markdown",
               "state": {
                 "file": "S4/S4.md",
-                "mode": "source",
-                "source": false
+                "mode": "preview",
+                "source": true
               },
               "icon": "lucide-file",
               "title": "S4"
@@ -211,10 +211,10 @@
       "aibrowser-chat:Open OmniChat": false
     }
   },
-  "active": "efe0595d2cad2b1d",
+  "active": "d86225d878087440",
   "lastOpenFiles": [
-    "S3L3E3-bill.png",
-    "S4L3E3-query.png",
+    "S4/screenshots/S3L3E3-bill.png",
+    "S4/screenshots/S4L3E3-query.png",
     "S4/S4.md",
     "S4/screenshots/S4L3E1-table-view.png",
     "S4/screenshots/S4L3E1-executed.png",
