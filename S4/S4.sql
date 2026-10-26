@@ -104,8 +104,7 @@ SELECT
     l.*,
     ROUND(
         (l.Vendes_Avui - l.Vendes_Ahir) /
-        (l.Vendes_Avui + l.Vendes_Ahir) *
-        100
+        l.Vendes_Ahir * 100
     , 2) AS Diff_Percentual
 FROM l
 ORDER BY l.Data;
