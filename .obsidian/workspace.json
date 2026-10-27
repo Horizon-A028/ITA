@@ -4,21 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "42c4142358d6aab6",
+        "id": "b8516327058f7968",
         "type": "tabs",
         "children": [
           {
-            "id": "b232e01984963d59",
+            "id": "af9830f6b7cc80b6",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "native-ipynb",
               "state": {
-                "file": "Untitled.md",
-                "mode": "source",
-                "source": false
+                "file": "S7/S7.ipynb"
               },
-              "icon": "lucide-file",
-              "title": "Untitled"
+              "icon": "notebook-pen",
+              "title": "S7"
             }
           }
         ]
@@ -208,14 +206,16 @@
       "bases:Create new base": false,
       "obsidian-git:Open Git source control": false,
       "obsidian-languagetool-plugin:Check text with LanguageTool": false,
-      "aibrowser-chat:Open OmniChat": false
+      "aibrowser-chat:Open OmniChat": false,
+      "jupyter-notebook:Create Jupyter Notebook": false
     }
   },
   "active": "efe0595d2cad2b1d",
   "lastOpenFiles": [
-    "Untitled.md",
-    "S4/S4.md",
     "S7/S7.ipynb",
+    "Untitled.md",
+    "S7/Examples",
+    "S4/S4.md",
     "S7",
     "S4/screenshots/S3L3E3-bill.png",
     "S4/screenshots/S4L3E3-query.png",
@@ -237,7 +237,6 @@
     "S4/screenshots",
     "S4",
     "S2/S2.sql",
-    "S2/S2.sql.EE6BV3",
     "S2/S2L3E2.md",
     "S2/S2L1E4.md",
     "S2/S2L1E1.md",
