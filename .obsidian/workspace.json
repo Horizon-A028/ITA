@@ -210,10 +210,12 @@
       "jupyter-notebook:Create Jupyter Notebook": false
     }
   },
-  "active": "efe0595d2cad2b1d",
+  "active": "af9830f6b7cc80b6",
   "lastOpenFiles": [
-    "S7/S7.ipynb",
     "Untitled.md",
+    "S7/S7.ipynb",
+    "S7/Examples/exemple_2.ipynb",
+    "S7/Examples/exemple_1.ipynb",
     "S7/Examples",
     "S4/S4.md",
     "S7",
@@ -235,8 +237,6 @@
     "S2/S2.md",
     "S3/S3.md",
     "S4/screenshots",
-    "S4",
-    "S2/S2.sql",
     "S2/S2L3E2.md",
     "S2/S2L1E4.md",
     "S2/S2L1E1.md",
