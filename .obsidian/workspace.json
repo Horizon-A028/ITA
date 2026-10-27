@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "29a1ad824be0c3c7",
+        "id": "5a41c68a0fa1f1bb",
         "type": "tabs",
         "children": [
           {
-            "id": "7804f283808405d2",
+            "id": "463cc03ade6d4478",
             "type": "leaf",
             "state": {
               "type": "native-ipynb",
@@ -210,10 +210,10 @@
       "jupyter-notebook:Create Jupyter Notebook": false
     }
   },
-  "active": "7804f283808405d2",
+  "active": "463cc03ade6d4478",
   "lastOpenFiles": [
-    "S7/S7 Copy 1793106039532.ipynb",
     "S7/S7.ipynb",
+    "S7/S7 Copy 1793106039532.ipynb",
     "Untitled.md",
     "S7/Examples/exemple_2.ipynb",
     "S7/Examples/exemple_1.ipynb",
