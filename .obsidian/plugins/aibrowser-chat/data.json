@@ -1,5 +1,5 @@
 {
-  "webAppUrl": "https://chatgpt.com/",
+  "webAppUrl": "https://chat.deepseek.com/",
   "openOnStartup": true,
   "maxContextLength": 50000,
   "contextItems": [],

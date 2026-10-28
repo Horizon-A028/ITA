@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "5a41c68a0fa1f1bb",
+        "id": "1700c35778773090",
         "type": "tabs",
         "children": [
           {
-            "id": "463cc03ade6d4478",
+            "id": "8c9cfe4ac4e85993",
             "type": "leaf",
             "state": {
               "type": "native-ipynb",
@@ -193,7 +193,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 637.5
+    "width": 771.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -210,13 +210,15 @@
       "jupyter-notebook:Create Jupyter Notebook": false
     }
   },
-  "active": "463cc03ade6d4478",
+  "active": "efe0595d2cad2b1d",
   "lastOpenFiles": [
+    "S7/S7.ipynb~",
+    "S7/Examples/exemple_1.ipynb",
+    "S7/S7 Copy 1793178140306.ipynb",
     "S7/S7.ipynb",
     "S7/S7 Copy 1793106039532.ipynb",
     "Untitled.md",
     "S7/Examples/exemple_2.ipynb",
-    "S7/Examples/exemple_1.ipynb",
     "S7/Examples",
     "S4/S4.md",
     "S7",
@@ -234,10 +236,8 @@
     "S5/screenshots/S5L2E1.png",
     "S5/screenshots",
     "S5",
-    "S4/S4.pdf",
     "S2/S2.md",
     "S3/S3.md",
-    "S4/screenshots",
     "S2/S2L3E2.md",
     "S2/S2L1E4.md",
     "S2/S2L1E1.md",
