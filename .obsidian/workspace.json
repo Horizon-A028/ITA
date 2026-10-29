@@ -4,19 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "de9cb7a7f9813604",
+        "id": "d966bc44ad0efe2d",
         "type": "tabs",
         "children": [
           {
-            "id": "373736921a869389",
+            "id": "27862e6f4df35b9a",
             "type": "leaf",
             "state": {
-              "type": "native-ipynb",
+              "type": "markdown",
               "state": {
-                "file": "S7/S7.ipynb"
+                "file": "Untitled.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "notebook-pen",
-              "title": "S7"
+              "icon": "lucide-file",
+              "title": "Untitled"
             }
           }
         ]
@@ -210,14 +212,14 @@
       "jupyter-notebook:Create Jupyter Notebook": false
     }
   },
-  "active": "efe0595d2cad2b1d",
+  "active": "27862e6f4df35b9a",
   "lastOpenFiles": [
+    "Untitled.md",
     "S7/S7.ipynb",
     "S7/S7.ipynb~",
     "S7/Examples/exemple_1.ipynb",
     "S7/S7 Copy 1793178140306.ipynb",
     "S7/S7 Copy 1793106039532.ipynb",
-    "Untitled.md",
     "S7/Examples/exemple_2.ipynb",
     "S7/Examples",
     "S4/S4.md",
@@ -235,7 +237,6 @@
     "S5/screenshots/S5L2E2.png",
     "S5/screenshots/S5L2E1.png",
     "S5/screenshots",
-    "S5",
     "S2/S2.md",
     "S3/S3.md",
     "S2/S2L3E2.md",
