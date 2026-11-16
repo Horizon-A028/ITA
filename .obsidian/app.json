@@ -50,7 +50,15 @@
     "particionada",
     "unpartitioned",
     "CS",
-    "GEI"
+    "GEI",
+    "Developer",
+    "NEcADA",
+    "JGPSS",
+    "SDLPS",
+    "SAT",
+    "solvers",
+    "NECADA",
+    "solver"
   ],
   "pdfExportSettings": {
     "includeName": true,
