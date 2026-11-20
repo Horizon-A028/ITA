@@ -39,3 +39,49 @@ Aquestes són les primeres impressions que m'han sorgit. En qualsevol cas, m'agr
 
 Un salut,
 Marc Ponce
+
+---
+
+Bon dia, Pau,
+
+Et torno a escriure per si el meu correu anterior s'ha perdut o encara no has tingut ocasió de revisar-lo.
+
+Espero que el meu missatge anterior no hagi donat una mala impressió. La meva intenció era simplement exposar les primeres impressions que m'havien generat els projectes, per tal que em poguessis corregir o aclarir els dubtes que plantejava.
+
+M'agradaria poder començar el TFG aquest mateix quadrimestre, si és possible, per matricular-lo i acabar-lo durant el següent. El meu projecte anterior no va arribar a bon port i ja ha endarrerit dos anys la meva graduació, així que voldria evitar més demores.
+
+Gràcies per la teva atenció.
+Un salut,
+Marc Ponce
+
+---
+
+Bon dia Marc,
+
+No, simplement estic amb el email desbordat, si finalment fas el PFC amb nosaltres ja et donaria un canal de comunicació directe.
+
+Parlem algun dia de la setmana vinet?, dilluns a les 18 com ho tens?.
+
+---
+
+Sí, estic disponible dilluns 23 a les 18:00, en línia.
+
+Em pots passar l'enllaç o indicar-me la forma de contacte?
+
+Ens veiem!
+
+Gràcies,
+Marc
+
+
+
+
+
+
+
+Centro python
+Lluvia de ideas proyectos.
+Formacion y no educacion
+orden más reciente a menos
+construir curriculum
+test de competencias clave de barcelona activa - enviar inform Lidia
