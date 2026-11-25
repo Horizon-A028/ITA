@@ -58,7 +58,9 @@
     "SAT",
     "solvers",
     "NECADA",
-    "solver"
+    "solver",
+    "SDL",
+    "PFC"
   ],
   "pdfExportSettings": {
     "includeName": true,

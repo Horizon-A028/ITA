@@ -1,5 +1,3 @@
-mjblesa@cs.upc.edu
-
 Buenos dias,
 
 Soy estudiante de GEI-computación, necesito director para mi trabajo de fin de grado. Agradecería su disponibilidad para Q2-2026-27, ya fuera para una propuesta mía o un proyecto vuestro—preferentemente un software que pueda implementar. Querría empezar lo más pronto posible.
@@ -73,6 +71,73 @@ Ens veiem!
 Gràcies,
 Marc
 
+---
+
+Bona tarda, Pau,
+
+M'he connectat avui al Teams amb uns tres minuts de retard, perquè estava fent un curs en línia d'AWS que acabava a les 18:00.
+
+Ara que ja són les 18:25, entenc que avui no farem la reunió. Estaré pendent del correu i deixaré el Teams obert al navegador per si de cas.
+
+En qualsevol cas, demà, 24 de novembre, i dimecres, 25 de novembre, estic disponible a partir de les 18:00, si et va bé alguna d'aquestes dates.
+
+Un salut,
+Marc
+
+---
+
+Bon dia Marc,
+
+Doncs no t’he vist. Jo ara aniré al despatx de casa, no se si podries quedar a les 20?.
+
+Cordialment,
+
+Pau
+
+---
+
+L'enllaç aquest m'ha arribat al calendari de Google quan em vas enviar el correu, possiblement no és correcte?  
+  
+Sí, estic dispost per les 20:00.
+
+Gràcies,
+Marc
+
+---
+
+Bon dia Marc,
+
+Et cal més informació referent al que vàrem comentar?.
+
+Cordialment,
+Pau
+
+---
+
+Bon dia, Pau,
+
+Sí. Suposava que m'enviaries més detalls del projecte i que establiríem el canal de comunicació directe que havias comentat.
+
+Si ho recordo correctament, vam parlar de centrar el TFG en la visualització de les dades obtingudes a través de les simulacions amb NECADA, que inclouiria una part algorítmica per processar-les per la visualització. Crec que també vas mencionar que necessitaria uns coneixements mínims de SDLPS per poder accedir i interpretar les dades generades per les simulacions.
+
+M'agradaria tenir el projecte i el treball ben definits abans de final d'any, encara que la matrícula no es faci fins al gener o febrer. Per això, hauríem de tenir almenys un possible subconjunt de tasques i objectius principals, i registrar el TFG al Racó abans de final de desembre, si és possible.
+
+També voldria saber quins recursos i accessos necessitaré per començar a treballar. En el TFG anterior, per exemple, necessitava accés al MareNostrum 5 per poder avançar, però aquest accés es va acabar concedint amb mesos de retard. Voldria evitar trobar-me en una situació semblant.
+
+Si hi ha algun malentès sobre el que vam comentar, m'agradaria aclarir-lo al més aviat possible. També estaria encantat de començar a treballar-hi, encara que inicialment només fos familiaritzant-me amb el codi existent o, millor, començar a plantejar solucións.
+
+El GEP requereix que prepari un pla d'acció per al TFG, i per fer-ho necessito conèixer els objectius, l'abast i els recursos disponibles. Sense aquesta informació no es possible completar aquesta fase inicial del TFG satisfactoriament. També necesito aquesta informació per saber si la tasca es almenys possible en un temps raonable.
+
+En resum, suposo que necessitaria accés al codi i una definició d'un primer subconjunt d'objectius mínimament concrets per poder refinar. També ens seria útil establir aquell canal de comunicació directe que vas mencionar.
+
+P.S. També vas mencionar que potser algun dia d'aquestes passes per la universitat per veure'ns presencialment. Si cal, no tinc cap inconvenient a desplaçar-m'hi, tot i que tinc aproximadament una hora de trajecte per sentit.
+
+Gràcies per la teva atenció.
+
+Un salut,  
+Marc
+
+
 
 
 
@@ -85,3 +150,72 @@ Formacion y no educacion
 orden más reciente a menos
 construir curriculum
 test de competencias clave de barcelona activa - enviar inform Lidia
+
+
+Bones,
+
+Tal com diu la Vanessa, les noves comptes ara hi ha una nova experiéncia:
+
+La causa raíz
+
+Cuando un alumno se registra usando "Continuar con Google", "Continuar con GitHub" o cualquier login social, AWS les asigna automáticamente la nueva experiencia de proyectos, que es la que tiene:
+
+- ![](https://st2.zoom.us/fe-static/fe-emoji/0.0.1.20/resource/274c.svg) Sin zonas de disponibilidad
+    
+- ![](https://st2.zoom.us/fe-static/fe-emoji/0.0.1.20/resource/274c.svg) Sin selector de región libre
+    
+- ![](https://st2.zoom.us/fe-static/fe-emoji/0.0.1.20/resource/274c.svg) Nombre de cuenta/proyecto aleatorio
+    
+- ![](https://st2.zoom.us/fe-static/fe-emoji/0.0.1.20/resource/274c.svg) Consola simplificada y recortada
+    
+- ![](https://st2.zoom.us/fe-static/fe-emoji/0.0.1.20/resource/274c.svg) Muchos servicios ocultos o limitados
+    
+
+La solución para prevenir
+
+------> "En el formulario de registro de AWS, escribe tu email directamente en el campo y crea una contraseña. NO USES el botón de Google, GitHub ni Apple."
+
+Así se evita el problema al 100% antes de que ocurra.
+
+¿Qué pueden hacer los alumnos afectados?
+
+Tienen tres opciones:
+
+1. Crear una cuenta nueva con email diferente usando el flujo tradicional (accediendo directamente a aws.amazon.com/free y evitando el login con Google/GitHub/Apple). Tendrán el
+
+---
+
+Tendrán el Free Tier estándar de 12 meses pero sin los $200 de crédito sí:
+
+- Email diferente (o [alias+aws@gmail.com](https://mail.google.com/mail/?view=cm&fs=1&to=alias%2Baws%40gmail.com&authuser=0 "https://mail.google.com/mail/?view=cm&fs=1&to=alias%2Baws%40gmail.com&authuser=0"))
+    
+- Mismo teléfono (sin problema)
+    
+- Misma tarjeta (sin problema)
+    
+- Siguiendo el flujo tradicional sin login social -
+    
+- ------> SI TODO ES NUEVO ENTONCES TENDRÉIS LOS DOLARES DE NUEVO
+    
+
+2. Abrir un caso de soporte en [https://support.console.aws.amazon.com/support/home#/](https://support.console.aws.amazon.com/support/home#/ "https://support.console.aws.amazon.com/support/home#/") solicitando migrar a la experiencia tradicional. Hay precedentes de que AWS lo gestiona, aunque puede tardar varios días.
+
+3. Adaptar el laboratorio a la nueva experiencia si los servicios que usas están disponibles en ella. Así no perder el dinero ya obtenido.
+
+Aquesta info és de AMAZONQ La IA integrada de AWS. Demà mirem més.
+
+---
+
+Dear AWS Customer,
+
+We could not validate important details about your Amazon Web Services (AWS) account. As a result, all projects in your account have been placed on hold pending additional verification. Until we verify your information, you will not be able to launch new resources in these projects. Any resources currently running in these projects are subject to termination and might not be recoverable. This hold also affects any team members you may have invited. At this time, we need your support to address the situation.
+
+If you do not respond by 11/24/2026, your projects will be suspended and you won't be able to access AWS services. AWS reserves the right to expedite suspension of your projects and termination of your resources in certain situations.
+
+---
+
+To resolve this issue, please upload the following information (all items are mandatory):
+
+• A government-issued ID of the AWS account holder (for example, a copy of a driver's license or passport). Optionally, if you have invited team members to your projects, you may include a government-issued ID for each team member.
+
+• A copy of a recent statement for a payment method in the account holder's name (credit card, debit card, or bank account), clearly displaying the last two or four digits of the card or account number, the account holder's name, and the billing address. If the payment method holder and AWS account holder are different individuals, please also provide a government-issued identity document for the payment method holder.
