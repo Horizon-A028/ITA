@@ -203,19 +203,3 @@ Tendrán el Free Tier estándar de 12 meses pero sin los $200 de crédito sí:
 3. Adaptar el laboratorio a la nueva experiencia si los servicios que usas están disponibles en ella. Así no perder el dinero ya obtenido.
 
 Aquesta info és de AMAZONQ La IA integrada de AWS. Demà mirem més.
-
----
-
-Dear AWS Customer,
-
-We could not validate important details about your Amazon Web Services (AWS) account. As a result, all projects in your account have been placed on hold pending additional verification. Until we verify your information, you will not be able to launch new resources in these projects. Any resources currently running in these projects are subject to termination and might not be recoverable. This hold also affects any team members you may have invited. At this time, we need your support to address the situation.
-
-If you do not respond by 11/24/2026, your projects will be suspended and you won't be able to access AWS services. AWS reserves the right to expedite suspension of your projects and termination of your resources in certain situations.
-
----
-
-To resolve this issue, please upload the following information (all items are mandatory):
-
-• A government-issued ID of the AWS account holder (for example, a copy of a driver's license or passport). Optionally, if you have invited team members to your projects, you may include a government-issued ID for each team member.
-
-• A copy of a recent statement for a payment method in the account holder's name (credit card, debit card, or bank account), clearly displaying the last two or four digits of the card or account number, the account holder's name, and the billing address. If the payment method holder and AWS account holder are different individuals, please also provide a government-issued identity document for the payment method holder.
